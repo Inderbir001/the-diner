@@ -153,7 +153,7 @@ function BookingsInner() {
       <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-center">
         <div className="flex flex-wrap gap-1 rounded-full bg-white/5 p-1">
           {ranges.map(([r, label]) => (
-            <button key={r} type="button" onClick={() => setRange(r)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold", range === r ? "bg-brass text-snow" : "text-sand hover:text-cream")}>
+            <button key={r} type="button" onClick={() => setRange(r)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold", range === r ? "bg-brass text-ink" : "text-sand hover:text-cream")}>
               {label}
             </button>
           ))}

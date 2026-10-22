@@ -1,13 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Reveal } from "@/components/motion/reveal";
-import { GrillMark } from "./logo";
+import { SplitWords, Reveal } from "@/components/motion/reveal";
 
-/** Red call-to-action block with a photo. */
 export function CtaBand({
-  title = "Your table's waiting",
-  text = "Book in under a minute. Walk-ins are always welcome too.",
+  title = "Your table's waiting.",
+  text = "Book in under a minute. Walk-ins welcome too.",
   image,
   primary = { href: "/reserve", label: "Book a table" },
   secondary = { href: "/private-parties", label: "Plan a party" },
@@ -19,29 +16,28 @@ export function CtaBand({
   secondary?: { href: string; label: string } | null;
 }) {
   return (
-    <section className="container-x py-12 sm:py-16" aria-label="Reserve">
-      <Reveal className="card relative grid overflow-hidden !rounded-[32px] text-snow lg:grid-cols-2">
-        <GrillMark className="pointer-events-none absolute -bottom-10 left-1/3 size-72 text-white/[0.05]" />
-        <div className="relative p-8 sm:p-12 lg:py-16">
-          <h2 className="text-4xl text-snow sm:text-5xl">{title}</h2>
-          <p className="mt-4 max-w-md text-lg text-snow/85">{text}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={primary.href} className="btn-primary !px-7 !py-4 text-base">
-              {primary.label} <ArrowRight className="size-4" />
-            </Link>
-            {secondary && (
-              <Link href={secondary.href} className="btn-ghost !px-7 !py-4 text-base">
-                {secondary.label}
+    <section className="container-x py-16" aria-label="Reserve">
+      <div className="relative overflow-hidden rounded-[36px] border border-white/10 px-6 py-20 text-center sm:px-16 sm:py-28">
+        {image && <Image src={image} alt="" fill sizes="100vw" className="object-cover" />}
+        <div className="absolute inset-0 bg-ink/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(232_71_62/0.35),transparent_60%)]" />
+        <div className="relative">
+          <SplitWords text={title} className="mx-auto max-w-3xl font-display text-5xl leading-none tracking-tight sm:text-7xl" />
+          <Reveal delay={0.2}>
+            <p className="mx-auto mt-6 max-w-md text-lg text-sand">{text}</p>
+            <div className="mt-10 flex flex-wrap justify-center gap-3">
+              <Link href={primary.href} className="btn-primary !px-8 !py-4">
+                {primary.label}
               </Link>
-            )}
-          </div>
+              {secondary && (
+                <Link href={secondary.href} className="btn-ghost !px-8 !py-4">
+                  {secondary.label}
+                </Link>
+              )}
+            </div>
+          </Reveal>
         </div>
-        {image && (
-          <div className="relative min-h-[260px]">
-            <Image src={image} alt="" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
-          </div>
-        )}
-      </Reveal>
+      </div>
     </section>
   );
 }

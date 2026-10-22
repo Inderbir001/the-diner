@@ -55,10 +55,9 @@ const TABS: { key: SettingsKey; label: string; description: string; fields: Fiel
     description: "Hero, story, numbers, the scrolling ticker, experiences and party packages.",
     fields: [
       { name: "heroEyebrow", label: "Hero label", type: "text" },
-      { name: "heroTitle", label: "Hero headline", type: "text", wide: true, help: "Text after | is shown in red, e.g. Great food, great prices,|rooftop vibes." },
+      { name: "heroTitle", label: "Hero headline", type: "text", wide: true },
       { name: "heroSubtitle", label: "Hero text", type: "textarea", rows: 2 },
-      { name: "heroImage", label: "Hero main photo (landscape)", type: "image", folder: "home" },
-      { name: "heroSideImages", label: "Hero small photos (2 squares)", type: "imageList", folder: "home" },
+      { name: "heroImage", label: "Hero image", type: "image", folder: "home" },
       { name: "heroVideo", label: "Hero video (optional MP4, plays muted)", type: "image", folder: "home" },
       { name: "storyTitle", label: "Story heading", type: "text", wide: true },
       { name: "storyBody", label: "Story text", type: "textarea", rows: 5 },
@@ -71,17 +70,6 @@ const TABS: { key: SettingsKey; label: string; description: string; fields: Fiel
           { name: "title", label: "Title", type: "text" },
           { name: "description", label: "Description", type: "textarea", rows: 2 },
           { name: "image", label: "Image", type: "image", folder: "home" },
-        ],
-      },
-      { name: "dealsTitle", label: "Best-prices section heading", type: "text", wide: true },
-      { name: "dealsIntro", label: "Best-prices section intro", type: "textarea", rows: 2 },
-      {
-        name: "deals", label: "Deals & prices (shown big on the home page)", type: "objectList",
-        fields: [
-          { name: "price", label: "Price", type: "text", placeholder: "₹99" },
-          { name: "title", label: "What it is", type: "text", placeholder: "Social Hours — bar drinks & bites" },
-          { name: "note", label: "Small label", type: "text", placeholder: "Daily 4–8 PM" },
-          { name: "href", label: "Link (optional)", type: "text", placeholder: "/events/social-hours" },
         ],
       },
       {

@@ -20,21 +20,19 @@ export function GrillMark({ className }: { className?: string }) {
   );
 }
 
-/** Lockup of the sign: grill mark + THE DINER between rules + RESTOBAR. `tone="light"` for dark backgrounds. */
-export function Logo({ className, tone = "light" }: { className?: string; tone?: "dark" | "light" }) {
-  const ink = tone === "light" ? "text-snow" : "text-night";
-  const rule = tone === "light" ? "bg-snow" : "bg-night";
+/** Horizontal lockup of the sign: grill mark + THE DINER between rules + RESTOBAR. */
+export function Logo({ className, stacked = false }: { className?: string; stacked?: boolean }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5 leading-none", className)}>
-      <GrillMark className="-mt-1 h-9 w-9 text-brass" />
+    <span className={cn("inline-flex items-center gap-2.5 leading-none", stacked && "flex-col gap-3", className)}>
+      <GrillMark className={cn("text-brass", stacked ? "h-16 w-16" : "h-9 w-9 -mt-1")} />
       <span className="flex flex-col items-stretch">
         <span className="flex justify-between gap-6" aria-hidden>
-          <span className={cn("h-[2px] w-1/4", rule)} />
-          <span className={cn("h-[2px] w-1/4", rule)} />
+          <span className="h-[2px] w-1/4 bg-cream" />
+          <span className="h-[2px] w-1/4 bg-cream" />
         </span>
-        <span className={cn("py-[3px] font-brand text-[1.55rem] tracking-[0.12em]", ink)}>THE DINER</span>
-        <span className={cn("h-[2px] w-full", rule)} aria-hidden />
-        <span className="mt-[3px] font-brand text-[0.72rem] tracking-[0.42em] text-brass">RESTOBAR</span>
+        <span className={cn("font-brand tracking-[0.12em] text-cream", stacked ? "py-1.5 text-5xl" : "py-[3px] text-[1.55rem]")}>THE DINER</span>
+        <span className="h-[2px] w-full bg-cream" aria-hidden />
+        <span className={cn("font-brand tracking-[0.42em] text-brass", stacked ? "mt-2 text-xl" : "mt-[3px] text-[0.72rem]")}>RESTOBAR</span>
       </span>
     </span>
   );

@@ -1,4 +1,4 @@
-import type { BookingStatus, EventTheme } from "./schemas";
+import type { BookingStatus } from "./schemas";
 
 export interface MenuCategory {
   id: string;
@@ -74,10 +74,6 @@ export interface DinerEvent {
   cta_url: string | null;
   is_featured: boolean;
   is_published: boolean;
-  kicker: string | null;
-  highlights: string[];
-  theme: EventTheme;
-  display_mode: "template" | "image";
 }
 
 export interface Post {

@@ -42,7 +42,7 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
               aria-pressed={cat === c}
               className={cn(
                 "rounded-full border px-4 py-2 text-sm font-semibold capitalize transition",
-                cat === c ? "border-brass bg-brass text-snow" : "border-white/10 text-sand hover:text-cream",
+                cat === c ? "border-brass bg-brass text-ink" : "border-white/10 text-sand hover:text-cream",
               )}
             >
               {c}
@@ -72,7 +72,7 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
                   className="h-auto w-full object-cover transition duration-700 group-hover:scale-105"
                 />
                 {img.caption && (
-                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/80 p-3 text-left text-xs opacity-0 transition group-hover:opacity-100">
+                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 p-3 text-left text-xs opacity-0 transition group-hover:opacity-100">
                     {img.caption}
                   </span>
                 )}
@@ -91,7 +91,7 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-night/95 p-4 backdrop-blur-xl"
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/95 p-4 backdrop-blur-xl"
             onClick={() => setOpen(null)}
           >
             <motion.div

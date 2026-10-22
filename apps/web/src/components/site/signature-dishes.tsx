@@ -1,74 +1,62 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Flame, Leaf } from "lucide-react";
 import type { MenuItem } from "@diner/shared";
+import { Reveal } from "@/components/motion/reveal";
 import { formatPrice } from "@/lib/utils";
+import { SectionHeading } from "./section-heading";
 
-/** Prefer dishes photographed at the restaurant over stand-in photos. */
-function pickFour(dishes: MenuItem[]) {
-  const withPhoto = dishes.filter((d) => d.image_url);
-  const real = withPhoto.filter((d) => d.image_url!.startsWith("/images/diner/") || d.image_url!.includes("supabase"));
-  return [...real, ...withPhoto.filter((d) => !real.includes(d))].slice(0, 4);
-}
-
-/** Editorial layout: one large featured dish and three supporting dishes. */
 export function SignatureDishes({ dishes }: { dishes: MenuItem[] }) {
-  const [featured, ...rest] = pickFour(dishes);
-  if (!featured) return null;
-
+  if (!dishes.length) return null;
   return (
-    <section aria-labelledby="dishes-title" className="bg-ivory pb-16 pt-12 text-charcoal sm:pb-20 lg:pb-24 lg:pt-16">
-      <div className="container-x">
-        <div className="flex items-end justify-between gap-6 border-t border-charcoal/10 pt-10">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-chilli">From the kitchen</p>
-            <h2 id="dishes-title" className="mt-2 text-4xl sm:text-5xl">Signature dishes</h2>
-          </div>
-          <Link href="/menu" className="link-underline hidden min-h-11 items-center text-sm font-semibold sm:inline-flex">
-            See the full menu →
+    <section className="py-24 sm:py-32" aria-label="Signature dishes">
+      <div className="container-x flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <SectionHeading eyebrow="From the kitchen" title="The ones people come back for." />
+        <Reveal>
+          <Link href="/menu" className="btn-ghost shrink-0">
+            Full menu →
           </Link>
-        </div>
+        </Reveal>
+      </div>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <Link href="/menu" className="group lg:col-span-7">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] bg-charcoal">
-              <Image
-                src={featured.image_url!}
-                alt={featured.name}
-                fill
-                sizes="(min-width:1024px) 58vw, 100vw"
-                className="object-cover transition-transform duration-200 group-hover:scale-[1.02]"
-              />
-            </div>
-            <div className="mt-5 flex items-baseline justify-between gap-6">
-              <h3 className="text-3xl sm:text-4xl">{featured.name}</h3>
-              {featured.price !== null && <p className="shrink-0 text-xl font-semibold text-chilli">{formatPrice(featured.price)}</p>}
-            </div>
-            {featured.description && <p className="mt-2 max-w-xl leading-relaxed text-stone">{featured.description}</p>}
-          </Link>
-
-          <ul className="divide-y divide-charcoal/10 border-y border-charcoal/10 lg:col-span-5 lg:self-start">
-            {rest.map((d) => (
-              <li key={d.id}>
-                <Link href="/menu" className="group grid grid-cols-[96px_minmax(0,1fr)] gap-5 py-5 sm:grid-cols-[120px_minmax(0,1fr)]">
-                  <span className="relative aspect-square overflow-hidden rounded-[16px] bg-charcoal">
-                    <Image src={d.image_url!} alt={d.name} fill sizes="120px" className="object-cover transition-transform duration-200 group-hover:scale-[1.03]" />
-                  </span>
-                  <span className="min-w-0 self-center">
-                    <span className="flex items-baseline justify-between gap-4">
-                      <span className="font-display text-xl leading-tight sm:text-2xl">{d.name}</span>
-                      {d.price !== null && <span className="shrink-0 font-semibold text-chilli">{formatPrice(d.price)}</span>}
+      <div className="scrollbar-none mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:px-8 lg:px-[max(3rem,calc((100vw-1320px)/2+3rem))]">
+        {dishes.map((dish, i) => (
+          <Reveal key={dish.id} delay={i * 0.06} className="w-[78vw] max-w-[340px] shrink-0 snap-start">
+            <article className="group relative flex h-[440px] flex-col justify-end overflow-hidden rounded-[28px] border border-white/10 bg-smoke">
+              {dish.image_url ? (
+                <Image
+                  src={dish.image_url}
+                  alt={dish.name}
+                  fill
+                  sizes="340px"
+                  className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgb(245_165_36/0.35),transparent_60%),radial-gradient(circle_at_80%_80%,rgb(232_71_62/0.25),transparent_55%)]">
+                  <span className="absolute left-6 top-6 font-display text-8xl italic text-white/[0.06]">{String(i + 1).padStart(2, "0")}</span>
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
+              <div className="relative p-6">
+                <div className="mb-3 flex gap-2">
+                  {dish.is_veg ? (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-leaf/20 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-leaf">
+                      <Leaf className="size-3" /> Veg
                     </span>
-                    {d.description && <span className="mt-1.5 block text-sm leading-relaxed text-stone">{d.description}</span>}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <Link href="/menu" className="btn-outline-dark mt-8 w-full sm:hidden">
-          See the full menu
-        </Link>
+                  ) : null}
+                  {dish.is_spicy ? (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-ember/20 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-ember">
+                      <Flame className="size-3" /> Spicy
+                    </span>
+                  ) : null}
+                </div>
+                <h3 className="font-display text-2xl leading-tight">{dish.name}</h3>
+                {dish.description && <p className="mt-2 line-clamp-2 text-sm text-sand">{dish.description}</p>}
+                {dish.price !== null && <p className="mt-4 text-sm font-semibold text-brass">{formatPrice(dish.price)}</p>}
+              </div>
+            </article>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

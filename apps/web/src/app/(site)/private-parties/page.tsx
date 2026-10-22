@@ -35,13 +35,13 @@ export default async function PrivatePartiesPage() {
 
       {home.partyPackages.length > 0 && (
         <section className="container-x py-16" aria-label="Packages">
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2">
             {home.partyPackages.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.1}>
-                <article className="relative h-full overflow-hidden rounded-[28px] glass p-8 ring-1 ring-white/10 transition hover:ring-brass sm:p-10">
-                  <span className="absolute -right-6 -top-10 font-display text-[8rem] font-extrabold leading-none text-white/[0.04]">{i + 1}</span>
+                <article className="glass relative h-full overflow-hidden rounded-[28px] p-8 sm:p-10">
+                  <span className="absolute -right-6 -top-10 font-display text-[10rem] italic leading-none text-white/[0.04]">{i + 1}</span>
                   <p className="eyebrow">{p.name}</p>
-                  <p className="mt-4 font-display text-5xl font-extrabold leading-none text-brass">{p.price}</p>
+                  <p className="mt-4 font-display text-5xl text-cream">{p.price}</p>
                   <p className="mt-4 max-w-sm text-sand">{p.description}</p>
                 </article>
               </Reveal>

@@ -22,7 +22,7 @@ Render API (Express, service-role key) ──► Supabase
 
 **Public site**: home, menu (search, veg filter, food/drinks), online booking with live slot availability, events and event pages, private parties and corporate enquiries, gallery with lightbox, Instagram and YouTube feeds, journal/blog with RSS, contact page with a lazy-loaded map, and editable policy, privacy and terms pages.
 
-**Admin (`/admin`)**: dashboard, an event poster template with a live preview (heading, day/time, offer sticker, highlights, colour, photo upload, or your own poster artwork), bookings (confirm, cancel, seat, add phone or walk-in bookings, CSV export, guests emailed on confirm or cancel), enquiries, menu (dishes, prices, photos, sold-out toggle, categories, ordering), events, blog (markdown editor, image upload, SEO fields, scheduling), gallery, reviews, FAQs, pages, Instagram & YouTube (connect, sync now, hide or pin posts), site settings (business info, opening hours, home page text and images, booking rules, notification emails, SEO, social links, announcement bar), team logins with owner/admin/staff roles, and an activity log.
+**Admin (`/admin`)**: dashboard, bookings (confirm, cancel, seat, add phone or walk-in bookings, CSV export, guests emailed on confirm or cancel), enquiries, menu (dishes, prices, photos, sold-out toggle, categories, ordering), events, blog (markdown editor, image upload, SEO fields, scheduling), gallery, reviews, FAQs, pages, Instagram & YouTube (connect, sync now, hide or pin posts), site settings (business info, opening hours, home page text and images, booking rules, notification emails, SEO, social links, announcement bar), team logins with owner/admin/staff roles, and an activity log.
 
 **SEO**:
 - Structured data: Restaurant/BarOrPub JSON-LD (address, geo, hours, cuisine, menu, reservations), plus Menu, Event, BlogPosting, FAQPage and BreadcrumbList markup.
@@ -114,11 +114,7 @@ Create a Resend account, verify the `thediner.in` domain, and set `RESEND_API_KE
 
 - [ ] **Check sample content**: menu dishes and prices (most are placeholders, so verify every one against the printed menu), the home page story and stats, party packages and group discounts.
 - [ ] **Check the recurring offers.** Acoustic Colours, Ladies Night, Pitcher Night, Social Hours and Andhra Lunch Combos were taken from older Google Business posts. Update or unpublish any that have changed under **Events**.
-- [ ] **Add more photos.** The site uses the restaurant's own photos from its Google Business Profile (owner uploads and posts, enhanced and cropped, in `apps/web/public/images/diner`). Upload fresh dish and interior shots in the admin. Instagram sync adds new posts automatically.
-- [ ] **Replace stand-in dish photos.** 36 menu items use free-licence stock photos (Unsplash License, in `apps/web/public/images/menu`) until you upload your own in **Admin → Menu**. Guntur Chicken, wings, momos, tacos, prawns and Andhra chicken curry use the restaurant's real photos (`apps/web/public/images/diner`).
-- [ ] **Check the deals.** The "Best prices" section (₹99 social hours, ₹179 lunch combos, ₹499 pitchers, ₹1,000 for two) is edited in **Admin → Settings → Home page → Deals**.
-- [ ] **Check the new dishes.** Chilli Chicken Wings, Chicken Momos, Crispy Chicken Tacos and Crispy Prawns were added from the restaurant's own food photos. Confirm their names and prices.
-- [ ] **Run both migrations.** After `20261022000000_init.sql`, run `20261023000000_event_poster_template.sql`, then `seed.sql`.
+- [ ] **Add more photos.** The site uses the restaurant's own photos and posters from its Google Business Profile posts and owner uploads (in `apps/web/public/images/diner`). Upload fresh dish and interior shots in the admin. Instagram sync adds new posts automatically.
 - [ ] Add real guest reviews under **Reviews** (only genuine ones, with names as shown on Google).
 - [ ] Google Search Console: add the `thediner.in` property and paste the verification code into **Settings → SEO**. Then submit `https://thediner.in/sitemap.xml`.
 - [ ] Google Business Profile: set the website to `https://thediner.in`, the booking link to `https://thediner.in/reserve` and the menu link to `https://thediner.in/menu`. Keep the hours identical to the site.

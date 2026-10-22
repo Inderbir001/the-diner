@@ -67,7 +67,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
         ]}
       />
       <article>
-        <header className="container-x pb-10 pt-10 sm:pt-14">
+        <header className="container-x pb-12 pt-40 sm:pt-48">
           <nav aria-label="Breadcrumb" className="mb-8 text-xs text-muted">
             <Link href="/" className="hover:text-cream">Home</Link> <span aria-hidden>/</span>{" "}
             <Link href="/blog" className="hover:text-cream">Journal</Link>
@@ -79,7 +79,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
             <span aria-hidden>·</span>
             <span>{post.author}</span>
           </p>
-          <SplitWords as="h1" immediate text={post.title} className="mt-5 max-w-4xl text-4xl sm:text-5xl lg:text-6xl" />
+          <SplitWords as="h1" immediate text={post.title} className="mt-6 max-w-5xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-light leading-[0.98] tracking-[-0.02em]" />
           {post.excerpt && <p className="mt-8 max-w-2xl text-xl leading-relaxed text-sand">{post.excerpt}</p>}
         </header>
 

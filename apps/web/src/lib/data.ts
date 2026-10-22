@@ -109,7 +109,7 @@ export const getFaqs = cache(async () =>
 );
 
 export const getTestimonials = cache(async () =>
-  query<Testimonial[]>(["testimonials"], fb.fallbackTestimonials, (db) => db.from("testimonials").select("*").order("sort_order")),
+  query<Testimonial[]>(["testimonials"], [], (db) => db.from("testimonials").select("*").order("sort_order")),
 );
 
 export const getGallery = cache(async () =>

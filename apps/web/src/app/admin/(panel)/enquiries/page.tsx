@@ -49,7 +49,7 @@ export default function EnquiriesPage() {
       <PageTitle title="Enquiries" description="Party, corporate and general messages from the website." />
       <div className="mb-5 flex flex-wrap gap-1 rounded-full bg-white/5 p-1 sm:w-fit">
         {(["new", "in_progress", "closed", ""] as const).map((s) => (
-          <button key={s || "all"} type="button" onClick={() => setFilter(s)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold capitalize", filter === s ? "bg-brass text-snow" : "text-sand")}>
+          <button key={s || "all"} type="button" onClick={() => setFilter(s)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold capitalize", filter === s ? "bg-brass text-ink" : "text-sand")}>
             {s ? s.replace("_", " ") : "All"}
           </button>
         ))}

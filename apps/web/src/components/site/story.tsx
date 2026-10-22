@@ -1,43 +1,46 @@
-import Image from "next/image";
-import { PawPrint } from "lucide-react";
 import type { HomeSettings } from "@diner/shared";
-import { Reveal } from "@/components/motion/reveal";
+import { ParallaxImage } from "@/components/motion/parallax-image";
+import { Reveal, SplitWords } from "@/components/motion/reveal";
 
 export function Story({ home }: { home: HomeSettings }) {
   return (
-    <section className="py-20 sm:py-28" aria-label="Our story">
-      <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-        {home.storyImage && (
-          <Reveal className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] shadow-lift sm:aspect-[5/5]">
-              <Image src={home.storyImage} alt="Guests at The Diner" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
-            </div>
-            <div className="absolute -bottom-5 right-4 flex items-center gap-3 rounded-2xl glass px-5 py-4">
-              <span className="inline-flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-brass to-violet text-snow">
-                <PawPrint className="size-5" />
-              </span>
-              <span>
-                <span className="block font-display font-bold leading-tight">Pet friendly</span>
-                <span className="block text-sm text-muted">Bring the dog along</span>
-              </span>
-            </div>
+    <section className="container-x py-24 sm:py-32" aria-label="Our story">
+      <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
+        <div className="lg:col-span-6 lg:order-2">
+          <Reveal y={12}>
+            <p className="eyebrow mb-5">Our story</p>
           </Reveal>
-        )}
-        <Reveal>
-          <p className="eyebrow mb-3">Our story</p>
-          <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem]">{home.storyTitle}</h2>
-          <p className="mt-6 text-lg leading-relaxed text-sand">{home.storyBody}</p>
+          <SplitWords
+            text={home.storyTitle}
+            className="font-display text-4xl leading-[1.04] tracking-tight sm:text-5xl lg:text-6xl"
+          />
+          <Reveal delay={0.1}>
+            <p className="mt-8 text-lg leading-relaxed text-sand">
+              {home.storyBody}
+            </p>
+          </Reveal>
           {home.stats.length > 0 && (
-            <dl className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {home.stats.map((s) => (
-                <div key={s.label} className="rounded-2xl glass p-4">
-                  <dt className="text-xs font-semibold text-muted">{s.label}</dt>
-                  <dd className="text-aurora mt-1 font-display text-3xl font-bold">{s.value}</dd>
-                </div>
+            <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+              {home.stats.map((s, i) => (
+                <Reveal key={s.label} delay={0.1 + i * 0.08} className="bg-coal p-5">
+                  <dt className="sr-only">{s.label}</dt>
+                  <dd>
+                    <span className="block font-display text-3xl text-brass">{s.value}</span>
+                    <span className="mt-1 block text-xs uppercase tracking-widest text-muted">{s.label}</span>
+                  </dd>
+                </Reveal>
               ))}
             </dl>
           )}
-        </Reveal>
+        </div>
+        {home.storyImage && (
+          <div className="relative lg:col-span-6">
+            <ParallaxImage src={home.storyImage} alt="Inside The Diner" className="aspect-[4/5] w-full rounded-[28px]" />
+            <div className="glass absolute -bottom-6 -right-2 hidden max-w-[14rem] rounded-2xl p-5 sm:block lg:-right-8">
+              <p className="font-display text-xl italic leading-snug">“Come for the biryani, stay for the music.”</p>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

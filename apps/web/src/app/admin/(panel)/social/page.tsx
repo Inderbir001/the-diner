@@ -151,7 +151,7 @@ export default function SocialAdminPage() {
       <section className="mt-10">
         <div className="mb-4 flex items-center gap-2">
           {(["instagram", "youtube"] as const).map((p) => (
-            <button key={p} type="button" onClick={() => setPlatform(p)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold capitalize", platform === p ? "bg-brass text-snow" : "bg-white/5 text-sand")}>
+            <button key={p} type="button" onClick={() => setPlatform(p)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold capitalize", platform === p ? "bg-brass text-ink" : "bg-white/5 text-sand")}>
               {p}
             </button>
           ))}

@@ -126,7 +126,7 @@ export function BookingForm({
     const ics = icsFile(done.reference, date, time!, guests, venue, address);
     return (
       <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, ease: EASE }} className="glass rounded-[28px] p-8 text-center sm:p-14">
-        <span className="mx-auto inline-flex size-16 items-center justify-center rounded-full bg-brass text-snow">
+        <span className="mx-auto inline-flex size-16 items-center justify-center rounded-full bg-brass text-ink">
           <Check className="size-8" />
         </span>
         <h2 className="mt-6 font-display text-4xl">{done.status === "confirmed" ? "You're booked." : "Request received."}</h2>
@@ -142,7 +142,7 @@ export function BookingForm({
             ["Date", new Date(`${date}T12:00:00Z`).toLocaleDateString("en-IN", { dateStyle: "medium", timeZone: "UTC" })],
             ["Time", formatTime12h(time!)],
           ].map(([k, v]) => (
-            <div key={k} className="glass p-4">
+            <div key={k} className="bg-coal p-4">
               <dt className="text-xs uppercase tracking-widest text-muted">{k}</dt>
               <dd className="mt-1 font-semibold">{v}</dd>
             </div>
@@ -167,7 +167,7 @@ export function BookingForm({
       {/* step 1 */}
       <fieldset>
         <legend className="mb-6 flex items-center gap-3 font-display text-2xl">
-          <span className="inline-flex size-8 items-center justify-center rounded-full bg-brass font-sans text-sm font-bold text-snow">1</span>
+          <span className="inline-flex size-8 items-center justify-center rounded-full bg-brass font-sans text-sm font-bold text-ink">1</span>
           When are you coming?
         </legend>
 
@@ -209,7 +209,7 @@ export function BookingForm({
                     onClick={() => setDate(d)}
                     className={cn(
                       "flex w-16 shrink-0 flex-col items-center rounded-2xl border py-2.5 transition",
-                      date === d ? "border-brass bg-brass text-snow" : "border-white/10 bg-white/[0.03] text-sand hover:border-white/25",
+                      date === d ? "border-brass bg-brass text-ink" : "border-white/10 bg-white/[0.03] text-sand hover:border-white/25",
                     )}
                     aria-pressed={date === d}
                   >
@@ -223,7 +223,7 @@ export function BookingForm({
                 Another date
                 <input
                   type="date"
-                  className="mt-1 w-full bg-transparent text-center text-xs text-cream [color-scheme:light]"
+                  className="mt-1 w-full bg-transparent text-center text-xs text-cream [color-scheme:dark]"
                   min={today}
                   max={addDays(today, settings.maxDaysAhead)}
                   value={quickDates.includes(date) ? "" : date}
@@ -254,7 +254,7 @@ export function BookingForm({
                     className={cn(
                       "h-11 rounded-xl border text-sm font-semibold transition",
                       time === s.time
-                        ? "border-brass bg-brass text-snow"
+                        ? "border-brass bg-brass text-ink"
                         : s.available
                           ? "border-white/10 bg-white/[0.03] text-cream hover:border-brass/50"
                           : "cursor-not-allowed border-transparent text-muted/40 line-through",
@@ -291,7 +291,7 @@ export function BookingForm({
           >
             <div className="mt-10 border-t border-white/10 pt-10">
               <h2 className="mb-6 flex items-center gap-3 font-display text-2xl">
-                <span className="inline-flex size-8 items-center justify-center rounded-full bg-brass font-sans text-sm font-bold text-snow">2</span>
+                <span className="inline-flex size-8 items-center justify-center rounded-full bg-brass font-sans text-sm font-bold text-ink">2</span>
                 Your details
               </h2>
               <div className="grid gap-5 sm:grid-cols-2">

@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 export type FieldType =
   | "text" | "slug" | "textarea" | "markdown" | "number" | "boolean" | "select" | "image"
-  | "tags" | "datetime" | "date" | "time" | "url" | "email" | "stringList" | "objectList" | "imageList";
+  | "tags" | "datetime" | "date" | "time" | "url" | "email" | "stringList" | "objectList";
 
 export interface Field {
   name: string;
@@ -71,7 +71,7 @@ export function FieldInput({
           onClick={() => onChange(!value)}
           className={cn("relative inline-flex h-7 w-12 items-center rounded-full transition", value ? "bg-brass" : "bg-white/15")}
         >
-          <span className={cn("inline-block size-5 rounded-full bg-snow shadow transition", value ? "translate-x-6" : "translate-x-1")} />
+          <span className={cn("inline-block size-5 rounded-full bg-cream shadow transition", value ? "translate-x-6" : "translate-x-1")} />
         </button>
       );
     case "select":
@@ -87,8 +87,6 @@ export function FieldInput({
       );
     case "image":
       return <ImageField value={(value as string) ?? ""} onChange={onChange} folder={field.folder} />;
-    case "imageList":
-      return <ImageListField value={(value as string[]) ?? []} onChange={onChange} folder={field.folder} />;
     case "tags":
       return <TagsField value={(value as string[]) ?? []} onChange={onChange} />;
     case "stringList":
@@ -100,15 +98,15 @@ export function FieldInput({
         <input
           id={id}
           type="datetime-local"
-          className={cn(common, "[color-scheme:light]")}
+          className={cn(common, "[color-scheme:dark]")}
           value={isoToLocalInput(value as string)}
           onChange={(e) => onChange(localInputToIso(e.target.value))}
         />
       );
     case "date":
-      return <input id={id} type="date" className={cn(common, "[color-scheme:light]")} value={(value as string) ?? ""} onChange={(e) => onChange(e.target.value || null)} />;
+      return <input id={id} type="date" className={cn(common, "[color-scheme:dark]")} value={(value as string) ?? ""} onChange={(e) => onChange(e.target.value || null)} />;
     case "time":
-      return <input id={id} type="time" className={cn(common, "[color-scheme:light]")} value={(value as string) ?? ""} onChange={(e) => onChange(e.target.value)} />;
+      return <input id={id} type="time" className={cn(common, "[color-scheme:dark]")} value={(value as string) ?? ""} onChange={(e) => onChange(e.target.value)} />;
     case "slug":
       return (
         <div className="flex gap-2">
@@ -136,7 +134,7 @@ export function FieldInput({
 
 export function FieldRow({ field, children }: { field: Field; children: React.ReactNode }) {
   return (
-    <div className={cn(field.wide !== false && ["markdown", "textarea", "image", "imageList", "objectList", "stringList", "tags"].includes(field.type) && "sm:col-span-2", field.wide && "sm:col-span-2")}>
+    <div className={cn(field.wide !== false && ["markdown", "textarea", "image", "objectList", "stringList", "tags"].includes(field.type) && "sm:col-span-2", field.wide && "sm:col-span-2")}>
       <label htmlFor={`f-${field.name}`} className="label">
         {field.label}
         {field.required && <span className="text-brass"> *</span>}
@@ -392,26 +390,6 @@ function ObjectListField({ value, onChange, fields }: { value: Values[]; onChang
       ))}
       <button type="button" onClick={() => onChange([...value, blank()])} className="inline-flex items-center gap-1 text-xs font-semibold text-brass">
         <Plus className="size-3.5" /> Add item
-      </button>
-    </div>
-  );
-}
-
-function ImageListField({ value, onChange, folder }: { value: string[]; onChange: (v: string[]) => void; folder?: string }) {
-  return (
-    <div className="space-y-3">
-      {value.map((url, i) => (
-        <div key={i} className="flex items-start gap-2">
-          <div className="flex-1">
-            <ImageField value={url} folder={folder} onChange={(v) => onChange(value.map((x, j) => (j === i ? v ?? "" : x)))} />
-          </div>
-          <button type="button" onClick={() => onChange(value.filter((_, j) => j !== i))} className="p-2 text-muted hover:text-ember" aria-label="Remove image">
-            <Trash2 className="size-4" />
-          </button>
-        </div>
-      ))}
-      <button type="button" onClick={() => onChange([...value, ""])} className="inline-flex items-center gap-1 text-xs font-semibold text-brass">
-        <Plus className="size-3.5" /> Add image
       </button>
     </div>
   );

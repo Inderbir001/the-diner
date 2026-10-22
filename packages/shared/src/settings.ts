@@ -65,7 +65,6 @@ export const seoSettingsSchema = z.object({
 const experienceSchema = z.object({ title: z.string(), description: z.string(), image: url });
 const statSchema = z.object({ value: z.string(), label: z.string() });
 const packageSchema = z.object({ name: z.string(), price: z.string(), description: z.string() });
-const dealSchema = z.object({ title: z.string(), price: z.string(), note: z.string().default(""), href: z.string().default("") });
 
 export const homeSettingsSchema = z.object({
   heroEyebrow: z.string().default(""),
@@ -73,8 +72,6 @@ export const homeSettingsSchema = z.object({
   heroSubtitle: z.string().default(""),
   heroImage: url.default(""),
   heroVideo: url.default(""),
-  /** smaller photos shown beside the headline */
-  heroSideImages: z.array(url).default([]),
   storyTitle: z.string().default(""),
   storyBody: z.string().default(""),
   storyImage: url.default(""),
@@ -82,10 +79,6 @@ export const homeSettingsSchema = z.object({
   marquee: z.array(z.string()).default([]),
   experiences: z.array(experienceSchema).default([]),
   partyPackages: z.array(packageSchema).default([]),
-  /** "best prices" section */
-  dealsTitle: z.string().default("Big flavour. Honest prices."),
-  dealsIntro: z.string().default(""),
-  deals: z.array(dealSchema).default([]),
 });
 
 export const bookingSettingsSchema = z.object({

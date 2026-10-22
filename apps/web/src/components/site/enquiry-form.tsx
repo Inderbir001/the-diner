@@ -43,7 +43,7 @@ export function EnquiryForm({ defaultType = "general", showEventFields = false }
   if (sent) {
     return (
       <div className="glass rounded-[28px] p-10 text-center">
-        <span className="mx-auto inline-flex size-14 items-center justify-center rounded-full bg-brass text-snow">
+        <span className="mx-auto inline-flex size-14 items-center justify-center rounded-full bg-brass text-ink">
           <Check className="size-7" />
         </span>
         <p className="mt-5 font-display text-3xl">Thanks — we've got it.</p>
@@ -72,7 +72,7 @@ export function EnquiryForm({ defaultType = "general", showEventFields = false }
             onClick={() => setType(t.value)}
             className={cn(
               "rounded-full border px-4 py-2 text-sm font-semibold transition",
-              type === t.value ? "border-brass bg-brass text-snow" : "border-white/10 text-sand hover:text-cream",
+              type === t.value ? "border-brass bg-brass text-ink" : "border-white/10 text-sand hover:text-cream",
             )}
           >
             {t.label}
@@ -99,7 +99,7 @@ export function EnquiryForm({ defaultType = "general", showEventFields = false }
           <>
             <div>
               <label htmlFor="eq-date" className="label">Event date</label>
-              <input id="eq-date" name="eventDate" type="date" className="field [color-scheme:light]" />
+              <input id="eq-date" name="eventDate" type="date" className="field [color-scheme:dark]" />
             </div>
             <div>
               <label htmlFor="eq-guests" className="label">Guests</label>

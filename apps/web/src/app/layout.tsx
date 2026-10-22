@@ -1,16 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, DM_Serif_Display, Manrope } from "next/font/google";
+import { Bebas_Neue, Fraunces, Manrope } from "next/font/google";
 import { Toaster } from "sonner";
 import { getSettings } from "@/lib/data";
 import { SITE_URL } from "@/lib/env";
 import "./globals.css";
 
-const dmSerif = DM_Serif_Display({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-dm-serif", display: "swap" });
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  axes: ["SOFT", "WONK", "opsz"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
 const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-bebas", display: "swap" });
 
 export const viewport: Viewport = {
-  themeColor: "#0d0d0f",
+  themeColor: "#0e0d0b",
   colorScheme: "dark",
 };
 
@@ -53,13 +59,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${dmSerif.variable} ${manrope.variable} ${bebas.variable}`} suppressHydrationWarning>
+    <html lang="en-IN" className={`${fraunces.variable} ${manrope.variable} ${bebas.variable}`} suppressHydrationWarning>
       <body>
         {children}
         <Toaster
           theme="dark"
           position="bottom-center"
-          toastOptions={{ className: "!bg-charcoal-2 !border-ivory/10 !text-ivory !rounded-[16px]" }}
+          toastOptions={{ className: "!bg-coal !border-white/10 !text-cream !rounded-2xl" }}
         />
       </body>
     </html>

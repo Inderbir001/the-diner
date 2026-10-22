@@ -27,10 +27,10 @@ export function YouTubeLite({ id, title, thumbnail, small }: { id: string; title
             sizes={small ? "(min-width:1024px) 30vw, 100vw" : "(min-width:1024px) 60vw, 100vw"}
             className="object-cover transition duration-700 group-hover:scale-105"
           />
-          <span className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent" />
+          <span className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
           <span
             className={cn(
-              "absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brass text-snow transition-transform duration-500 group-hover:scale-110",
+              "absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brass text-ink transition-transform duration-500 group-hover:scale-110",
               small ? "size-12" : "size-20",
             )}
           >
