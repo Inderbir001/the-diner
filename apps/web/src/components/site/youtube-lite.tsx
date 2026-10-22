@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export function YouTubeLite({ id, title, thumbnail, small }: { id: string; title: string; thumbnail?: string | null; small?: boolean }) {
   const [playing, setPlaying] = useState(false);
   return (
-    <div className="relative aspect-video overflow-hidden rounded-[24px] border border-black/10 bg-smoke">
+    <div className="relative aspect-video overflow-hidden rounded-[24px] border border-white/10 bg-smoke">
       {playing ? (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}

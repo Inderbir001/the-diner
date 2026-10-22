@@ -12,8 +12,8 @@ export function Story({ home }: { home: HomeSettings }) {
             <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] shadow-lift sm:aspect-[5/5]">
               <Image src={home.storyImage} alt="Guests at The Diner" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
             </div>
-            <div className="absolute -bottom-5 right-4 flex items-center gap-3 rounded-2xl bg-coal px-5 py-4 shadow-lift">
-              <span className="inline-flex size-10 items-center justify-center rounded-full bg-brass text-snow">
+            <div className="absolute -bottom-5 right-4 flex items-center gap-3 rounded-2xl glass px-5 py-4">
+              <span className="inline-flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-brass to-violet text-snow">
                 <PawPrint className="size-5" />
               </span>
               <span>
@@ -30,9 +30,9 @@ export function Story({ home }: { home: HomeSettings }) {
           {home.stats.length > 0 && (
             <dl className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {home.stats.map((s) => (
-                <div key={s.label} className="rounded-2xl bg-coal p-4 shadow-card">
+                <div key={s.label} className="rounded-2xl glass p-4">
                   <dt className="text-xs font-semibold text-muted">{s.label}</dt>
-                  <dd className="mt-1 font-display text-3xl font-bold text-brass">{s.value}</dd>
+                  <dd className="text-aurora mt-1 font-display text-3xl font-bold">{s.value}</dd>
                 </div>
               ))}
             </dl>

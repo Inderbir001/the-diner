@@ -21,7 +21,7 @@ export function GrillMark({ className }: { className?: string }) {
 }
 
 /** Lockup of the sign: grill mark + THE DINER between rules + RESTOBAR. `tone="light"` for dark backgrounds. */
-export function Logo({ className, tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {
+export function Logo({ className, tone = "light" }: { className?: string; tone?: "dark" | "light" }) {
   const ink = tone === "light" ? "text-snow" : "text-night";
   const rule = tone === "light" ? "bg-snow" : "bg-night";
   return (

@@ -16,7 +16,7 @@ export function Footer({ settings: { general, social, booking } }: Props) {
   const sameHours = general.hours.length > 0 && general.hours.every((h) => h.open === general.hours[0].open && h.close === general.hours[0].close && !h.closed);
 
   return (
-    <footer className="relative mt-16 border-t border-white/10 bg-night pb-28 pt-20 lg:pb-12">
+    <footer className="glass-strong relative mt-16 !border-x-0 !border-b-0 pb-28 pt-20 lg:pb-12">
       <div className="container-x">
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">

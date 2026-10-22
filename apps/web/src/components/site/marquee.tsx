@@ -15,7 +15,7 @@ export function Marquee({ items, className, duration = 40 }: { items: string[]; 
     </ul>
   );
   return (
-    <div className={cn("group flex overflow-hidden bg-brass py-4 text-snow", className)}>
+    <div className={cn("group flex overflow-hidden border-y border-white/10 bg-gradient-to-r from-brass/80 via-[#ff6b3d]/70 to-violet/80 py-4 text-snow backdrop-blur", className)}>
       <div className="flex animate-marquee group-hover:[animation-play-state:paused]" style={{ ["--marquee-duration" as string]: `${duration}s` }}>
         {row(false)}
         {row(true)}

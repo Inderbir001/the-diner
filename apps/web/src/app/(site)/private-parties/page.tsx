@@ -38,8 +38,8 @@ export default async function PrivatePartiesPage() {
           <div className="grid gap-5 md:grid-cols-3">
             {home.partyPackages.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.1}>
-                <article className="relative h-full overflow-hidden rounded-[28px] bg-coal p-8 ring-1 ring-black/10 transition hover:ring-brass sm:p-10">
-                  <span className="absolute -right-6 -top-10 font-display text-[8rem] font-extrabold leading-none text-black/[0.04]">{i + 1}</span>
+                <article className="relative h-full overflow-hidden rounded-[28px] glass p-8 ring-1 ring-white/10 transition hover:ring-brass sm:p-10">
+                  <span className="absolute -right-6 -top-10 font-display text-[8rem] font-extrabold leading-none text-white/[0.04]">{i + 1}</span>
                   <p className="eyebrow">{p.name}</p>
                   <p className="mt-4 font-display text-5xl font-extrabold leading-none text-brass">{p.price}</p>
                   <p className="mt-4 max-w-sm text-sand">{p.description}</p>

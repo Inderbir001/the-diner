@@ -31,7 +31,7 @@ export default function ActivityPage() {
       {!rows ? (
         <Loader2 className="size-5 animate-spin text-brass" />
       ) : (
-        <ul className="divide-y divide-black/[0.06] overflow-hidden rounded-2xl border border-black/10 bg-coal text-sm">
+        <ul className="divide-y divide-white/[0.06] overflow-hidden rounded-2xl border border-white/10 bg-coal text-sm">
           {rows.length === 0 && <li className="p-8 text-center text-muted">No activity yet.</li>}
           {rows.map((r) => (
             <li key={r.id} className="flex flex-wrap gap-x-4 gap-y-1 px-5 py-3">

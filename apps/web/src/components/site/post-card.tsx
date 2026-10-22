@@ -31,7 +31,7 @@ export function PostCard({ post, large, priority }: { post: Post; large?: boolea
         {post.tags.length > 0 && (
           <ul className="mt-4 flex flex-wrap gap-2">
             {post.tags.slice(0, 3).map((t) => (
-              <li key={t} className="rounded-full border border-black/10 px-3 py-1 text-xs text-sand">
+              <li key={t} className="rounded-full border border-white/10 px-3 py-1 text-xs text-sand">
                 #{t}
               </li>
             ))}

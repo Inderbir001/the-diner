@@ -54,12 +54,12 @@ export default async function HomePage() {
       <Deals home={home} />
 
       {featuredEvents.length > 0 && (
-        <section className="bg-night pb-20 text-snow sm:pb-24" aria-label="What's on">
-          <div className="container-x border-t border-white/10 pt-16">
+        <section className="pb-20 text-snow sm:pb-24" aria-label="What's on">
+          <div className="container-x pt-4">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <SectionHeading tone="dark" eyebrow="What's on" title="Something on every night" />
               <Reveal>
-                <Link href="/events" className="btn border border-white/20 text-snow hover:bg-snow hover:text-night">
+                <Link href="/events" className="btn-ghost">
                   All events <ArrowRight className="size-4" />
                 </Link>
               </Reveal>

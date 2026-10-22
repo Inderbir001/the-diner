@@ -69,7 +69,7 @@ export function FieldInput({
           role="switch"
           aria-checked={Boolean(value)}
           onClick={() => onChange(!value)}
-          className={cn("relative inline-flex h-7 w-12 items-center rounded-full transition", value ? "bg-brass" : "bg-black/15")}
+          className={cn("relative inline-flex h-7 w-12 items-center rounded-full transition", value ? "bg-brass" : "bg-white/15")}
         >
           <span className={cn("inline-block size-5 rounded-full bg-snow shadow transition", value ? "translate-x-6" : "translate-x-1")} />
         </button>
@@ -174,8 +174,8 @@ function MarkdownField({ id, value, onChange, rows = 14 }: { id: string; value: 
     });
   };
   return (
-    <div className="overflow-hidden rounded-xl border border-black/10">
-      <div className="flex flex-wrap items-center gap-1 border-b border-black/10 bg-black/[0.03] px-2 py-1.5 text-xs">
+    <div className="overflow-hidden rounded-xl border border-white/10">
+      <div className="flex flex-wrap items-center gap-1 border-b border-white/10 bg-white/[0.03] px-2 py-1.5 text-xs">
         {[
           ["H2", () => insert("\n## ")],
           ["H3", () => insert("\n### ")],
@@ -185,12 +185,12 @@ function MarkdownField({ id, value, onChange, rows = 14 }: { id: string; value: 
           ["List", () => insert("\n- ")],
           ["Quote", () => insert("\n> ")],
         ].map(([label, fn]) => (
-          <button key={label as string} type="button" onClick={fn as () => void} className="rounded-md px-2 py-1 text-sand hover:bg-black/10 hover:text-cream">
+          <button key={label as string} type="button" onClick={fn as () => void} className="rounded-md px-2 py-1 text-sand hover:bg-white/10 hover:text-cream">
             {label as string}
           </button>
         ))}
         <ImageUploadButton onUploaded={(url) => insert(`\n![](${url})\n`)} />
-        <button type="button" onClick={() => setPreview((p) => !p)} className="ml-auto rounded-md px-2 py-1 font-semibold text-brass hover:bg-black/10">
+        <button type="button" onClick={() => setPreview((p) => !p)} className="ml-auto rounded-md px-2 py-1 font-semibold text-brass hover:bg-white/10">
           {preview ? "Edit" : "Preview"}
         </button>
       </div>
@@ -208,7 +208,7 @@ function ImageUploadButton({ onUploaded }: { onUploaded: (url: string) => void }
   const [busy, setBusy] = useState(false);
   return (
     <>
-      <button type="button" onClick={() => input.current?.click()} className="rounded-md px-2 py-1 text-sand hover:bg-black/10 hover:text-cream" disabled={busy}>
+      <button type="button" onClick={() => input.current?.click()} className="rounded-md px-2 py-1 text-sand hover:bg-white/10 hover:text-cream" disabled={busy}>
         {busy ? "Uploading…" : "Image"}
       </button>
       <input
@@ -271,8 +271,8 @@ export function ImageField({ value, onChange, folder = "uploads" }: { value: str
           void handle(e.dataTransfer.files[0]);
         }}
         className={cn(
-          "relative flex aspect-[4/3] w-full shrink-0 items-center justify-center overflow-hidden rounded-xl border border-dashed bg-black/[0.03] sm:w-48",
-          drag ? "border-brass" : "border-black/15",
+          "relative flex aspect-[4/3] w-full shrink-0 items-center justify-center overflow-hidden rounded-xl border border-dashed bg-white/[0.03] sm:w-48",
+          drag ? "border-brass" : "border-white/15",
         )}
       >
         {busy ? (
@@ -313,7 +313,7 @@ function TagsField({ value, onChange }: { value: string[]; onChange: (v: string[
   return (
     <div className="field flex flex-wrap items-center gap-2 !py-2">
       {value.map((t) => (
-        <span key={t} className="inline-flex items-center gap-1 rounded-full bg-black/10 px-2.5 py-1 text-xs">
+        <span key={t} className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1 text-xs">
           {t}
           <button type="button" onClick={() => onChange(value.filter((x) => x !== t))} aria-label={`Remove ${t}`}>
             <X className="size-3" />
@@ -368,7 +368,7 @@ function ObjectListField({ value, onChange, fields }: { value: Values[]; onChang
   return (
     <div className="space-y-3">
       {value.map((item, i) => (
-        <div key={i} className="rounded-2xl border border-black/10 bg-black/[0.02] p-4">
+        <div key={i} className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">
           <div className="mb-3 flex items-center justify-between">
             <span className="text-xs font-semibold text-muted">#{i + 1}</span>
             <div className="flex gap-1">

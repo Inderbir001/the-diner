@@ -8,7 +8,7 @@ import { SectionHeading } from "./section-heading";
 export function Deals({ home }: { home: HomeSettings }) {
   if (!home.deals.length) return null;
   return (
-    <section className="bg-night py-20 text-snow sm:py-24" aria-label="Deals and prices">
+    <section className="py-20 text-snow sm:py-24" aria-label="Deals and prices">
       <div className="container-x">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading tone="dark" eyebrow="Best prices in Whitefield" title={home.dealsTitle} intro={home.dealsIntro} />
@@ -26,12 +26,12 @@ export function Deals({ home }: { home: HomeSettings }) {
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-brass/15 px-3 py-1 text-xs font-bold text-brass-light">
                   <BadgePercent className="size-3.5" /> {d.note || "Everyday value"}
                 </span>
-                <p className="mt-6 font-display text-6xl font-extrabold leading-none tracking-tight text-snow">{d.price}</p>
+                <p className="text-aurora mt-6 font-display text-6xl font-extrabold leading-none tracking-tight">{d.price}</p>
                 <p className="mt-3 text-lg font-semibold text-snow/85">{d.title}</p>
                 {d.href && <ArrowUpRight className="absolute right-5 top-5 size-5 text-snow/40 transition group-hover:text-brass-light" />}
               </>
             );
-            const cls = "group relative block h-full rounded-3xl bg-night-2 p-6 ring-1 ring-white/10 transition hover:ring-brass";
+            const cls = "card group relative block h-full p-6 transition hover:-translate-y-1 hover:border-flame/50";
             return (
               <Reveal as="li" key={d.title} delay={i * 0.06}>
                 {d.href ? (

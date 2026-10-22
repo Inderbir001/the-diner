@@ -6,7 +6,7 @@ import { cn, formatPrice } from "@/lib/utils";
 export function VegMark({ veg, className }: { veg: boolean; className?: string }) {
   return (
     <span
-      className={cn("inline-flex size-4 shrink-0 items-center justify-center rounded-[4px] border-2 bg-coal", veg ? "border-leaf" : "border-brass", className)}
+      className={cn("inline-flex size-4 shrink-0 items-center justify-center rounded-[4px] border-2 bg-white", veg ? "border-leaf" : "border-brass", className)}
       title={veg ? "Vegetarian" : "Non-vegetarian"}
       role="img"
       aria-label={veg ? "Vegetarian" : "Non-vegetarian"}
@@ -19,8 +19,8 @@ export function VegMark({ veg, className }: { veg: boolean; className?: string }
 /** Photo card used on the menu and the home page. */
 export function DishCard({ dish, priority, sizes = "(min-width:1280px) 25vw, (min-width:640px) 45vw, 100vw" }: { dish: MenuItem; priority?: boolean; sizes?: string }) {
   return (
-    <article className={cn("group flex h-full flex-col overflow-hidden rounded-2xl bg-coal sm:rounded-3xl shadow-card transition hover:-translate-y-1 hover:shadow-lift", !dish.is_available && "opacity-60")}>
-      <div className="relative aspect-[4/3] overflow-hidden bg-smoke">
+    <article className={cn("group flex h-full flex-col overflow-hidden rounded-2xl glass sm:rounded-3xl transition hover:-translate-y-1 hover:", !dish.is_available && "opacity-60")}>
+      <div className="relative m-1.5 aspect-[4/3] overflow-hidden rounded-[14px] bg-white/5 sm:m-2 sm:rounded-[20px]">
         {dish.image_url ? (
           <Image src={dish.image_url} alt={dish.name} fill priority={priority} sizes={sizes} className="object-cover transition-transform duration-500 group-hover:scale-105" />
         ) : null}
@@ -31,7 +31,7 @@ export function DishCard({ dish, priority, sizes = "(min-width:1280px) 25vw, (mi
             </span>
           )}
           {dish.is_spicy && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-coal/95 px-2 py-0.5 text-[0.65rem] font-bold text-brass shadow sm:px-2.5 sm:py-1 sm:text-[0.7rem]">
+            <span className="inline-flex items-center gap-1 rounded-full bg-night/80 px-2 py-0.5 backdrop-blur text-[0.65rem] font-bold text-brass shadow sm:px-2.5 sm:py-1 sm:text-[0.7rem]">
               <Flame className="size-3" /> Spicy
             </span>
           )}
@@ -48,7 +48,7 @@ export function DishCard({ dish, priority, sizes = "(min-width:1280px) 25vw, (mi
         {dish.description && <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-sand sm:mt-2 sm:text-sm">{dish.description}</p>}
         <div className="mt-auto flex items-end justify-between pt-3 sm:pt-4">
           {dish.price !== null ? (
-            <p className="font-display text-xl font-extrabold tracking-tight text-cream sm:text-2xl">
+            <p className="text-aurora font-display text-xl font-extrabold tracking-tight sm:text-2xl">
               {formatPrice(dish.price)}
               {dish.price_note && <span className="ml-1 text-xs font-semibold text-muted">{dish.price_note}</span>}
             </p>

@@ -236,13 +236,13 @@ function SettingsInner() {
                 setTab(t.key);
                 router.replace(`/admin/settings?tab=${t.key}`);
               }}
-              className={cn("shrink-0 rounded-xl px-4 py-2.5 text-left text-sm", tab === t.key ? "bg-black/[0.08] text-cream" : "text-sand hover:text-cream")}
+              className={cn("shrink-0 rounded-xl px-4 py-2.5 text-left text-sm", tab === t.key ? "bg-white/[0.08] text-cream" : "text-sand hover:text-cream")}
             >
               {t.label}
             </button>
           ))}
         </nav>
-        <section className="rounded-2xl border border-black/10 bg-coal p-6 sm:p-8">
+        <section className="rounded-2xl border border-white/10 bg-coal p-6 sm:p-8">
           <h2 className="font-display text-2xl">{current.label}</h2>
           <p className="mb-8 mt-1 text-sm text-sand">{current.description}</p>
           {!all ? (
@@ -258,7 +258,7 @@ function SettingsInner() {
               }}
             />
           )}
-          <div className="sticky bottom-0 -mx-6 mt-8 flex items-center justify-end gap-3 border-t border-black/10 bg-coal/95 px-6 py-4 backdrop-blur sm:-mx-8 sm:px-8">
+          <div className="sticky bottom-0 -mx-6 mt-8 flex items-center justify-end gap-3 border-t border-white/10 bg-coal/95 px-6 py-4 backdrop-blur sm:-mx-8 sm:px-8">
             {dirty && <span className="text-xs text-brass">Unsaved changes</span>}
             <button type="button" onClick={save} disabled={saving || !all} className="btn-primary">
               {saving && <Loader2 className="size-4 animate-spin" />} Save {current.label.toLowerCase()}

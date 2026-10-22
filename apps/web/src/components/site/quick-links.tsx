@@ -19,9 +19,9 @@ export function QuickLinks({ general }: { general: GeneralSettings }) {
             <Link
               href={l.href}
               {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="group flex h-full items-center gap-3 rounded-2xl bg-coal p-4 shadow-card transition hover:-translate-y-0.5 hover:shadow-lift"
+              className="group flex h-full items-center gap-3 rounded-2xl glass p-4 transition hover:-translate-y-0.5 hover:"
             >
-              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brass/10 text-brass transition group-hover:bg-brass group-hover:text-snow">
+              <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brass to-violet text-snow shadow-[0_6px_20px_-6px_rgb(239_62_54/0.7)]">
                 <l.icon className="size-5" />
               </span>
               <span className="min-w-0">

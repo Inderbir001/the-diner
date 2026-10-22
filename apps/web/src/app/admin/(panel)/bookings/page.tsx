@@ -151,7 +151,7 @@ function BookingsInner() {
       />
 
       <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-center">
-        <div className="flex flex-wrap gap-1 rounded-full bg-black/5 p-1">
+        <div className="flex flex-wrap gap-1 rounded-full bg-white/5 p-1">
           {ranges.map(([r, label]) => (
             <button key={r} type="button" onClick={() => setRange(r)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold", range === r ? "bg-brass text-snow" : "text-sand hover:text-cream")}>
               {label}
@@ -177,7 +177,7 @@ function BookingsInner() {
         {count} booking{count === 1 ? "" : "s"} · {guests} guests
       </p>
 
-      <div className="overflow-hidden rounded-2xl border border-black/10 bg-coal">
+      <div className="overflow-hidden rounded-2xl border border-white/10 bg-coal">
         {rows === null ? (
           <div className="flex justify-center p-12">
             <Loader2 className="size-5 animate-spin text-brass" />
@@ -187,7 +187,7 @@ function BookingsInner() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="border-b border-black/10 text-left text-xs uppercase tracking-wider text-muted">
+              <thead className="border-b border-white/10 text-left text-xs uppercase tracking-wider text-muted">
                 <tr>
                   <th className="px-4 py-3">When</th>
                   <th className="px-4 py-3">Guest</th>
@@ -197,9 +197,9 @@ function BookingsInner() {
                   <th className="px-4 py-3">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-black/[0.06]">
+              <tbody className="divide-y divide-white/[0.06]">
                 {rows.map((b) => (
-                  <tr key={b.id} className={cn("cursor-pointer hover:bg-black/[0.03]", b.status === "pending" && "bg-brass/[0.04]")} onClick={() => setEditing(b)}>
+                  <tr key={b.id} className={cn("cursor-pointer hover:bg-white/[0.03]", b.status === "pending" && "bg-brass/[0.04]")} onClick={() => setEditing(b)}>
                     <td className="whitespace-nowrap px-4 py-3">
                       <span className="block text-cream">{formatTime12h(b.booking_time)}</span>
                       <span className="text-xs text-muted">
@@ -229,7 +229,7 @@ function BookingsInner() {
                           aria-label="Change status"
                           value={b.status}
                           onChange={(e) => setBookingStatus(b, e.target.value as BookingStatus)}
-                          className="rounded-lg border border-black/10 bg-transparent px-2 py-1 text-xs text-sand"
+                          className="rounded-lg border border-white/10 bg-transparent px-2 py-1 text-xs text-sand"
                         >
                           {BOOKING_STATUSES.map((s) => (
                             <option key={s} value={s} className="bg-coal">

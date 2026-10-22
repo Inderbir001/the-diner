@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Toaster
           theme="light"
           position="bottom-center"
-          toastOptions={{ className: "!bg-coal !border-black/10 !text-cream !rounded-2xl" }}
+          toastOptions={{ className: "!bg-coal !border-white/10 !text-cream !rounded-2xl" }}
         />
       </body>
     </html>

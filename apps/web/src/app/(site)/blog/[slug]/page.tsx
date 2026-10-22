@@ -96,7 +96,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
             <aside className="hidden lg:col-span-3 lg:block">
               <nav aria-label="In this article" className="sticky top-32">
                 <p className="eyebrow mb-4">In this article</p>
-                <ol className="space-y-2 border-l border-black/10 text-sm">
+                <ol className="space-y-2 border-l border-white/10 text-sm">
                   {headings.map((h) => (
                     <li key={h.text}>
                       <a href={`#${slugifyHeading(h.text)}`} className="-ml-px block border-l border-transparent py-1 pl-4 text-sand hover:border-brass hover:text-cream">
@@ -111,9 +111,9 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           <div className={headings.length > 1 ? "lg:col-span-8 lg:col-start-5" : "mx-auto max-w-3xl lg:col-span-12"}>
             <div className="prose prose-invert prose-lg prose-diner max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
             {post.tags.length > 0 && (
-              <ul className="mt-12 flex flex-wrap gap-2 border-t border-black/10 pt-8">
+              <ul className="mt-12 flex flex-wrap gap-2 border-t border-white/10 pt-8">
                 {post.tags.map((t) => (
-                  <li key={t} className="rounded-full border border-black/10 px-3 py-1 text-xs text-sand">
+                  <li key={t} className="rounded-full border border-white/10 px-3 py-1 text-xs text-sand">
                     #{t}
                   </li>
                 ))}

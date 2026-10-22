@@ -90,7 +90,7 @@ export default function SocialAdminPage() {
       />
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <section className="rounded-2xl border border-black/10 bg-coal p-6">
+        <section className="rounded-2xl border border-white/10 bg-coal p-6">
           <div className="flex items-center justify-between">
             <h2 className="flex items-center gap-2 font-display text-2xl">
               <SocialIcon name="instagram" className="size-5 text-brass" /> Instagram
@@ -125,7 +125,7 @@ export default function SocialAdminPage() {
           </form>
         </section>
 
-        <section className="rounded-2xl border border-black/10 bg-coal p-6">
+        <section className="rounded-2xl border border-white/10 bg-coal p-6">
           <div className="flex items-center justify-between">
             <h2 className="flex items-center gap-2 font-display text-2xl">
               <SocialIcon name="youtube" className="size-5 text-brass" /> YouTube
@@ -151,7 +151,7 @@ export default function SocialAdminPage() {
       <section className="mt-10">
         <div className="mb-4 flex items-center gap-2">
           {(["instagram", "youtube"] as const).map((p) => (
-            <button key={p} type="button" onClick={() => setPlatform(p)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold capitalize", platform === p ? "bg-brass text-snow" : "bg-black/5 text-sand")}>
+            <button key={p} type="button" onClick={() => setPlatform(p)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold capitalize", platform === p ? "bg-brass text-snow" : "bg-white/5 text-sand")}>
               {p}
             </button>
           ))}
@@ -159,11 +159,11 @@ export default function SocialAdminPage() {
         {posts === null ? (
           <Loader2 className="size-5 animate-spin text-brass" />
         ) : posts.length === 0 ? (
-          <p className="rounded-2xl border border-black/10 bg-coal p-12 text-center text-sm text-muted">No posts synced yet.</p>
+          <p className="rounded-2xl border border-white/10 bg-coal p-12 text-center text-sm text-muted">No posts synced yet.</p>
         ) : (
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {posts.map((p) => (
-              <li key={p.id} className={cn("overflow-hidden rounded-2xl border border-black/10 bg-coal", p.is_hidden && "opacity-40")}>
+              <li key={p.id} className={cn("overflow-hidden rounded-2xl border border-white/10 bg-coal", p.is_hidden && "opacity-40")}>
                 <a href={p.permalink} target="_blank" rel="noopener noreferrer" className={cn("relative block bg-smoke", platform === "youtube" ? "aspect-video" : "aspect-square")}>
                   {p.thumbnail_url && (
                     // eslint-disable-next-line @next/next/no-img-element

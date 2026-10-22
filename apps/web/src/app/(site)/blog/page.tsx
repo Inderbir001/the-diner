@@ -36,7 +36,7 @@ export default async function BlogPage() {
               <PostCard post={lead} large priority />
             </Reveal>
             {rest.length > 0 && (
-              <div className="mt-20 grid gap-x-8 gap-y-16 border-t border-black/10 pt-16 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-20 grid gap-x-8 gap-y-16 border-t border-white/10 pt-16 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map((p, i) => (
                   <Reveal key={p.id} delay={(i % 3) * 0.08}>
                     <PostCard post={p} />

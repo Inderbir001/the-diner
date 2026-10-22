@@ -72,7 +72,7 @@ export function EnquiryForm({ defaultType = "general", showEventFields = false }
             onClick={() => setType(t.value)}
             className={cn(
               "rounded-full border px-4 py-2 text-sm font-semibold transition",
-              type === t.value ? "border-brass bg-brass text-snow" : "border-black/10 text-sand hover:text-cream",
+              type === t.value ? "border-brass bg-brass text-snow" : "border-white/10 text-sand hover:text-cream",
             )}
           >
             {t.label}

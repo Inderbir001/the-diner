@@ -21,7 +21,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden pb-10 pt-8 sm:pb-14 sm:pt-12">
-      <div className="pointer-events-none absolute -right-40 -top-40 size-[520px] rounded-full bg-brass/10 blur-[120px]" aria-hidden />
+      
       <div className={image ? "container-x relative grid gap-10 lg:grid-cols-12 lg:items-center" : "container-x relative"}>
         <div className={image ? "lg:col-span-7" : undefined}>
           {crumbs.length > 0 && (

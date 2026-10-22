@@ -35,18 +35,18 @@ export function Hero({
 
   return (
     <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute -right-48 -top-48 size-[620px] rounded-full bg-brass/10 blur-[120px]" aria-hidden />
+      
       <div className="container-x relative grid gap-12 py-12 sm:py-16 lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-20">
         <div>
           <motion.div {...rise(0)} className="mb-6 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-coal px-3.5 py-1.5 text-sm font-semibold text-sand shadow-card">
+            <span className="inline-flex items-center gap-1.5 rounded-full glass px-3.5 py-1.5 text-sm font-semibold text-sand">
               <MapPin className="size-4 text-brass" /> {home.heroEyebrow || general.address.locality}
             </span>
             <OpenStatus hours={general.hours} />
           </motion.div>
 
           <motion.h1 {...rise(0.05)} className="text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-[4.4rem]">
-            {first} {accent && <span className="text-brass">{accent}</span>}
+            {first} {accent && <span className="text-aurora">{accent}</span>}
           </motion.h1>
 
           <motion.p {...rise(0.12)} className="mt-6 max-w-xl text-lg leading-relaxed text-sand sm:text-xl">
@@ -64,14 +64,14 @@ export function Hero({
             )}
           </motion.div>
 
-          <motion.dl {...rise(0.24)} className="mt-10 grid max-w-lg grid-cols-3 divide-x divide-black/10 rounded-2xl bg-coal py-4 shadow-card">
+          <motion.dl {...rise(0.24)} className="mt-10 grid max-w-lg grid-cols-3 divide-x divide-white/10 rounded-2xl glass py-4">
             <div className="px-4">
               <dt className="text-xs font-semibold text-muted">Cost for two</dt>
               <dd className="mt-1 font-display text-2xl font-bold">{general.costForTwo || "₹1,000"}</dd>
             </div>
             <div className="px-4">
               <dt className="text-xs font-semibold text-muted">Starters from</dt>
-              <dd className="mt-1 font-display text-2xl font-bold text-brass">₹{startersFrom ?? 199}</dd>
+              <dd className="text-aurora mt-1 font-display text-2xl font-bold">₹{startersFrom ?? 199}</dd>
             </div>
             <div className="px-4">
               <dt className="text-xs font-semibold text-muted">Google rating</dt>
@@ -89,12 +89,12 @@ export function Hero({
           transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
         >
           {home.heroImage && (
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] shadow-lift">
+            <div className="glass relative aspect-[4/3] overflow-hidden rounded-[32px] p-2"><div className="relative size-full overflow-hidden rounded-[26px]">
               <Image src={home.heroImage} alt={`${general.name} rooftop`} fill priority sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
-            </div>
+            </div></div>
           )}
           {side && (
-            <div className="absolute -bottom-8 -left-4 hidden aspect-square w-[38%] overflow-hidden rounded-[24px] border-[6px] border-ink shadow-lift sm:block lg:-left-10">
+            <div className="absolute -bottom-8 -left-4 hidden aspect-square w-[38%] overflow-hidden rounded-[24px] glass p-1.5 sm:block lg:-left-10">
               <Image src={side} alt="" fill sizes="240px" className="object-cover" />
             </div>
           )}

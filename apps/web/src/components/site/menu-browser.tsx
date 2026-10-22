@@ -76,7 +76,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
 
   const filters = (
     <div className="flex items-center gap-2">
-      <div className="flex flex-1 rounded-full bg-smoke p-1" role="radiogroup" aria-label="Food or drinks">
+      <div className="glass flex flex-1 rounded-full p-1" role="radiogroup" aria-label="Food or drinks">
         {(["all", "food", "drinks"] as const).map((k) => (
           <button
             key={k}
@@ -84,7 +84,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
             role="radio"
             aria-checked={kind === k}
             onClick={() => setKind(k)}
-            className={cn("flex-1 rounded-full px-3 py-1.5 text-sm font-bold capitalize transition", kind === k ? "bg-coal text-cream shadow-card" : "text-muted hover:text-cream")}
+            className={cn("flex-1 rounded-full px-3 py-1.5 text-sm font-bold capitalize transition", kind === k ? "bg-white/15 text-cream" : "text-muted hover:text-cream")}
           >
             {k}
           </button>
@@ -96,7 +96,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
         aria-pressed={vegOnly}
         className={cn(
           "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-2 text-sm font-bold transition",
-          vegOnly ? "border-leaf bg-leaf text-snow" : "border-black/12 bg-coal text-sand hover:border-leaf hover:text-leaf",
+          vegOnly ? "border-leaf bg-leaf text-night" : "glass text-sand hover:border-leaf hover:text-leaf",
         )}
       >
         <Leaf className="size-4" /> Veg
@@ -107,7 +107,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
   return (
     <div className="container-x pb-10">
       {/* mobile: sticky chips + controls */}
-      <div className="sticky top-[72px] z-30 -mx-5 border-b border-black/[0.07] bg-ink/95 px-5 pb-3 pt-3 backdrop-blur-xl sm:-mx-8 sm:px-8 lg:hidden">
+      <div className="sticky top-[72px] z-30 -mx-5 border-b border-white/[0.07] bg-ink/95 px-5 pb-3 pt-3 backdrop-blur-xl sm:-mx-8 sm:px-8 lg:hidden">
         <div className="grid gap-2.5">
           {searchBox}
           {filters}
@@ -120,7 +120,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
               data-slug={s.slug}
               className={cn(
                 "shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition",
-                active === s.slug ? "bg-cream text-ink" : "bg-coal text-sand shadow-card",
+                active === s.slug ? "bg-cream text-ink" : "glass text-sand",
               )}
             >
               {s.name}
@@ -135,7 +135,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
           <div className="sticky top-[96px] space-y-4">
             {searchBox}
             {filters}
-            <nav aria-label="Menu categories" className="rounded-3xl bg-coal p-2 shadow-card">
+            <nav aria-label="Menu categories" className="rounded-3xl glass p-2">
               <ul>
                 {filtered.map((s) => {
                   const from = minPrice(s);
@@ -145,7 +145,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
                         href={`#${s.slug}`}
                         className={cn(
                           "flex items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-[0.95rem] font-semibold transition",
-                          active === s.slug ? "bg-brass text-snow" : "text-sand hover:bg-smoke hover:text-cream",
+                          active === s.slug ? "bg-gradient-to-r from-brass to-[#ff6b3d] text-snow shadow-[0_8px_24px_-8px_rgb(239_62_54/0.7)]" : "text-sand hover:bg-white/[0.06] hover:text-cream",
                         )}
                       >
                         <span className="truncate">{s.name}</span>
@@ -163,7 +163,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
 
         <div className="mt-8 space-y-16 lg:mt-0">
           {filtered.length === 0 && (
-            <div className="rounded-3xl bg-coal p-12 text-center shadow-card">
+            <div className="rounded-3xl glass p-12 text-center">
               <p className="text-lg font-semibold">Nothing matches that.</p>
               <button type="button" className="btn-ghost mt-4" onClick={() => { setQ(""); setVegOnly(false); setKind("all"); }}>
                 Clear filters
@@ -182,7 +182,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
                     {section.description && <p className="mt-1.5 text-sand">{section.description}</p>}
                   </div>
                   {from !== null && (
-                    <span className="rounded-full bg-brass/10 px-3.5 py-1.5 text-sm font-bold text-brass">from {formatPrice(from)}</span>
+                    <span className="glass rounded-full px-3.5 py-1.5 text-sm font-bold text-flame">from {formatPrice(from)}</span>
                   )}
                 </div>
                 <ul className="grid grid-cols-2 gap-3 sm:gap-5 xl:grid-cols-3">

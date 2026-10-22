@@ -45,16 +45,16 @@ export function Drawer({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 32, stiffness: 300 }}
-            className={`absolute inset-y-0 right-0 flex w-full flex-col border-l border-black/10 bg-coal shadow-2xl ${wide ? "max-w-6xl" : "max-w-2xl"}`}
+            className={`absolute inset-y-0 right-0 flex w-full flex-col border-l border-white/10 bg-coal shadow-2xl ${wide ? "max-w-6xl" : "max-w-2xl"}`}
           >
-            <div className="flex items-center justify-between border-b border-black/10 px-6 py-4">
+            <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
               <h2 className="font-display text-2xl">{title}</h2>
-              <button type="button" onClick={onClose} className="rounded-full p-2 hover:bg-black/10" aria-label="Close">
+              <button type="button" onClick={onClose} className="rounded-full p-2 hover:bg-white/10" aria-label="Close">
                 <X className="size-5" />
               </button>
             </div>
             <div className="flex-1 overflow-y-auto px-6 py-6">{children}</div>
-            {footer && <div className="flex items-center justify-between gap-3 border-t border-black/10 px-6 py-4">{footer}</div>}
+            {footer && <div className="flex items-center justify-between gap-3 border-t border-white/10 px-6 py-4">{footer}</div>}
           </motion.div>
         </div>
       )}
@@ -67,7 +67,7 @@ export function StatusPill({ tone, children }: { tone: "green" | "amber" | "red"
     green: "bg-leaf/15 text-leaf",
     amber: "bg-brass/15 text-brass",
     red: "bg-ember/15 text-ember",
-    grey: "bg-black/10 text-sand",
+    grey: "bg-white/10 text-sand",
     blue: "bg-sky-400/15 text-sky-300",
   };
   return <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize ${tones[tone]}`}>{children}</span>;

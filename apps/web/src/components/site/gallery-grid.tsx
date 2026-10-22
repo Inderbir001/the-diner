@@ -42,7 +42,7 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
               aria-pressed={cat === c}
               className={cn(
                 "rounded-full border px-4 py-2 text-sm font-semibold capitalize transition",
-                cat === c ? "border-brass bg-brass text-snow" : "border-black/10 text-sand hover:text-cream",
+                cat === c ? "border-brass bg-brass text-snow" : "border-white/10 text-sand hover:text-cream",
               )}
             >
               {c}

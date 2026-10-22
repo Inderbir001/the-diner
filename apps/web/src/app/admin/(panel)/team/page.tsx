@@ -66,7 +66,7 @@ export default function TeamPage() {
   return (
     <>
       <PageTitle title="Team" description="Give managers and staff their own logins. Staff can only see bookings and enquiries." />
-      <form onSubmit={invite} className="mb-8 grid gap-3 rounded-2xl border border-black/10 bg-coal p-5 sm:grid-cols-[1fr_1fr_auto_auto]">
+      <form onSubmit={invite} className="mb-8 grid gap-3 rounded-2xl border border-white/10 bg-coal p-5 sm:grid-cols-[1fr_1fr_auto_auto]">
         <input name="email" type="email" required placeholder="Email" className="field !py-2" aria-label="Email" />
         <input name="name" placeholder="Name (optional)" className="field !py-2" aria-label="Name" />
         <select name="role" defaultValue="staff" className="field !py-2" aria-label="Role">
@@ -81,7 +81,7 @@ export default function TeamPage() {
       {!members ? (
         <Loader2 className="size-5 animate-spin text-brass" />
       ) : (
-        <ul className="divide-y divide-black/[0.06] overflow-hidden rounded-2xl border border-black/10 bg-coal">
+        <ul className="divide-y divide-white/[0.06] overflow-hidden rounded-2xl border border-white/10 bg-coal">
           {members.map((m) => (
             <li key={m.user_id} className="flex flex-wrap items-center gap-4 px-5 py-4">
               <div className="min-w-0 flex-1">
@@ -95,7 +95,7 @@ export default function TeamPage() {
                   value={m.role}
                   disabled={m.user_id === me.id}
                   onChange={(e) => changeRole(m, e.target.value as AdminRole)}
-                  className="rounded-lg border border-black/10 bg-transparent px-2 py-1 text-sm text-sand"
+                  className="rounded-lg border border-white/10 bg-transparent px-2 py-1 text-sm text-sand"
                   aria-label="Role"
                 >
                   {(["owner", "admin", "staff"] as const).map((r) => (

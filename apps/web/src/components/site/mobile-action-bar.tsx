@@ -9,12 +9,12 @@ export function MobileActionBar({ general }: { general: GeneralSettings }) {
     <nav aria-label="Quick actions" className="fixed inset-x-3 bottom-3 z-40 lg:hidden">
       <div className="glass-strong grid grid-cols-3 overflow-hidden rounded-2xl text-xs font-semibold shadow-lift">
         {general.phones[0] && (
-          <a href={telHref(general.phones[0])} className="flex flex-col items-center gap-1 py-3 text-sand active:bg-black/10">
+          <a href={telHref(general.phones[0])} className="flex flex-col items-center gap-1 py-3 text-sand active:bg-white/10">
             <Phone className="size-4" /> Call
           </a>
         )}
         {general.mapUrl && (
-          <a href={general.mapUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 border-x border-black/10 py-3 text-sand active:bg-black/10">
+          <a href={general.mapUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 border-x border-white/10 py-3 text-sand active:bg-white/10">
             <MapPin className="size-4" /> Directions
           </a>
         )}

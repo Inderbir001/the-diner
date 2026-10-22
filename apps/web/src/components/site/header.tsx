@@ -32,7 +32,7 @@ export function Header({
   return (
     <>
       <AnnouncementBar announcement={announcement} />
-      <header className="sticky top-0 z-50 border-b border-black/[0.07] bg-ink/90 backdrop-blur-xl">
+      <header className="glass-strong sticky top-0 z-50 !border-x-0 !border-t-0">
         <nav aria-label="Main" className="container-x flex h-[72px] items-center justify-between gap-6">
           <Link href="/" aria-label={`${general.name} — home`} className="shrink-0">
             <Logo />
@@ -47,7 +47,7 @@ export function Header({
                     href={l.href}
                     className={cn(
                       "rounded-full px-4 py-2 text-[0.95rem] font-semibold transition-colors",
-                      active ? "bg-brass/10 text-brass" : "text-sand hover:bg-black/[0.04] hover:text-cream",
+                      active ? "bg-white/12 text-cream" : "text-sand hover:bg-white/[0.06] hover:text-cream",
                     )}
                   >
                     {l.label}
@@ -74,7 +74,7 @@ export function Header({
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="inline-flex size-11 items-center justify-center rounded-full border border-black/10 bg-coal lg:hidden"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 glass lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label="Open menu"
@@ -102,7 +102,7 @@ export function Header({
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="absolute inset-y-0 right-0 flex w-[86%] max-w-sm flex-col bg-ink p-6"
+              className="glass-strong absolute inset-y-0 right-0 flex w-[86%] max-w-sm flex-col p-6"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between">
@@ -118,7 +118,7 @@ export function Header({
                       href={l.href}
                       className={cn(
                         "flex items-center justify-between rounded-2xl px-4 py-3.5 font-display text-2xl font-bold",
-                        pathname === l.href ? "bg-brass/10 text-brass" : "text-cream hover:bg-smoke",
+                        pathname === l.href ? "bg-white/12 text-cream" : "text-cream hover:bg-white/[0.06]",
                       )}
                     >
                       {l.label} <ArrowRight className="size-5 opacity-40" />

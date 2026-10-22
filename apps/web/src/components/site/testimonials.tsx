@@ -11,7 +11,7 @@ export function Testimonials({ items, reviewsUrl }: { items: Testimonial[]; revi
       <div className="mt-14 mx-auto max-w-5xl columns-1 gap-5 sm:columns-2">
         {items.map((t, i) => (
           <Reveal key={t.id} delay={(i % 3) * 0.08} className="mb-5 break-inside-avoid">
-            <figure className="rounded-[24px] bg-coal p-7 ring-1 ring-black/10">
+            <figure className="rounded-[24px] glass p-7 ring-1 ring-white/10">
               <div className="flex gap-0.5 text-brass" aria-label={`${t.rating} out of 5 stars`}>
                 {Array.from({ length: t.rating }).map((_, s) => (
                   <Star key={s} className="size-4 fill-current" />

@@ -135,14 +135,14 @@ export function BookingForm({
             ? "Your table is confirmed. See you soon!"
             : "We'll confirm your table shortly by phone or email."}
         </p>
-        <dl className="mx-auto mt-8 grid max-w-md grid-cols-2 gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 text-left text-sm">
+        <dl className="mx-auto mt-8 grid max-w-md grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 text-left text-sm">
           {[
             ["Reference", done.reference],
             ["Guests", String(guests)],
             ["Date", new Date(`${date}T12:00:00Z`).toLocaleDateString("en-IN", { dateStyle: "medium", timeZone: "UTC" })],
             ["Time", formatTime12h(time!)],
           ].map(([k, v]) => (
-            <div key={k} className="bg-coal p-4">
+            <div key={k} className="glass p-4">
               <dt className="text-xs uppercase tracking-widest text-muted">{k}</dt>
               <dd className="mt-1 font-semibold">{v}</dd>
             </div>
@@ -174,8 +174,8 @@ export function BookingForm({
         <div className="grid gap-6 sm:grid-cols-[auto_1fr]">
           <div>
             <span className="label">Guests</span>
-            <div className="flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.04] p-1">
-              <button type="button" onClick={() => setGuests((g) => Math.max(1, g - 1))} className="inline-flex size-10 items-center justify-center rounded-full hover:bg-black/10" aria-label="Fewer guests">
+            <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] p-1">
+              <button type="button" onClick={() => setGuests((g) => Math.max(1, g - 1))} className="inline-flex size-10 items-center justify-center rounded-full hover:bg-white/10" aria-label="Fewer guests">
                 <Minus className="size-4" />
               </button>
               <output className="w-10 text-center font-display text-2xl" aria-live="polite">
@@ -184,7 +184,7 @@ export function BookingForm({
               <button
                 type="button"
                 onClick={() => setGuests((g) => Math.min(settings.maxPartySize, g + 1))}
-                className="inline-flex size-10 items-center justify-center rounded-full hover:bg-black/10"
+                className="inline-flex size-10 items-center justify-center rounded-full hover:bg-white/10"
                 aria-label="More guests"
               >
                 <Plus className="size-4" />
@@ -209,7 +209,7 @@ export function BookingForm({
                     onClick={() => setDate(d)}
                     className={cn(
                       "flex w-16 shrink-0 flex-col items-center rounded-2xl border py-2.5 transition",
-                      date === d ? "border-brass bg-brass text-snow" : "border-black/10 bg-black/[0.03] text-sand hover:border-black/25",
+                      date === d ? "border-brass bg-brass text-snow" : "border-white/10 bg-white/[0.03] text-sand hover:border-white/25",
                     )}
                     aria-pressed={date === d}
                   >
@@ -219,7 +219,7 @@ export function BookingForm({
                   </button>
                 );
               })}
-              <label className="flex w-28 shrink-0 cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-black/15 px-2 text-center text-xs text-sand">
+              <label className="flex w-28 shrink-0 cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-white/15 px-2 text-center text-xs text-sand">
                 Another date
                 <input
                   type="date"
@@ -240,7 +240,7 @@ export function BookingForm({
             {loadingSlots ? (
               <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
                 {Array.from({ length: 12 }).map((_, i) => (
-                  <div key={i} className="h-11 animate-pulse rounded-xl bg-black/[0.05]" />
+                  <div key={i} className="h-11 animate-pulse rounded-xl bg-white/[0.05]" />
                 ))}
               </div>
             ) : slots && slots.some((s) => s.available) ? (
@@ -256,7 +256,7 @@ export function BookingForm({
                       time === s.time
                         ? "border-brass bg-brass text-snow"
                         : s.available
-                          ? "border-black/10 bg-black/[0.03] text-cream hover:border-brass/50"
+                          ? "border-white/10 bg-white/[0.03] text-cream hover:border-brass/50"
                           : "cursor-not-allowed border-transparent text-muted/40 line-through",
                     )}
                     aria-pressed={time === s.time}
@@ -266,7 +266,7 @@ export function BookingForm({
                 ))}
               </div>
             ) : (
-              <p className="rounded-2xl border border-black/10 bg-black/[0.03] p-5 text-sm text-sand">
+              <p className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-sm text-sand">
                 {slotMessage ?? "No tables left online for this date."}{" "}
                 {phone && (
                   <a href={telHref(phone)} className="text-brass underline">
@@ -289,7 +289,7 @@ export function BookingForm({
             transition={{ duration: 0.6, ease: EASE }}
             className="overflow-hidden"
           >
-            <div className="mt-10 border-t border-black/10 pt-10">
+            <div className="mt-10 border-t border-white/10 pt-10">
               <h2 className="mb-6 flex items-center gap-3 font-display text-2xl">
                 <span className="inline-flex size-8 items-center justify-center rounded-full bg-brass font-sans text-sm font-bold text-snow">2</span>
                 Your details

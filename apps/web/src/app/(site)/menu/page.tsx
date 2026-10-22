@@ -41,7 +41,7 @@ export default async function MenuPage() {
       >
         <ul className="mt-7 flex flex-wrap gap-2">
           {highlights.map((h) => (
-            <li key={h.label} className="inline-flex items-center gap-2 rounded-full bg-coal px-4 py-2 text-sm font-semibold shadow-card">
+            <li key={h.label} className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm font-semibold">
               <h.icon className="size-4 text-brass" /> {h.label}
             </li>
           ))}

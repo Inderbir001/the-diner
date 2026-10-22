@@ -23,7 +23,7 @@ export function SectionHeading({
   return (
     <Reveal className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && <p className={cn("eyebrow mb-3", tone === "red" && "!text-snow/80")}>{eyebrow}</p>}
-      <Tag className={cn("text-4xl sm:text-5xl lg:text-[3.5rem]", onDark ? "text-snow" : "text-cream")}>{title}</Tag>
+      <Tag className="text-4xl text-cream sm:text-5xl lg:text-[3.5rem]">{title}</Tag>
       {intro && (
         <p className={cn("mt-5 max-w-2xl text-lg leading-relaxed", onDark ? "text-snow/75" : "text-sand", align === "center" && "mx-auto")}>{intro}</p>
       )}

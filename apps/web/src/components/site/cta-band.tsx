@@ -20,17 +20,17 @@ export function CtaBand({
 }) {
   return (
     <section className="container-x py-12 sm:py-16" aria-label="Reserve">
-      <Reveal className="relative grid overflow-hidden rounded-[32px] bg-brass text-snow shadow-lift lg:grid-cols-2">
-        <GrillMark className="pointer-events-none absolute -bottom-10 left-1/3 size-72 text-night/10" />
+      <Reveal className="card relative grid overflow-hidden !rounded-[32px] text-snow lg:grid-cols-2">
+        <GrillMark className="pointer-events-none absolute -bottom-10 left-1/3 size-72 text-white/[0.05]" />
         <div className="relative p-8 sm:p-12 lg:py-16">
           <h2 className="text-4xl text-snow sm:text-5xl">{title}</h2>
           <p className="mt-4 max-w-md text-lg text-snow/85">{text}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={primary.href} className="btn-dark !px-7 !py-4 text-base">
+            <Link href={primary.href} className="btn-primary !px-7 !py-4 text-base">
               {primary.label} <ArrowRight className="size-4" />
             </Link>
             {secondary && (
-              <Link href={secondary.href} className="btn border-2 border-snow/50 !px-7 !py-4 text-base text-snow hover:bg-snow hover:text-brass">
+              <Link href={secondary.href} className="btn-ghost !px-7 !py-4 text-base">
                 {secondary.label}
               </Link>
             )}

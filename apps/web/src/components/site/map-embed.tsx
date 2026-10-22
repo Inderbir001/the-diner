@@ -7,7 +7,7 @@ import { MapPin } from "lucide-react";
 export function MapEmbed({ src, title, directionsUrl }: { src: string; title: string; directionsUrl?: string }) {
   const [show, setShow] = useState(false);
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-black/10 bg-smoke sm:aspect-[16/10]">
+    <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-white/10 bg-smoke sm:aspect-[16/10]">
       {show ? (
         <iframe
           src={src}
