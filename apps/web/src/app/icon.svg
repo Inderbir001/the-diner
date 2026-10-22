@@ -1,5 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0e0d0b"/>
-  <circle cx="32" cy="32" r="21" fill="none" stroke="#d8a446" stroke-width="2"/>
-  <text x="32" y="42" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="28" fill="#f4ecdc">D</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="22" fill="#0e0d0b"/>
+  <g transform="translate(10 8) scale(.8)" fill="none">
+    <g stroke="#e8473e" stroke-width="6" stroke-linecap="round">
+      <path d="M37 26c-5-4 5-7 0-11s5-7 0-11"/>
+      <path d="M50 26c-5-4 5-7 0-11s5-7 0-11"/>
+      <path d="M63 26c-5-4 5-7 0-11s5-7 0-11"/>
+    </g>
+    <rect x="14" y="33" width="72" height="9" rx="4.5" fill="#e8473e"/>
+    <path d="M21 41h58a29 25 0 0 1-58 0z" fill="#e8473e"/>
+    <g stroke="#e8473e" stroke-width="8" stroke-linecap="round">
+      <path d="M37 60 29 92"/>
+      <path d="M50 64v22"/>
+      <path d="M63 60l8 32"/>
+    </g>
+  </g>
 </svg>

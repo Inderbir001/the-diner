@@ -45,7 +45,7 @@ export function Hero({ home, general, bookingEnabled }: { home: HomeSettings; ge
       </motion.div>
       {/* layered gradients keep text legible on any photo */}
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/30" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_100%,rgb(216_164_70/0.22),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_100%,rgb(232_71_62/0.22),transparent_55%)]" />
 
       <motion.div style={reduce ? undefined : { y: contentY, opacity: fade }} className="container-x relative">
         <motion.div

@@ -32,7 +32,7 @@ export function SignatureDishes({ dishes }: { dishes: MenuItem[] }) {
                   className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110"
                 />
               ) : (
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgb(226_88_43/0.35),transparent_60%),radial-gradient(circle_at_80%_80%,rgb(216_164_70/0.25),transparent_55%)]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgb(245_165_36/0.35),transparent_60%),radial-gradient(circle_at_80%_80%,rgb(232_71_62/0.25),transparent_55%)]">
                   <span className="absolute left-6 top-6 font-display text-8xl italic text-white/[0.06]">{String(i + 1).padStart(2, "0")}</span>
                 </div>
               )}

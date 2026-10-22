@@ -69,7 +69,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <main className="flex min-h-dvh items-center justify-center bg-[radial-gradient(ellipse_at_50%_0%,rgb(216_164_70/0.15),transparent_60%)] p-6">
+    <main className="flex min-h-dvh items-center justify-center bg-[radial-gradient(ellipse_at_50%_0%,rgb(232_71_62/0.15),transparent_60%)] p-6">
       <Suspense>
         <LoginForm />
       </Suspense>

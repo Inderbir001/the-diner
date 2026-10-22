@@ -9,13 +9,14 @@
   --color-cream: #f4ecdc;
   --color-sand: #cdbf9f;
   --color-muted: #948a73;
-  --color-brass: #d8a446;
-  --color-brass-light: #f0c46b;
-  --color-ember: #e2582b;
+  --color-brass: #e8473e;
+  --color-brass-light: #ff6b5e;
+  --color-ember: #f5a524;
   --color-leaf: #5fa36b;
 
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-bebas), Impact, "Arial Narrow", sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
@@ -76,7 +77,7 @@
 }
 @utility btn-primary {
   @apply btn bg-brass text-ink hover:bg-brass-light;
-  box-shadow: 0 10px 40px -10px rgb(216 164 70 / 0.6);
+  box-shadow: 0 10px 40px -10px rgb(232 71 62 / 0.6);
 }
 @utility btn-ghost {
   @apply btn glass text-cream hover:bg-white/10;

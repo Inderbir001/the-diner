@@ -20,7 +20,7 @@ export function CtaBand({
       <div className="relative overflow-hidden rounded-[36px] border border-white/10 px-6 py-20 text-center sm:px-16 sm:py-28">
         {image && <Image src={image} alt="" fill sizes="100vw" className="object-cover" />}
         <div className="absolute inset-0 bg-ink/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(216_164_70/0.35),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(232_71_62/0.35),transparent_60%)]" />
         <div className="relative">
           <SplitWords text={title} className="mx-auto max-w-3xl font-display text-5xl leading-none tracking-tight sm:text-7xl" />
           <Reveal delay={0.2}>

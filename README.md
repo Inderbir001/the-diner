@@ -112,8 +112,9 @@ Create a Resend account, verify the `thediner.in` domain, and set `RESEND_API_KE
 
 ## 8. Launch checklist (SEO)
 
-- [ ] **Replace sample content**: menu prices and dishes (seeded from public listings, so verify every one against the printed menu), photos (stock Unsplash placeholders, so upload real venue and food photos), the home page story and stats, and party package prices.
-- [ ] Set the exact map coordinates in **Settings → Business info**: right-click the pin in Google Maps to copy them.
+- [ ] **Check sample content**: menu dishes and prices (most are placeholders, so verify every one against the printed menu), the home page story and stats, party packages and group discounts.
+- [ ] **Check the recurring offers.** Acoustic Colours, Ladies Night, Pitcher Night, Social Hours and Andhra Lunch Combos were taken from older Google Business posts. Update or unpublish any that have changed under **Events**.
+- [ ] **Add more photos.** The site uses the restaurant's own photos and posters from its Google Business Profile posts and owner uploads (in `apps/web/public/images/diner`). Upload fresh dish and interior shots in the admin. Instagram sync adds new posts automatically.
 - [ ] Add real guest reviews under **Reviews** (only genuine ones, with names as shown on Google).
 - [ ] Google Search Console: add the `thediner.in` property and paste the verification code into **Settings → SEO**. Then submit `https://thediner.in/sitemap.xml`.
 - [ ] Google Business Profile: set the website to `https://thediner.in`, the booking link to `https://thediner.in/reserve` and the menu link to `https://thediner.in/menu`. Keep the hours identical to the site.

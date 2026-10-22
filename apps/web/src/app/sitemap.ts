@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(p.updated_at),
       changeFrequency: "monthly" as const,
       priority: 0.6,
-      images: p.cover_image ? [p.cover_image] : undefined,
+      images: p.cover_image ? [absoluteUrl(p.cover_image)] : undefined,
     })),
     ...events.map((e) => ({ url: absoluteUrl(`/events/${e.slug}`), lastModified: now, changeFrequency: "weekly" as const, priority: 0.6 })),
     ...pages.map((p) => ({ url: absoluteUrl(`/${p.slug}`), lastModified: new Date(p.updated_at), changeFrequency: "yearly" as const, priority: 0.2 })),

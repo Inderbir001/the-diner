@@ -17,7 +17,7 @@ export function MapEmbed({ src, title, directionsUrl }: { src: string; title: st
           className="absolute inset-0 size-full grayscale-[0.4] invert-[0.9] hue-rotate-180"
         />
       ) : (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[radial-gradient(circle_at_50%_45%,rgb(216_164_70/0.18),transparent_60%)] p-6 text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[radial-gradient(circle_at_50%_45%,rgb(232_71_62/0.18),transparent_60%)] p-6 text-center">
           {/* stylised street grid as a placeholder */}
           <svg className="absolute inset-0 size-full opacity-[0.12]" aria-hidden>
             <defs>
@@ -27,7 +27,7 @@ export function MapEmbed({ src, title, directionsUrl }: { src: string; title: st
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
-          <span className="relative inline-flex size-14 items-center justify-center rounded-full bg-brass text-ink shadow-[0_0_0_10px_rgb(216_164_70/0.15)]">
+          <span className="relative inline-flex size-14 items-center justify-center rounded-full bg-brass text-ink shadow-[0_0_0_10px_rgb(232_71_62/0.15)]">
             <MapPin className="size-6" />
           </span>
           <div className="relative flex flex-wrap justify-center gap-3">

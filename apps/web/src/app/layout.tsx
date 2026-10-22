@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Bebas_Neue, Fraunces, Manrope } from "next/font/google";
 import { Toaster } from "sonner";
 import { getSettings } from "@/lib/data";
 import { SITE_URL } from "@/lib/env";
@@ -13,6 +13,7 @@ const fraunces = Fraunces({
   display: "swap",
 });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
+const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-bebas", display: "swap" });
 
 export const viewport: Viewport = {
   themeColor: "#0e0d0b",
@@ -58,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${fraunces.variable} ${manrope.variable}`} suppressHydrationWarning>
+    <html lang="en-IN" className={`${fraunces.variable} ${manrope.variable} ${bebas.variable}`} suppressHydrationWarning>
       <body>
         {children}
         <Toaster
