@@ -58,15 +58,13 @@ export const fallbackSettings: SettingsMap = {
     ogImage: img("og-image.jpg"),
   }),
   home: parseSettings("home", {
-    heroEyebrow: "Pattandur Agrahara, Whitefield",
-    heroTitle: "Great food, great prices,|rooftop vibes.",
+    heroEyebrow: "Whitefield · Rooftop restobar",
+    heroTitle: "Rooftop nights.|Bold Andhra flavours.",
     heroSideImages: [img("chicken-wings.jpg"), img("dance-floor.jpg")],
-    heroSubtitle:
-      "Andhra-style starters, dum biryani, cold pitchers and live music on a rooftop near ITPL — with prices that are easy on the wallet. Open every day till 12:30 AM.",
-    heroImage: img("rooftop-crowd.jpg"),
-    storyTitle: "Good place. Good food. Good people.",
-    storyBody:
-      "The Diner started with a simple idea: a place in Whitefield where you can walk in after work, order a proper Andhra meal and a cold beer, and stay for the music. Our kitchen leans on Guntur spice, slow-cooked biryanis and a tandoor that runs all night. Upstairs, the rooftop fills up for match nights, DJ sets and long weekend dinners.",
+    heroSubtitle: "Food, drinks, live music and late evenings near ITPL.",
+    heroImage: img("rooftop-dinner.jpg"),
+    storyTitle: "Whitefield's open-air table",
+    storyBody: "Planters overhead, the city around you and a kitchen that cooks Andhra-style with real heat. Come for an after-work drink and stay for the music.",
     storyImage: img("pet-friendly.jpg"),
     stats: [
       { value: "4.4★", label: "Google rating" },
@@ -75,8 +73,8 @@ export const fallbackSettings: SettingsMap = {
       { value: "7", label: "Days a week" },
     ],
     marquee: ["Social hours ₹99", "Bira pitchers ₹499", "Lunch combos from ₹179", "Starters from ₹199", "Live music Thursdays", "Ladies night Saturdays", "Pet friendly rooftop"],
-    dealsTitle: "Big flavour. Honest prices.",
-    dealsIntro: "Whitefield's best-value rooftop: proper food, cold drinks and a great night out without the big bill.",
+    dealsTitle: "Good food, fair prices.",
+    dealsIntro: "Proper food, cold drinks and a great night out without the big bill.",
     deals: [
       { title: "Social Hours — bar drinks & bites", price: "₹99", note: "Daily 4–8 PM", href: "/events/social-hours" },
       { title: "Andhra lunch combos", price: "₹179", note: "Every day at lunch", href: "/events/andhra-lunch-combos" },
@@ -84,10 +82,10 @@ export const fallbackSettings: SettingsMap = {
       { title: "Dinner & drinks for two", price: "₹1,000", note: "Approx. cost for two", href: "/menu" },
     ],
     experiences: [
-      { title: "The Rooftop", description: "Open-air tables under hanging planters and string lights — the best seat in Whitefield for a long evening. Pets welcome.", image: img("rooftop-dinner.jpg") },
-      { title: "Live Music & DJs", description: "Acoustic Colours live every Thursday, DJ nights on the weekend and a dance floor that stays busy.", image: img("dance-crowd.jpg") },
-      { title: "Match Nights", description: "Every big game live on the big screen, with buckets, platters and a crowd that cares.", image: img("event-match-screening.jpg") },
-      { title: "Private Parties", description: "Team lunches, birthdays and office outings for 20 to 250 guests, with set menus, bar packages and group discounts.", image: img("team-party.jpg") },
+      { title: "The rooftop", description: "Open-air seating under hanging planters and string lights, busiest after sunset.", image: img("rooftop-dinner.jpg") },
+      { title: "Live music", description: "Acoustic sets every Thursday from 9 PM and DJ nights on the weekend.", image: img("dance-crowd.jpg") },
+      { title: "Match nights", description: "Every big game on the big screen, with buckets and sharing platters.", image: img("event-match-screening.jpg") },
+      { title: "Pet friendly", description: "Dogs are welcome on the rooftop. Keep them on a leash and we'll bring water.", image: img("pet-friendly.jpg") },
     ],
     partyPackages: [
       { name: "Food package", price: "₹800 / guest", description: "Welcome drink, starters, mains, biryani and dessert." },

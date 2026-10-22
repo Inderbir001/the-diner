@@ -1,108 +1,52 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
-import { ArrowRight, MapPin, Star } from "lucide-react";
 import type { GeneralSettings, HomeSettings } from "@diner/shared";
 import { to12h } from "@/lib/utils";
-import { OpenStatus } from "./open-status";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-/** "Great food. Fair prices.|Rooftop vibes." — the part after | is shown in brand red. */
+/** "Rooftop nights.|Bold Andhra flavours." — the part after | becomes the second, italic line. */
 function headline(title: string) {
   const [first, ...rest] = title.split("|");
-  return { first: first.trim(), accent: rest.join(" ").trim() };
+  return { first: first.trim(), second: rest.join(" ").trim() };
 }
 
-export function Hero({
-  home,
-  general,
-  bookingEnabled,
-  startersFrom,
-}: {
-  home: HomeSettings;
-  general: GeneralSettings;
-  bookingEnabled: boolean;
-  startersFrom?: number | null;
-}) {
-  const reduce = useReducedMotion();
-  const { first, accent } = headline(home.heroTitle || general.name);
-  const side = home.heroSideImages.filter(Boolean)[0];
-  const rise = (delay: number) =>
-    reduce ? {} : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, delay, ease: EASE } };
+/** Full-screen rooftop photograph with the headline anchored low, so there's no empty band under it. */
+export function Hero({ home, general, bookingEnabled }: { home: HomeSettings; general: GeneralSettings; bookingEnabled: boolean }) {
+  const { first, second } = headline(home.heroTitle || general.name);
+  const closes = general.hours[0] && !general.hours[0].closed ? `Open till ${to12h(general.hours[0].close)}` : null;
+  const utility = [closes, general.landmark].filter(Boolean).join(" · ");
 
   return (
-    <section className="relative overflow-hidden">
-      
-      <div className="container-x relative grid gap-12 py-12 sm:py-16 lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-20">
-        <div>
-          <motion.div {...rise(0)} className="mb-6 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full glass px-3.5 py-1.5 text-sm font-semibold text-sand">
-              <MapPin className="size-4 text-brass" /> {home.heroEyebrow || general.address.locality}
-            </span>
-            <OpenStatus hours={general.hours} />
-          </motion.div>
+    <section className="relative isolate flex min-h-[86svh] items-end overflow-hidden bg-charcoal lg:min-h-[100svh]">
+      {home.heroImage && (
+        <Image src={home.heroImage} alt={`Guests on the rooftop at ${general.name}`} fill priority sizes="100vw" quality={85} className="-z-10 object-cover" />
+      )}
+      {/* photographic overlays for legibility */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-charcoal via-charcoal/60 to-charcoal/30" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-charcoal/75 via-charcoal/25 to-transparent" aria-hidden />
 
-          <motion.h1 {...rise(0.05)} className="text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-[4.4rem]">
-            {first} {accent && <span className="text-aurora">{accent}</span>}
-          </motion.h1>
-
-          <motion.p {...rise(0.12)} className="mt-6 max-w-xl text-lg leading-relaxed text-sand sm:text-xl">
-            {home.heroSubtitle}
-          </motion.p>
-
-          <motion.div {...rise(0.18)} className="mt-8 flex flex-wrap gap-3">
-            <Link href="/menu" className="btn-primary !px-7 !py-4 text-base">
-              Explore the menu <ArrowRight className="size-4" />
+      <div className="container-x pb-12 pt-28 sm:pb-16 lg:pb-24">
+        {home.heroEyebrow && <p className="eyebrow">{home.heroEyebrow}</p>}
+        <h1 className="mt-4 max-w-4xl text-[2.9rem] leading-[1.02] text-ivory sm:text-6xl lg:text-[5.6rem]">
+          {first}
+          {second && (
+            <>
+              <br />
+              <em className="text-gold">{second}</em>
+            </>
+          )}
+        </h1>
+        {home.heroSubtitle && <p className="mt-5 max-w-xl text-lg leading-relaxed text-ivory/85 sm:text-xl">{home.heroSubtitle}</p>}
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          {bookingEnabled && (
+            <Link href="/reserve" className="btn-primary !px-8">
+              Book a table
             </Link>
-            {bookingEnabled && (
-              <Link href="/reserve" className="btn-ghost !px-7 !py-4 text-base">
-                Book a table
-              </Link>
-            )}
-          </motion.div>
-
-          <motion.dl {...rise(0.24)} className="mt-10 grid max-w-lg grid-cols-3 divide-x divide-white/10 rounded-2xl glass py-4">
-            <div className="px-4">
-              <dt className="text-xs font-semibold text-muted">Cost for two</dt>
-              <dd className="mt-1 font-display text-2xl font-bold">{general.costForTwo || "₹1,000"}</dd>
-            </div>
-            <div className="px-4">
-              <dt className="text-xs font-semibold text-muted">Starters from</dt>
-              <dd className="text-aurora mt-1 font-display text-2xl font-bold">₹{startersFrom ?? 199}</dd>
-            </div>
-            <div className="px-4">
-              <dt className="text-xs font-semibold text-muted">Google rating</dt>
-              <dd className="mt-1 flex items-center gap-1 font-display text-2xl font-bold">
-                4.4 <Star className="size-4 fill-ember text-ember" />
-              </dd>
-            </div>
-          </motion.dl>
+          )}
+          <Link href="/menu" className="btn-ghost !px-8">
+            View the menu
+          </Link>
         </div>
-
-        <motion.div
-          className="relative"
-          initial={reduce ? false : { opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
-        >
-          {home.heroImage && (
-            <div className="glass relative aspect-[4/3] overflow-hidden rounded-[32px] p-2"><div className="relative size-full overflow-hidden rounded-[26px]">
-              <Image src={home.heroImage} alt={`${general.name} rooftop`} fill priority sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
-            </div></div>
-          )}
-          {side && (
-            <div className="absolute -bottom-8 -left-4 hidden aspect-square w-[38%] overflow-hidden rounded-[24px] glass p-1.5 sm:block lg:-left-10">
-              <Image src={side} alt="" fill sizes="240px" className="object-cover" />
-            </div>
-          )}
-          <div className="absolute -right-2 -top-5 rotate-3 rounded-2xl bg-brass px-5 py-3 text-snow shadow-lift sm:-right-5">
-            <p className="text-xs font-semibold opacity-90">Open daily till</p>
-            <p className="font-display text-2xl font-bold leading-none">{general.hours[0] ? to12h(general.hours[0].close) : "Late"}</p>
-          </div>
-        </motion.div>
+        {utility && <p className="mt-6 text-sm font-medium text-ivory/70">{utility}</p>}
       </div>
     </section>
   );

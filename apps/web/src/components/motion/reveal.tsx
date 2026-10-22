@@ -7,7 +7,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 type RevealProps = HTMLMotionProps<"div"> & { delay?: number; y?: number; as?: "div" | "li" | "section" | "article" };
 
 /** Gentle fade-and-lift once content scrolls into view. */
-export function Reveal({ delay = 0, y = 24, as = "div", children, ...rest }: RevealProps) {
+export function Reveal({ delay = 0, y = 8, as = "div", children, ...rest }: RevealProps) {
   const reduce = useReducedMotion();
   const Comp = motion[as] as typeof motion.div;
   return (
@@ -15,7 +15,7 @@ export function Reveal({ delay = 0, y = 24, as = "div", children, ...rest }: Rev
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8% 0px" }}
-      transition={{ duration: 0.7, delay, ease: EASE }}
+      transition={{ duration: 0.25, delay: Math.min(delay, 0.15), ease: EASE }}
       {...rest}
     >
       {children}
@@ -41,9 +41,9 @@ export function SplitWords({
   return (
     <Tag
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 16 }}
+      initial={reduce ? false : { opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay, ease: EASE }}
+      transition={{ duration: 0.25, delay: Math.min(delay, 0.15), ease: EASE }}
     >
       {text}
     </Tag>

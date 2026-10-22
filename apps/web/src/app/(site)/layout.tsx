@@ -7,7 +7,6 @@ import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { JsonLd } from "@/components/site/json-ld";
 import { MobileActionBar } from "@/components/site/mobile-action-bar";
-import { Aurora } from "@/components/site/aurora";
 
 export const revalidate = 3600;
 
@@ -17,7 +16,6 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <div className="relative isolate min-h-dvh overflow-x-clip">
-      <Aurora />
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] btn-primary">
         Skip to content
       </a>

@@ -1,101 +1,46 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { getEvents, getFaqs, getGallery, getMenu, getSettings, getSignatureDishes, getSocialPosts, getTestimonials } from "@/lib/data";
-import { faqJsonLd } from "@/lib/seo";
+import { getEvents, getGallery, getSettings, getSignatureDishes, getSocialPosts, getTestimonials } from "@/lib/data";
 import { SITE_URL } from "@/lib/env";
 import { Hero } from "@/components/site/hero";
-import { QuickLinks } from "@/components/site/quick-links";
-import { Marquee } from "@/components/site/marquee";
-import { Deals } from "@/components/site/deals";
-import { Story } from "@/components/site/story";
+import { Tonight } from "@/components/site/tonight";
 import { SignatureDishes } from "@/components/site/signature-dishes";
-import { Experiences } from "@/components/site/experiences";
-import { EventCard } from "@/components/site/event-card";
-import { InstagramFeed, YouTubeFeed } from "@/components/site/social-feed";
-import { Testimonials } from "@/components/site/testimonials";
-import { FaqList } from "@/components/site/faq-list";
-import { Visit } from "@/components/site/visit";
-import { CtaBand } from "@/components/site/cta-band";
-import { SectionHeading } from "@/components/site/section-heading";
-import { JsonLd } from "@/components/site/json-ld";
-import { Reveal } from "@/components/motion/reveal";
+import { Rooftop } from "@/components/site/rooftop";
+import { Offers } from "@/components/site/offers";
+import { GalleryReserve } from "@/components/site/gallery-reserve";
 
 export const revalidate = 3600;
 
 export const metadata = { alternates: { canonical: SITE_URL } };
 
 export default async function HomePage() {
-  const [settings, dishes, menu, events, faqs, testimonials, instagram, youtube, gallery] = await Promise.all([
+  const [settings, dishes, events, testimonials, instagram, gallery] = await Promise.all([
     getSettings(),
     getSignatureDishes(),
-    getMenu(),
     getEvents(),
-    getFaqs(),
     getTestimonials(),
     getSocialPosts("instagram", 8),
-    getSocialPosts("youtube", 3),
     getGallery(),
   ]);
-  const { home, general, social, booking } = settings;
-  const featuredEvents = [...events].sort((a, b) => Number(b.is_featured) - Number(a.is_featured)).slice(0, 3);
-  const starterPrices = menu
-    .filter((s) => s.slug.startsWith("starters"))
-    .flatMap((s) => s.items.map((i) => i.price))
-    .filter((p): p is number => p !== null);
-  const startersFrom = starterPrices.length ? Math.min(...starterPrices) : null;
+  const { home, general, social, booking, announcement } = settings;
+
+  const ctaImage = (gallery.find((g) => /team|party|celebrat/i.test(g.alt)) ?? gallery[0])?.url ?? home.heroImage;
+  const used = new Set([home.heroImage, home.storyImage, ctaImage]);
+  // latest Instagram posts once the account is connected; otherwise our own gallery, people first, no repeats
+  const synced = instagram.filter((p) => p.thumbnail_url);
+  const photos =
+    synced.length >= 5
+      ? synced.map((p) => ({ url: p.thumbnail_url!, alt: p.caption?.slice(0, 120) || "Instagram post from The Diner" }))
+      : [...gallery.filter((g) => g.category !== "food"), ...gallery.filter((g) => g.category === "food")]
+          .filter((g) => !used.has(g.url))
+          .map((g) => ({ url: g.url, alt: g.alt }));
 
   return (
     <>
-      {faqs.length > 0 && <JsonLd data={faqJsonLd(faqs)} />}
-      <Hero home={home} general={general} bookingEnabled={booking.enabled} startersFrom={startersFrom} />
-      <QuickLinks general={general} />
+      <Hero home={home} general={general} bookingEnabled={booking.enabled} />
+      <Tonight events={events} general={general} announcement={announcement} bookingEnabled={booking.enabled} />
       <SignatureDishes dishes={dishes} />
-      <Marquee items={home.marquee} />
-      <Deals home={home} />
-
-      {featuredEvents.length > 0 && (
-        <section className="pb-20 text-snow sm:pb-24" aria-label="What's on">
-          <div className="container-x pt-4">
-            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <SectionHeading tone="dark" eyebrow="What's on" title="Something on every night" />
-              <Reveal>
-                <Link href="/events" className="btn-ghost">
-                  All events <ArrowRight className="size-4" />
-                </Link>
-              </Reveal>
-            </div>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {featuredEvents.map((e, i) => (
-                <Reveal key={e.id} delay={i * 0.06}>
-                  <EventCard event={e} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      <Experiences items={home.experiences} />
-      <Story home={home} />
-      <Testimonials items={testimonials} reviewsUrl={social.googleReviews} />
-      <InstagramFeed posts={instagram} social={social} fallbackImages={gallery} />
-      <YouTubeFeed videos={youtube} social={social} />
-      <CtaBand image={home.heroSideImages[0] ?? home.storyImage} />
-
-      {faqs.length > 0 && (
-        <section className="container-x py-20 sm:py-24" aria-label="Frequently asked questions">
-          <div className="grid gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <SectionHeading eyebrow="Good to know" title="Questions, answered" />
-            </div>
-            <div className="lg:col-span-8">
-              <FaqList faqs={faqs} />
-            </div>
-          </div>
-        </section>
-      )}
-
-      <Visit general={general} />
+      <Rooftop home={home} />
+      <Offers home={home} general={general} review={testimonials[0]} />
+      <GalleryReserve photos={photos} social={social} general={general} bookingEnabled={booking.enabled} ctaImage={ctaImage} />
     </>
   );
 }
