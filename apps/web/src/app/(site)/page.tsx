@@ -22,8 +22,7 @@ export default async function HomePage() {
   ]);
   const { home, general, social, booking, announcement } = settings;
 
-  const ctaImage = (gallery.find((g) => /team|party|celebrat/i.test(g.alt)) ?? gallery[0])?.url ?? home.heroImage;
-  const used = new Set([home.heroImage, home.storyImage, ctaImage]);
+  const used = new Set([home.heroImage, home.storyImage]);
   // latest Instagram posts once the account is connected; otherwise our own gallery, people first, no repeats
   const synced = instagram.filter((p) => p.thumbnail_url);
   const photos =
@@ -40,7 +39,7 @@ export default async function HomePage() {
       <SignatureDishes dishes={dishes} />
       <Rooftop home={home} />
       <Offers home={home} general={general} review={testimonials[0]} />
-      <GalleryReserve photos={photos} social={social} general={general} bookingEnabled={booking.enabled} ctaImage={ctaImage} />
+      <GalleryReserve photos={photos} social={social} general={general} bookingEnabled={booking.enabled} />
     </>
   );
 }

@@ -18,11 +18,21 @@ export function Hero({ home, general, bookingEnabled }: { home: HomeSettings; ge
   return (
     <section className="relative isolate flex min-h-[86svh] items-end overflow-hidden bg-charcoal lg:min-h-[100svh]">
       {home.heroImage && (
-        <Image src={home.heroImage} alt={`Guests on the rooftop at ${general.name}`} fill priority sizes="100vw" quality={85} className="-z-10 object-cover" />
+        // priority = preloaded + eager; fetchPriority makes it the first image the browser asks for
+        <Image
+          src={home.heroImage}
+          alt={`Guests on the rooftop at ${general.name}`}
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          quality={85}
+          className="-z-10 object-cover object-[center_30%]"
+        />
       )}
-      {/* photographic overlays for legibility */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-charcoal via-charcoal/60 to-charcoal/30" aria-hidden />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-charcoal/75 via-charcoal/25 to-transparent" aria-hidden />
+      {/* photographic overlays for legibility: a strong left-to-right shade behind the headline, plus a floor fade */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-charcoal/90 via-charcoal/45 to-transparent" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-charcoal/90 via-transparent to-charcoal/35" aria-hidden />
 
       <div className="container-x pb-12 pt-28 sm:pb-16 lg:pb-24">
         {home.heroEyebrow && <p className="eyebrow">{home.heroEyebrow}</p>}

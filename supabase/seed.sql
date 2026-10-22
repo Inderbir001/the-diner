@@ -65,12 +65,12 @@ insert into public.settings (key, value) values
   "heroEyebrow": "Whitefield · Rooftop restobar",
   "heroTitle": "Rooftop nights.|Bold Andhra flavours.",
   "heroSubtitle": "Food, drinks, live music and late evenings near ITPL.",
-  "heroImage": "/images/diner/rooftop-dinner.jpg",
+  "heroImage": "/images/diner/rooftop-crowd.jpg",
   "heroSideImages": ["/images/diner/chicken-wings.jpg", "/images/diner/dance-floor.jpg"],
   "heroVideo": "",
   "storyTitle": "Whitefield''s open-air table",
   "storyBody": "Planters overhead, the city around you and a kitchen that cooks Andhra-style with real heat. Come for an after-work drink and stay for the music.",
-  "storyImage": "/images/diner/pet-friendly.jpg",
+  "storyImage": "/images/diner/rooftop-dinner.jpg",
   "stats": [
     { "value": "4.4★", "label": "Google rating" },
     { "value": "2,400+", "label": "Google reviews" },
@@ -216,10 +216,10 @@ insert into public.faqs (question, answer, sort_order) values
 -- ---------------------------------------------------------------------------
 -- testimonials: excerpts of real Google reviews, credited to the reviewers
 insert into public.testimonials (author, text, rating, source, is_published, sort_order) values
-('rupert lawrence', 'Hands down one of the best places to eat if you''re looking for great vibes, comfort, and quality food all in one place. The industrial yet cozy ambience stands out.', 5, 'Google', true, 1),
+('Rupert Lawrence', 'Hands down one of the best places to eat if you''re looking for great vibes, comfort, and quality food all in one place. The industrial yet cozy ambience stands out.', 5, 'Google', true, 1),
 ('Manjunath S', 'Service was good, clean tables and good food. I loved the dance floor, and they gave a private room for our team. In ITPL this was the best restaurant.', 5, 'Google', true, 2),
-('bala shiva Prasath', 'Prime location, friendly staff. Veg and non-veg options. Had a special lunch with the team, with ragi ball and rice options. Must visit.', 4, 'Google', true, 3),
-('vamshi gadadhasu', 'A truly pleasant evening! The food was quite good and I really appreciated the attentive service throughout my meal.', 4, 'Google', true, 4);
+('Bala Shiva Prasath', 'Prime location, friendly staff. Veg and non-veg options. Had a special lunch with the team, with ragi ball and rice options. Must visit.', 4, 'Google', true, 3),
+('Vamshi Gadadhasu', 'A truly pleasant evening! The food was quite good and I really appreciated the attentive service throughout my meal.', 4, 'Google', true, 4);
 
 -- ---------------------------------------------------------------------------
 -- gallery
@@ -227,10 +227,10 @@ insert into public.testimonials (author, text, rating, source, is_published, sor
 insert into public.gallery_images (url, alt, category, sort_order) values
 ('/images/diner/rooftop-crowd.jpg', 'A team celebrating on the rooftop at The Diner', 'rooftop', 1),
 ('/images/diner/chicken-wings.jpg', 'Chilli chicken wings', 'food', 2),
-('/images/diner/dance-crowd.jpg', 'A packed dance floor on a DJ night', 'nights', 3),
+('/images/diner/dance-crowd.jpg', 'A packed dance floor on a DJ night', 'nights', 6),
 ('/images/diner/rooftop-dinner.jpg', 'Friends at dinner on the rooftop', 'rooftop', 4),
 ('/images/diner/chicken-momos.jpg', 'Chicken momos with red chutney', 'food', 5),
-('/images/diner/team-party.jpg', 'A team party at The Diner', 'nights', 6),
+('/images/diner/team-party.jpg', 'A team party at The Diner', 'nights', 3),
 ('/images/diner/andhra-chicken-fry.jpg', 'Andhra-style chicken fry on a banana leaf', 'food', 7),
 ('/images/diner/pet-friendly.jpg', 'A guest with her dog — The Diner is pet friendly', 'rooftop', 8),
 ('/images/diner/chicken-tacos.jpg', 'Crispy chicken tacos', 'food', 9),

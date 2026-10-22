@@ -9,7 +9,8 @@ export function Rooftop({ home }: { home: HomeSettings }) {
       <div className="container-x grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
         {home.storyImage && (
           <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] sm:aspect-[16/11] lg:col-span-6 lg:aspect-[4/5]">
-            <Image src={home.storyImage} alt="The rooftop at The Diner" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover object-[center_40%]" />
+            <Image src={home.storyImage} alt="An evening on the rooftop at The Diner" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
+            <span className="absolute bottom-4 left-4 rounded-[16px] bg-charcoal/80 px-3 py-1.5 text-xs font-semibold text-ivory">Pet friendly rooftop</span>
           </div>
         )}
         <div className="lg:col-span-6">

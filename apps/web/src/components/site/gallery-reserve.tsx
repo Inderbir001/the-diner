@@ -11,13 +11,11 @@ export function GalleryReserve({
   social,
   general,
   bookingEnabled,
-  ctaImage,
 }: {
   photos: Photo[];
   social: SocialSettings;
   general: GeneralSettings;
   bookingEnabled: boolean;
-  ctaImage?: string;
 }) {
   const five = photos.slice(0, 5);
   return (
@@ -48,11 +46,13 @@ export function GalleryReserve({
         </section>
       )}
 
-      <section aria-labelledby="reserve-title" className="relative isolate overflow-hidden bg-charcoal">
-        {ctaImage && <Image src={ctaImage} alt="" fill sizes="100vw" className="-z-10 object-cover" />}
-        <div className="absolute inset-0 -z-10 bg-charcoal/75" aria-hidden />
+      {/* no photo here, so nothing repeats from above: a warm chilli glow and fine grain on charcoal */}
+      <section aria-labelledby="reserve-title" className="relative isolate overflow-hidden border-t border-ivory/10 bg-charcoal-2">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_120%,rgb(217_75_61/0.28),transparent_60%)]" aria-hidden />
+        <div className="grain absolute inset-0 -z-10 opacity-[0.07]" aria-hidden />
         <div className="container-x py-20 text-center sm:py-24">
-          <h2 id="reserve-title" className="mx-auto max-w-2xl text-4xl text-ivory sm:text-6xl">
+          <p className="eyebrow">Reservations</p>
+          <h2 id="reserve-title" className="mx-auto mt-3 max-w-2xl text-4xl text-ivory sm:text-6xl">
             Save your table for tonight
           </h2>
           <p className="mx-auto mt-4 max-w-md text-lg text-ivory/80">Rooftop or indoor, two guests or twenty. It takes under a minute.</p>

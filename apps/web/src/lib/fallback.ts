@@ -62,10 +62,10 @@ export const fallbackSettings: SettingsMap = {
     heroTitle: "Rooftop nights.|Bold Andhra flavours.",
     heroSideImages: [img("chicken-wings.jpg"), img("dance-floor.jpg")],
     heroSubtitle: "Food, drinks, live music and late evenings near ITPL.",
-    heroImage: img("rooftop-dinner.jpg"),
+    heroImage: img("rooftop-crowd.jpg"),
     storyTitle: "Whitefield's open-air table",
     storyBody: "Planters overhead, the city around you and a kitchen that cooks Andhra-style with real heat. Come for an after-work drink and stay for the music.",
-    storyImage: img("pet-friendly.jpg"),
+    storyImage: img("rooftop-dinner.jpg"),
     stats: [
       { value: "4.4★", label: "Google rating" },
       { value: "2,400+", label: "Google reviews" },
@@ -240,10 +240,10 @@ export const fallbackFaqs: Faq[] = [
 export const fallbackGallery: GalleryImage[] = [
   ["rooftop-crowd.jpg", "A team celebrating on the rooftop at The Diner", "rooftop"],
   ["chicken-wings.jpg", "Chilli chicken wings", "food"],
-  ["dance-crowd.jpg", "A packed dance floor on a DJ night", "nights"],
+  ["team-party.jpg", "A team party at The Diner", "nights"],
   ["rooftop-dinner.jpg", "Friends at dinner on the rooftop", "rooftop"],
   ["chicken-momos.jpg", "Chicken momos with red chutney", "food"],
-  ["team-party.jpg", "A team party at The Diner", "nights"],
+  ["dance-crowd.jpg", "A packed dance floor on a DJ night", "nights"],
   ["andhra-chicken-fry.jpg", "Andhra-style chicken fry on a banana leaf", "food"],
   ["pet-friendly.jpg", "A guest with her dog — The Diner is pet friendly", "rooftop"],
   ["chicken-tacos.jpg", "Crispy chicken tacos", "food"],
@@ -302,10 +302,10 @@ export const fallbackPosts: Post[] = [
 
 /** Real Google reviews (excerpts), credited to the reviewers. */
 export const fallbackTestimonials: Testimonial[] = [
-  ["rupert lawrence", "Hands down one of the best places to eat if you're looking for great vibes, comfort, and quality food all in one place. The industrial yet cozy ambience stands out.", 5],
+  ["Rupert Lawrence", "Hands down one of the best places to eat if you're looking for great vibes, comfort, and quality food all in one place. The industrial yet cozy ambience stands out.", 5],
   ["Manjunath S", "Service was good, clean tables and good food. I loved the dance floor, and they gave a private room for our team. In ITPL this was the best restaurant.", 5],
-  ["bala shiva Prasath", "Prime location, friendly staff. Veg and non-veg options. Had a special lunch with the team, with ragi ball and rice options. Must visit.", 4],
-  ["vamshi gadadhasu", "A truly pleasant evening! The food was quite good and I really appreciated the attentive service throughout my meal.", 4],
+  ["Bala Shiva Prasath", "Prime location, friendly staff. Veg and non-veg options. Had a special lunch with the team, with ragi ball and rice options. Must visit.", 4],
+  ["Vamshi Gadadhasu", "A truly pleasant evening! The food was quite good and I really appreciated the attentive service throughout my meal.", 4],
 ].map(([author, text, rating], i) => ({
   id: `t-${i}`, author: author as string, text: text as string, rating: rating as number, source: "Google", sort_order: i, is_published: true,
 }));
