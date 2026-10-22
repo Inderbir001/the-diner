@@ -73,6 +73,17 @@ const TABS: { key: SettingsKey; label: string; description: string; fields: Fiel
           { name: "image", label: "Image", type: "image", folder: "home" },
         ],
       },
+      { name: "dealsTitle", label: "Best-prices section heading", type: "text", wide: true },
+      { name: "dealsIntro", label: "Best-prices section intro", type: "textarea", rows: 2 },
+      {
+        name: "deals", label: "Deals & prices (shown big on the home page)", type: "objectList",
+        fields: [
+          { name: "price", label: "Price", type: "text", placeholder: "₹99" },
+          { name: "title", label: "What it is", type: "text", placeholder: "Social Hours — bar drinks & bites" },
+          { name: "note", label: "Small label", type: "text", placeholder: "Daily 4–8 PM" },
+          { name: "href", label: "Link (optional)", type: "text", placeholder: "/events/social-hours" },
+        ],
+      },
       {
         name: "partyPackages", label: "Party packages", type: "objectList",
         fields: [

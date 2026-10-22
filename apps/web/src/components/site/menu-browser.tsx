@@ -127,48 +127,67 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
               </h2>
               {section.description && <p className="text-sand md:col-span-5 md:text-right">{section.description}</p>}
             </div>
-            <ul className="grid gap-x-16 gap-y-2 md:grid-cols-2">
+            {/* photo cards: one per row on phones, never two cramped columns */}
+            <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {section.items.map((item) => (
                 <li
                   key={item.id}
-                  className={cn("group flex gap-5 rounded-2xl p-3 -mx-3 transition hover:bg-white/[0.03]", !item.is_available && "opacity-50")}
+                  className={cn(
+                    "group flex flex-col overflow-hidden rounded-[28px] bg-coal ring-1 ring-white/10 transition hover:ring-brass",
+                    !item.is_available && "opacity-50",
+                  )}
                 >
                   {item.image_url && (
-                    <div className="relative size-20 shrink-0 overflow-hidden rounded-xl sm:size-24">
-                      <Image src={item.image_url} alt={item.name} fill sizes="96px" className="object-cover transition duration-700 group-hover:scale-110" />
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={item.image_url}
+                        alt={item.name}
+                        fill
+                        sizes="(min-width:1024px) 30vw, (min-width:640px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+                        {item.is_signature && (
+                          <span className="inline-flex items-center gap-1 rounded-full bg-brass px-3 py-1 text-[0.65rem] font-extrabold uppercase tracking-wider text-cream">
+                            <Sparkles className="size-3" /> House favourite
+                          </span>
+                        )}
+                        {item.is_spicy && (
+                          <span className="inline-flex items-center gap-1 rounded-full bg-ember px-3 py-1 text-[0.65rem] font-extrabold uppercase tracking-wider text-ink">
+                            <Flame className="size-3" /> Spicy
+                          </span>
+                        )}
+                      </div>
+                      {!item.is_available && (
+                        <span className="absolute inset-x-0 bottom-0 bg-ink/80 py-2 text-center text-xs font-extrabold uppercase tracking-wider text-cream">Sold out today</span>
+                      )}
                     </div>
                   )}
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-baseline gap-3">
-                      <h3 className="flex items-center gap-2 font-display text-xl">
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="flex items-start gap-2.5 font-display text-3xl leading-none sm:text-4xl">
                         <span
-                          className={cn("inline-block size-3 shrink-0 rounded-[3px] border-2", item.is_veg ? "border-leaf" : "border-ember")}
+                          className={cn("mt-1.5 inline-flex size-3.5 shrink-0 rounded-[3px] border-2", item.is_veg ? "border-leaf" : "border-ember")}
                           title={item.is_veg ? "Vegetarian" : "Non-vegetarian"}
                         >
-                          <span className={cn("m-auto mt-[1px] block size-1 rounded-full", item.is_veg ? "bg-leaf" : "bg-ember")} />
+                          <span className={cn("m-auto block size-1.5 rounded-full", item.is_veg ? "bg-leaf" : "bg-ember")} />
                         </span>
                         {item.name}
                       </h3>
-                      <span className="mb-1 flex-1 border-b border-dotted border-white/15" aria-hidden />
-                      <span className="shrink-0 font-semibold text-brass">
-                        {item.price !== null ? formatPrice(item.price) : ""}
-                        {item.price_note ? <span className="ml-1 text-xs font-normal text-muted">{item.price_note}</span> : null}
-                      </span>
-                    </div>
-                    {item.description && <p className="mt-1.5 text-sm leading-relaxed text-sand">{item.description}</p>}
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {item.is_signature && (
-                        <span className="inline-flex items-center gap-1 text-[0.65rem] font-semibold uppercase tracking-wider text-brass">
-                          <Sparkles className="size-3" /> House favourite
+                      {item.price !== null && (
+                        <span className="shrink-0 rounded-full bg-brass px-3 py-1.5 font-display text-2xl leading-none text-cream">
+                          {formatPrice(item.price)}
                         </span>
                       )}
-                      {item.is_spicy && (
-                        <span className="inline-flex items-center gap-1 text-[0.65rem] font-semibold uppercase tracking-wider text-ember">
-                          <Flame className="size-3" /> Spicy
-                        </span>
-                      )}
-                      {!item.is_available && <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-muted">Sold out today</span>}
                     </div>
+                    {item.price_note && <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-muted">{item.price_note}</p>}
+                    {item.description && <p className="mt-3 text-sm leading-relaxed text-sand">{item.description}</p>}
+                    {!item.image_url && (item.is_signature || item.is_spicy) && (
+                      <p className="mt-3 flex gap-3 text-[0.65rem] font-extrabold uppercase tracking-wider">
+                        {item.is_signature && <span className="text-brass">House favourite</span>}
+                        {item.is_spicy && <span className="text-ember">Spicy</span>}
+                      </p>
+                    )}
                   </div>
                 </li>
               ))}

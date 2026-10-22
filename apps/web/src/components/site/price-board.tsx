@@ -1,0 +1,88 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import type { HomeSettings } from "@diner/shared";
+import type { MenuSection } from "@/lib/data";
+import { Reveal } from "@/components/motion/reveal";
+import { formatPrice } from "@/lib/utils";
+import { SectionHeading } from "./section-heading";
+
+/** "From ₹X" groups, worked out from the live menu so they never go stale. */
+const FROM: [label: string, slugs: string[], match?: RegExp][] = [
+  ["Starters", ["starters-veg", "starters-non-veg"]],
+  ["Biryani", ["biryani-rice"], /biryani/i],
+  ["Mains", ["mains"]],
+  ["Pints", ["beer"], /pint/i],
+  ["Cocktails", ["cocktails"]],
+  ["Desserts", ["desserts"]],
+];
+
+export function fromPrices(menu: MenuSection[]) {
+  return FROM.flatMap(([label, slugs, match]) => {
+    const prices = menu
+      .filter((s) => slugs.includes(s.slug))
+      .flatMap((s) => s.items)
+      .filter((i) => i.price !== null && i.is_available && (!match || match.test(i.name)))
+      .map((i) => i.price!);
+    return prices.length ? [{ label, price: Math.min(...prices) }] : [];
+  });
+}
+
+/** Paper-coloured block that sells the prices: big deal tiles plus "from" prices pulled from the menu. */
+export function PriceBoard({ home, menu }: { home: HomeSettings; menu: MenuSection[] }) {
+  const from = fromPrices(menu);
+  if (!home.deals.length && !from.length) return null;
+
+  return (
+    <section className="bg-paper py-24 text-ink sm:py-32" aria-label="Best prices" id="best-prices">
+      <div className="container-x">
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <SectionHeading eyebrow="Best prices" title={home.dealsTitle} intro={home.dealsIntro || undefined} tone="light" />
+          <Reveal>
+            <Link href="/menu" className="btn-dark shrink-0">
+              See every price <ArrowUpRight className="size-4" />
+            </Link>
+          </Reveal>
+        </div>
+
+        {home.deals.length > 0 && (
+          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {home.deals.map((d, i) => {
+              const tile = (
+                <>
+                  <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-ink/55">{d.note || " "}</span>
+                  <span className="mt-4 block font-display text-[5.5rem] leading-[0.85] text-brass sm:text-8xl">{d.price}</span>
+                  <span className="mt-4 block text-lg font-bold leading-snug">{d.title}</span>
+                </>
+              );
+              return (
+                <Reveal as="li" key={d.title} delay={i * 0.06}>
+                  {d.href ? (
+                    <Link href={d.href} className="group relative block h-full rounded-[28px] bg-cream p-7 ring-1 ring-ink/10 transition hover:-translate-y-1 hover:ring-brass">
+                      {tile}
+                      <ArrowUpRight className="absolute right-6 top-6 size-5 text-ink/30 transition group-hover:text-brass" />
+                    </Link>
+                  ) : (
+                    <div className="h-full rounded-[28px] bg-cream p-7 ring-1 ring-ink/10">{tile}</div>
+                  )}
+                </Reveal>
+              );
+            })}
+          </ul>
+        )}
+
+        {from.length > 0 && (
+          <Reveal>
+            <dl className="mt-4 grid grid-cols-2 overflow-hidden rounded-[28px] bg-ink text-cream sm:grid-cols-3 lg:grid-cols-6">
+              {from.map((f) => (
+                <div key={f.label} className="border-b border-r border-white/10 p-6">
+                  <dt className="text-xs font-extrabold uppercase tracking-[0.18em] text-sand">{f.label} from</dt>
+                  <dd className="mt-2 font-display text-5xl leading-none">{formatPrice(f.price)}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        )}
+      </div>
+    </section>
+  );
+}

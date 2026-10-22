@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { getEvents, getFaqs, getGallery, getSettings, getSignatureDishes, getSocialPosts, getTestimonials } from "@/lib/data";
+import { getEvents, getFaqs, getGallery, getMenu, getSettings, getSignatureDishes, getSocialPosts, getTestimonials } from "@/lib/data";
 import { faqJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/env";
 import { Hero } from "@/components/site/hero";
 import { Marquee } from "@/components/site/marquee";
 import { Story } from "@/components/site/story";
 import { SignatureDishes } from "@/components/site/signature-dishes";
+import { PriceBoard } from "@/components/site/price-board";
+import { Drinks } from "@/components/site/drinks";
 import { Experiences } from "@/components/site/experiences";
 import { EventCard } from "@/components/site/event-card";
 import { InstagramFeed, YouTubeFeed } from "@/components/site/social-feed";
@@ -22,8 +24,9 @@ export const revalidate = 3600;
 export const metadata = { alternates: { canonical: SITE_URL } };
 
 export default async function HomePage() {
-  const [settings, dishes, events, faqs, testimonials, instagram, youtube, gallery] = await Promise.all([
+  const [settings, menu, dishes, events, faqs, testimonials, instagram, youtube, gallery] = await Promise.all([
     getSettings(),
+    getMenu(),
     getSignatureDishes(),
     getEvents(),
     getFaqs(),
@@ -40,8 +43,10 @@ export default async function HomePage() {
       {faqs.length > 0 && <JsonLd data={faqJsonLd(faqs)} />}
       <Hero home={home} general={general} bookingEnabled={booking.enabled} />
       <Marquee items={home.marquee} />
-      <Story home={home} />
       <SignatureDishes dishes={dishes} />
+      <PriceBoard home={home} menu={menu} />
+      <Drinks menu={menu} />
+      <Story home={home} />
       <Experiences items={home.experiences} />
 
       {featuredEvents.length > 0 && (
