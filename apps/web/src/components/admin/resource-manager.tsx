@@ -144,7 +144,7 @@ export function ResourceManager({
         </button>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-coal">
+      <div className="overflow-hidden rounded-2xl border border-black/10 bg-coal">
         {rows === null ? (
           <div className="flex justify-center p-12">
             <Loader2 className="size-5 animate-spin text-brass" />
@@ -154,7 +154,7 @@ export function ResourceManager({
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="border-b border-white/10 text-left text-xs uppercase tracking-wider text-muted">
+              <thead className="border-b border-black/10 text-left text-xs uppercase tracking-wider text-muted">
                 <tr>
                   {config.sortable && <th className="w-16 px-3 py-3" aria-label="Order" />}
                   {config.thumbnailKey && <th className="w-16 px-3 py-3" aria-label="Image" />}
@@ -166,9 +166,9 @@ export function ResourceManager({
                   <th className="w-12" />
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/[0.06]">
+              <tbody className="divide-y divide-black/[0.06]">
                 {visible.map((row, i) => (
-                  <tr key={row.id} className="cursor-pointer transition hover:bg-white/[0.03]" onClick={() => setEditing(row)}>
+                  <tr key={row.id} className="cursor-pointer transition hover:bg-black/[0.03]" onClick={() => setEditing(row)}>
                     {config.sortable && (
                       <td className="px-3 py-2" onClick={(e) => e.stopPropagation()}>
                         <div className="flex">
@@ -187,7 +187,7 @@ export function ResourceManager({
                           // eslint-disable-next-line @next/next/no-img-element
                           <img src={String(row[config.thumbnailKey])} alt="" className="size-10 rounded-lg object-cover" loading="lazy" />
                         ) : (
-                          <div className="size-10 rounded-lg bg-white/5" />
+                          <div className="size-10 rounded-lg bg-black/5" />
                         )}
                       </td>
                     )}

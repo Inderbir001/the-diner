@@ -1,47 +1,43 @@
 import Image from "next/image";
+import { PawPrint } from "lucide-react";
 import type { HomeSettings } from "@diner/shared";
-import { Reveal, SplitWords } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
 
 export function Story({ home }: { home: HomeSettings }) {
   return (
-    <section className="bg-paper py-24 text-ink sm:py-32" aria-label="Our story">
-      <div className="container-x grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
+    <section className="py-20 sm:py-28" aria-label="Our story">
+      <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         {home.storyImage && (
-          <Reveal className="relative lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[32px]">
-              <Image src={home.storyImage} alt="Guests at The Diner" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
+          <Reveal className="relative">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] shadow-lift sm:aspect-[5/5]">
+              <Image src={home.storyImage} alt="Guests at The Diner" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
             </div>
-            <div className="absolute -bottom-6 -right-3 rotate-[-4deg] rounded-2xl bg-brass px-6 py-4 text-cream shadow-2xl sm:-right-8">
-              <p className="font-display text-3xl leading-none">Pet friendly</p>
-              <p className="text-xs font-bold uppercase tracking-widest">Bring the dog</p>
+            <div className="absolute -bottom-5 right-4 flex items-center gap-3 rounded-2xl bg-coal px-5 py-4 shadow-lift">
+              <span className="inline-flex size-10 items-center justify-center rounded-full bg-brass text-snow">
+                <PawPrint className="size-5" />
+              </span>
+              <span>
+                <span className="block font-display font-bold leading-tight">Pet friendly</span>
+                <span className="block text-sm text-muted">Bring the dog along</span>
+              </span>
             </div>
           </Reveal>
         )}
-        <div className="lg:col-span-7">
-          <Reveal y={12}>
-            <p className="eyebrow mb-4">
-              <span className="h-[3px] w-8 bg-brass" aria-hidden />
-              Our story
-            </p>
-          </Reveal>
-          <SplitWords text={home.storyTitle} className="font-display text-6xl leading-[0.88] text-ink sm:text-7xl lg:text-8xl" />
-          <Reveal delay={0.1}>
-            <p className="mt-8 max-w-2xl text-lg font-medium leading-relaxed text-ink/75">{home.storyBody}</p>
-          </Reveal>
+        <Reveal>
+          <p className="eyebrow mb-3">Our story</p>
+          <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem]">{home.storyTitle}</h2>
+          <p className="mt-6 text-lg leading-relaxed text-sand">{home.storyBody}</p>
           {home.stats.length > 0 && (
-            <dl className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {home.stats.map((s, i) => (
-                <Reveal key={s.label} delay={0.08 * i} className="rounded-2xl bg-ink p-5 text-cream">
-                  <dt className="sr-only">{s.label}</dt>
-                  <dd>
-                    <span className="block font-display text-5xl leading-none text-brass">{s.value}</span>
-                    <span className="mt-2 block text-[0.7rem] font-bold uppercase tracking-widest text-sand">{s.label}</span>
-                  </dd>
-                </Reveal>
+            <dl className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {home.stats.map((s) => (
+                <div key={s.label} className="rounded-2xl bg-coal p-4 shadow-card">
+                  <dt className="text-xs font-semibold text-muted">{s.label}</dt>
+                  <dd className="mt-1 font-display text-3xl font-bold text-brass">{s.value}</dd>
+                </div>
               ))}
             </dl>
           )}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,16 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, Manrope } from "next/font/google";
+import { Bebas_Neue, Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import { getSettings } from "@/lib/data";
 import { SITE_URL } from "@/lib/env";
 import "./globals.css";
 
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
+const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage", display: "swap" });
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta", display: "swap" });
 const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-bebas", display: "swap" });
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
-  colorScheme: "dark",
+  themeColor: "#fffaf4",
+  colorScheme: "light",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -52,13 +53,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${manrope.variable} ${bebas.variable}`} suppressHydrationWarning>
+    <html lang="en-IN" className={`${bricolage.variable} ${jakarta.variable} ${bebas.variable}`} suppressHydrationWarning>
       <body>
         {children}
         <Toaster
-          theme="dark"
+          theme="light"
           position="bottom-center"
-          toastOptions={{ className: "!bg-coal !border-white/10 !text-cream !rounded-2xl" }}
+          toastOptions={{ className: "!bg-coal !border-black/10 !text-cream !rounded-2xl" }}
         />
       </body>
     </html>

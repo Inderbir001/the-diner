@@ -7,7 +7,7 @@ import { MapPin } from "lucide-react";
 export function MapEmbed({ src, title, directionsUrl }: { src: string; title: string; directionsUrl?: string }) {
   const [show, setShow] = useState(false);
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-white/10 bg-smoke sm:aspect-[16/10]">
+    <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-black/10 bg-smoke sm:aspect-[16/10]">
       {show ? (
         <iframe
           src={src}
@@ -27,7 +27,7 @@ export function MapEmbed({ src, title, directionsUrl }: { src: string; title: st
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
-          <span className="relative inline-flex size-14 items-center justify-center rounded-full bg-brass text-ink shadow-[0_0_0_10px_rgb(232_71_62/0.15)]">
+          <span className="relative inline-flex size-14 items-center justify-center rounded-full bg-brass text-snow shadow-[0_0_0_10px_rgb(232_71_62/0.15)]">
             <MapPin className="size-6" />
           </span>
           <div className="relative flex flex-wrap justify-center gap-3">

@@ -53,7 +53,7 @@ export default function DashboardPage() {
               <Link
                 key={c.label}
                 href={c.href}
-                className={`rounded-2xl border p-5 transition hover:border-white/20 ${c.highlight ? "border-brass/40 bg-brass/10" : "border-white/10 bg-coal"}`}
+                className={`rounded-2xl border p-5 transition hover:border-black/20 ${c.highlight ? "border-brass/40 bg-brass/10" : "border-black/10 bg-coal"}`}
               >
                 <c.icon className={`size-4 ${c.highlight ? "text-brass" : "text-muted"}`} />
                 <p className="mt-4 font-display text-4xl">{c.value}</p>
@@ -69,11 +69,11 @@ export default function DashboardPage() {
                 View all →
               </Link>
             </div>
-            <div className="overflow-hidden rounded-2xl border border-white/10 bg-coal">
+            <div className="overflow-hidden rounded-2xl border border-black/10 bg-coal">
               {data.upcomingBookings.length === 0 ? (
                 <p className="p-8 text-center text-sm text-muted">No upcoming bookings.</p>
               ) : (
-                <ul className="divide-y divide-white/[0.06]">
+                <ul className="divide-y divide-black/[0.06]">
                   {data.upcomingBookings.map((b) => (
                     <li key={b.id} className="flex flex-wrap items-center gap-4 px-5 py-4 text-sm">
                       <span className="w-28 text-sand">

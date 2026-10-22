@@ -5,7 +5,7 @@ import { Reveal } from "@/components/motion/reveal";
 /** Native <details> accordion: works without JS and stays crawlable. */
 export function FaqList({ faqs }: { faqs: Faq[] }) {
   return (
-    <div className="divide-y divide-white/10 border-y border-white/10">
+    <div className="divide-y divide-black/10 border-y border-black/10">
       {faqs.map((f, i) => (
         <Reveal key={f.id} delay={i * 0.04}>
           <details className="group py-6 [&_summary::-webkit-details-marker]:hidden">

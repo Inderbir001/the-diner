@@ -70,7 +70,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                         href={i.href}
                         className={cn(
                           "flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition",
-                          active ? "bg-white/[0.08] text-cream" : "text-sand hover:bg-white/[0.04] hover:text-cream",
+                          active ? "bg-black/[0.08] text-cream" : "text-sand hover:bg-black/[0.04] hover:text-cream",
                         )}
                       >
                         <i.icon className={cn("size-4", active && "text-brass")} />
@@ -84,7 +84,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           );
         })}
       </div>
-      <div className="mt-6 space-y-1 border-t border-white/10 pt-4">
+      <div className="mt-6 space-y-1 border-t border-black/10 pt-4">
         <a href="/" target="_blank" className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-sand hover:text-cream">
           <ExternalLink className="size-4" /> View website
         </a>
@@ -101,16 +101,16 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-dvh lg:grid lg:grid-cols-[260px_1fr]">
-      <aside className="sticky top-0 hidden h-dvh border-r border-white/[0.07] bg-coal p-4 lg:block">{nav}</aside>
-      <header className="sticky top-0 z-40 flex items-center justify-between border-b border-white/[0.07] bg-coal/90 px-4 py-3 backdrop-blur lg:hidden">
+      <aside className="sticky top-0 hidden h-dvh border-r border-black/[0.07] bg-coal p-4 lg:block">{nav}</aside>
+      <header className="sticky top-0 z-40 flex items-center justify-between border-b border-black/[0.07] bg-coal/90 px-4 py-3 backdrop-blur lg:hidden">
         <span className="font-display text-2xl">The Diner · Admin</span>
-        <button type="button" onClick={() => setOpen(true)} className="inline-flex size-10 items-center justify-center rounded-full bg-white/5" aria-label="Open navigation">
+        <button type="button" onClick={() => setOpen(true)} className="inline-flex size-10 items-center justify-center rounded-full bg-black/5" aria-label="Open navigation">
           <MenuIcon className="size-5" />
         </button>
       </header>
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <button type="button" className="absolute inset-0 bg-ink/70" onClick={() => setOpen(false)} aria-label="Close navigation" />
+          <button type="button" className="absolute inset-0 bg-night/70" onClick={() => setOpen(false)} aria-label="Close navigation" />
           <aside className="absolute inset-y-0 left-0 w-72 bg-coal p-4">
             <button type="button" onClick={() => setOpen(false)} className="absolute right-3 top-3 p-2" aria-label="Close">
               <X className="size-5" />

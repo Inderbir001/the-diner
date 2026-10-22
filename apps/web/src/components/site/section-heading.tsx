@@ -1,4 +1,4 @@
-import { SplitWords, Reveal } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
 
 export function SectionHeading({
@@ -6,47 +6,27 @@ export function SectionHeading({
   title,
   intro,
   align = "left",
-  tone = "dark",
+  tone = "default",
   className,
-  as = "h2",
+  as: Tag = "h2",
 }: {
   eyebrow?: string;
   title: string;
   intro?: string;
   align?: "left" | "center";
-  /** "light" for sections on a paper or red background */
-  tone?: "dark" | "light" | "red";
+  /** "dark" for sections on a night background */
+  tone?: "default" | "dark" | "light" | "red";
   className?: string;
   as?: "h1" | "h2";
 }) {
+  const onDark = tone === "dark" || tone === "red";
   return (
-    <div className={cn("max-w-4xl", align === "center" && "mx-auto text-center", className)}>
-      {eyebrow && (
-        <Reveal y={12}>
-          <p className={cn("eyebrow mb-4", tone === "red" && "text-ink")}>
-            <span className={cn("h-[3px] w-8 bg-brass", tone === "red" && "bg-ink")} aria-hidden />
-            {eyebrow}
-          </p>
-        </Reveal>
-      )}
-      <SplitWords
-        as={as}
-        text={title}
-        className={cn("font-display text-6xl leading-[0.88] sm:text-7xl lg:text-8xl", tone === "light" ? "text-ink" : "text-cream")}
-      />
+    <Reveal className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
+      {eyebrow && <p className={cn("eyebrow mb-3", tone === "red" && "!text-snow/80")}>{eyebrow}</p>}
+      <Tag className={cn("text-4xl sm:text-5xl lg:text-[3.5rem]", onDark ? "text-snow" : "text-cream")}>{title}</Tag>
       {intro && (
-        <Reveal delay={0.15}>
-          <p
-            className={cn(
-              "mt-6 max-w-xl text-lg font-medium leading-relaxed",
-              tone === "light" ? "text-ink/70" : tone === "red" ? "text-cream/90" : "text-sand",
-              align === "center" && "mx-auto",
-            )}
-          >
-            {intro}
-          </p>
-        </Reveal>
+        <p className={cn("mt-5 max-w-2xl text-lg leading-relaxed", onDark ? "text-snow/75" : "text-sand", align === "center" && "mx-auto")}>{intro}</p>
       )}
-    </div>
+    </Reveal>
   );
 }

@@ -16,12 +16,12 @@ export function Footer({ settings: { general, social, booking } }: Props) {
   const sameHours = general.hours.length > 0 && general.hours.every((h) => h.open === general.hours[0].open && h.close === general.hours[0].close && !h.closed);
 
   return (
-    <footer className="relative mt-24 border-t border-white/[0.07] bg-coal pb-28 pt-20 lg:pb-12">
+    <footer className="relative mt-16 border-t border-white/10 bg-night pb-28 pt-20 lg:pb-12">
       <div className="container-x">
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <Logo className="scale-125 origin-left" />
-            <p className="mt-8 max-w-sm text-sand">{general.tagline}</p>
+            <Logo tone="light" className="origin-left scale-125" />
+            <p className="mt-8 max-w-sm text-snow/70">{general.tagline}</p>
             {booking.enabled && (
               <Link href="/reserve" className="btn-primary mt-8">
                 Reserve your table
@@ -31,25 +31,25 @@ export function Footer({ settings: { general, social, booking } }: Props) {
 
           <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">
             <div>
-              <h2 className="eyebrow mb-5 font-sans">Visit</h2>
-              <address className="space-y-1 text-sm not-italic leading-relaxed text-sand">
+              <h2 className="mb-4 text-sm font-bold text-brass-light">Visit</h2>
+              <address className="space-y-1 text-sm not-italic leading-relaxed text-snow/70">
                 <p>{general.address.street}</p>
                 <p>{general.address.locality}</p>
                 <p>
                   {general.address.city} {general.address.postalCode}
                 </p>
-                {general.landmark && <p className="text-muted">{general.landmark}</p>}
+                {general.landmark && <p className="text-snow/50">{general.landmark}</p>}
               </address>
               {general.mapUrl && (
-                <a href={general.mapUrl} target="_blank" rel="noopener noreferrer" className="link-underline mt-4 inline-block text-sm text-cream">
+                <a href={general.mapUrl} target="_blank" rel="noopener noreferrer" className="link-underline mt-4 inline-block text-sm text-snow">
                   Get directions ↗
                 </a>
               )}
             </div>
 
             <div>
-              <h2 className="eyebrow mb-5 font-sans">Hours</h2>
-              <ul className="space-y-1 text-sm text-sand">
+              <h2 className="mb-4 text-sm font-bold text-brass-light">Hours</h2>
+              <ul className="space-y-1 text-sm text-snow/70">
                 {sameHours ? (
                   <li>
                     Every day
@@ -65,22 +65,22 @@ export function Footer({ settings: { general, social, booking } }: Props) {
                   ))
                 )}
               </ul>
-              {general.hoursNote && <p className="mt-3 text-xs text-muted">{general.hoursNote}</p>}
+              {general.hoursNote && <p className="mt-3 text-xs text-snow/50">{general.hoursNote}</p>}
             </div>
 
             <div>
-              <h2 className="eyebrow mb-5 font-sans">Contact</h2>
+              <h2 className="mb-4 text-sm font-bold text-brass-light">Contact</h2>
               <ul className="space-y-1 text-sm">
                 {general.phones.map((p) => (
                   <li key={p}>
-                    <a href={telHref(p)} className="link-underline text-sand hover:text-cream">
+                    <a href={telHref(p)} className="link-underline text-snow/70 hover:text-snow">
                       {p}
                     </a>
                   </li>
                 ))}
                 {general.email && (
                   <li>
-                    <a href={`mailto:${general.email}`} className="link-underline text-sand hover:text-cream">
+                    <a href={`mailto:${general.email}`} className="link-underline text-snow/70 hover:text-snow">
                       {general.email}
                     </a>
                   </li>
@@ -95,7 +95,7 @@ export function Footer({ settings: { general, social, booking } }: Props) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={s.label}
-                      className="glass inline-flex size-10 items-center justify-center rounded-full text-sand transition hover:text-brass"
+                      className="inline-flex bg-white/10 size-10 items-center justify-center rounded-full text-snow/70 transition hover:text-brass"
                     >
                       <SocialIcon name={s.key} className="size-4" />
                     </a>
@@ -106,16 +106,16 @@ export function Footer({ settings: { general, social, booking } }: Props) {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-white/[0.07] pt-8 text-xs text-muted md:flex-row md:items-center md:justify-between">
+        <div className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 text-xs text-snow/50 md:flex-row md:items-center md:justify-between">
           <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
             {NAV_LINKS.map((l) => (
-              <Link key={l.href} href={l.href} className="hover:text-cream">
+              <Link key={l.href} href={l.href} className="hover:text-snow">
                 {l.label}
               </Link>
             ))}
-            <Link href="/policy" className="hover:text-cream">House policy</Link>
-            <Link href="/privacy" className="hover:text-cream">Privacy</Link>
-            <Link href="/terms" className="hover:text-cream">Terms</Link>
+            <Link href="/policy" className="hover:text-snow">House policy</Link>
+            <Link href="/privacy" className="hover:text-snow">Privacy</Link>
+            <Link href="/terms" className="hover:text-snow">Terms</Link>
           </nav>
           <p>
             © {new Date().getFullYear()} {general.name}

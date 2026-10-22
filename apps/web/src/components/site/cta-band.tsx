@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { SplitWords, Reveal } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
 import { GrillMark } from "./logo";
 
-/** Big red call-to-action block with a framed photo. */
+/** Red call-to-action block with a photo. */
 export function CtaBand({
-  title = "Your table's waiting.",
-  text = "Book in under a minute. Walk-ins welcome too.",
+  title = "Your table's waiting",
+  text = "Book in under a minute. Walk-ins are always welcome too.",
   image,
   primary = { href: "/reserve", label: "Book a table" },
   secondary = { href: "/private-parties", label: "Plan a party" },
@@ -19,31 +19,29 @@ export function CtaBand({
   secondary?: { href: string; label: string } | null;
 }) {
   return (
-    <section className="container-x py-16" aria-label="Reserve">
-      <div className="relative grid overflow-hidden rounded-[36px] bg-brass text-cream lg:grid-cols-2">
-        <GrillMark className="pointer-events-none absolute -right-16 -top-16 size-80 text-ink/10" />
-        <div className="relative p-8 sm:p-14 lg:py-20">
-          <SplitWords text={title} className="font-display text-6xl leading-[0.88] sm:text-8xl" />
-          <Reveal delay={0.15}>
-            <p className="mt-6 max-w-md text-lg font-semibold text-cream/90">{text}</p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link href={primary.href} className="btn-dark !px-8 !py-4 text-base">
-                {primary.label} <ArrowRight className="size-4" />
+    <section className="container-x py-12 sm:py-16" aria-label="Reserve">
+      <Reveal className="relative grid overflow-hidden rounded-[32px] bg-brass text-snow shadow-lift lg:grid-cols-2">
+        <GrillMark className="pointer-events-none absolute -bottom-10 left-1/3 size-72 text-night/10" />
+        <div className="relative p-8 sm:p-12 lg:py-16">
+          <h2 className="text-4xl text-snow sm:text-5xl">{title}</h2>
+          <p className="mt-4 max-w-md text-lg text-snow/85">{text}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href={primary.href} className="btn-dark !px-7 !py-4 text-base">
+              {primary.label} <ArrowRight className="size-4" />
+            </Link>
+            {secondary && (
+              <Link href={secondary.href} className="btn border-2 border-snow/50 !px-7 !py-4 text-base text-snow hover:bg-snow hover:text-brass">
+                {secondary.label}
               </Link>
-              {secondary && (
-                <Link href={secondary.href} className="btn !border-2 !border-cream/60 !px-8 !py-4 text-base text-cream hover:!bg-cream hover:!text-brass">
-                  {secondary.label}
-                </Link>
-              )}
-            </div>
-          </Reveal>
+            )}
+          </div>
         </div>
         {image && (
-          <div className="relative min-h-[280px] lg:min-h-full">
+          <div className="relative min-h-[260px]">
             <Image src={image} alt="" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
           </div>
         )}
-      </div>
+      </Reveal>
     </section>
   );
 }

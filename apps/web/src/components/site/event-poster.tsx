@@ -10,27 +10,27 @@ export type PosterData = Pick<
 
 const THEMES = {
   red: {
-    shell: "bg-brass text-cream",
-    overlay: "bg-gradient-to-t from-brass via-brass/85 to-brass/10",
-    kicker: "bg-ink text-cream",
-    badge: "bg-cream text-ink",
-    chip: "border-cream/40 text-cream",
-    mark: "text-cream",
+    shell: "bg-brass text-snow",
+    overlay: "bg-gradient-to-t from-brass from-30% via-brass/60 via-55% to-transparent",
+    kicker: "bg-night text-snow",
+    badge: "bg-snow text-night",
+    chip: "border-snow/50 text-snow",
+    mark: "text-snow",
   },
   dark: {
-    shell: "bg-ink text-cream",
-    overlay: "bg-gradient-to-t from-ink via-ink/80 to-ink/5",
-    kicker: "bg-brass text-cream",
-    badge: "bg-brass text-cream",
-    chip: "border-white/30 text-cream",
+    shell: "bg-night text-snow",
+    overlay: "bg-gradient-to-t from-night from-25% via-night/55 via-55% to-transparent",
+    kicker: "bg-brass text-snow",
+    badge: "bg-brass text-snow",
+    chip: "border-snow/40 text-snow",
     mark: "text-brass",
   },
   light: {
-    shell: "bg-paper text-ink",
-    overlay: "bg-gradient-to-t from-paper via-paper/90 to-paper/0",
-    kicker: "bg-brass text-cream",
-    badge: "bg-ink text-cream",
-    chip: "border-ink/30 text-ink",
+    shell: "bg-[#fff3e6] text-night",
+    overlay: "bg-gradient-to-t from-[#fff3e6] via-[#fff3e6]/90 to-transparent",
+    kicker: "bg-brass text-snow",
+    badge: "bg-night text-snow",
+    chip: "border-night/30 text-night",
     mark: "text-brass",
   },
 } as const;
@@ -63,10 +63,10 @@ export function EventPoster({ event, priority, sizes = "(min-width:1024px) 33vw,
         <div className="flex items-start justify-between gap-3">
           <span className="flex items-center gap-[1.5cqw]">
             <GrillMark className={cn("size-[9cqw]", t.mark)} />
-            <span className="font-display text-[5cqw] leading-none tracking-[0.12em]">The Diner</span>
+            <span className="font-brand text-[5cqw] leading-none tracking-[0.12em]">THE DINER</span>
           </span>
           {event.price_label && (
-            <span className={cn("max-w-[42cqw] rotate-3 rounded-[2cqw] px-[3cqw] py-[1.6cqw] text-center font-display text-[4.6cqw] leading-[1] shadow-lg", t.badge)}>
+            <span className={cn("max-w-[42cqw] rotate-3 rounded-[2cqw] px-[3cqw] py-[1.6cqw] text-center font-display text-[4.2cqw] font-extrabold leading-[1.05] shadow-lg", t.badge)}>
               {event.price_label}
             </span>
           )}
@@ -74,16 +74,16 @@ export function EventPoster({ event, priority, sizes = "(min-width:1024px) 33vw,
 
         <div>
           {when && (
-            <span className={cn("mb-[3cqw] inline-block rounded-full px-[3cqw] py-[1.2cqw] text-[3cqw] font-extrabold uppercase tracking-[0.14em]", t.kicker)}>
+            <span className={cn("mb-[3cqw] inline-block rounded-full px-[3cqw] py-[1.2cqw] text-[3cqw] font-bold", t.kicker)}>
               {when}
             </span>
           )}
-          <h3 className="font-display text-[15cqw] leading-[0.86] [overflow-wrap:anywhere]">{event.title || "Event title"}</h3>
+          <h3 className="font-display text-[12cqw] font-extrabold leading-[0.95] tracking-tight [overflow-wrap:anywhere]">{event.title || "Event title"}</h3>
           {event.summary && <p className="mt-[3cqw] max-w-[90%] text-[3.6cqw] font-semibold leading-snug opacity-90">{event.summary}</p>}
           {event.highlights?.length > 0 && (
             <ul className="mt-[4cqw] flex flex-wrap gap-[1.6cqw]">
               {event.highlights.filter(Boolean).map((h) => (
-                <li key={h} className={cn("rounded-full border-2 px-[2.6cqw] py-[1cqw] text-[2.8cqw] font-bold uppercase tracking-wider", t.chip)}>
+                <li key={h} className={cn("rounded-full border-2 px-[2.6cqw] py-[1cqw] text-[2.8cqw] font-bold", t.chip)}>
                   {h}
                 </li>
               ))}

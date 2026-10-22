@@ -4,13 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Phone } from "lucide-react";
+import { ArrowRight, Menu as MenuIcon, Phone, X } from "lucide-react";
 import type { AnnouncementSettings, GeneralSettings } from "@diner/shared";
 import { cn, telHref } from "@/lib/utils";
 import { AnnouncementBar } from "./announcement-bar";
 import { Logo } from "./logo";
 import { NAV_LINKS } from "./nav-links";
 
+/** Announcement strip + a solid sticky header (72px) that never overlaps page content. */
 export function Header({
   general,
   bookingEnabled,
@@ -21,15 +22,7 @@ export function Header({
   announcement: AnnouncementSettings;
 }) {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -37,26 +30,11 @@ export function Header({
   }, [open]);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
-      <div
-        className={cn(
-          "pointer-events-auto grid transition-[grid-template-rows] duration-500",
-          scrolled || open ? "grid-rows-[0fr]" : "grid-rows-[1fr]",
-        )}
-      >
-        <div className="overflow-hidden">
-          <AnnouncementBar announcement={announcement} />
-        </div>
-      </div>
-      <div className="container-x pt-3 sm:pt-4">
-        <nav
-          aria-label="Main"
-          className={cn(
-            "pointer-events-auto flex items-center justify-between rounded-full py-2.5 pl-6 pr-2.5 transition-all duration-500",
-            scrolled || open ? "glass-strong shadow-2xl shadow-black/40" : "border border-transparent",
-          )}
-        >
-          <Link href="/" aria-label={`${general.name} — home`} className="relative z-10">
+    <>
+      <AnnouncementBar announcement={announcement} />
+      <header className="sticky top-0 z-50 border-b border-black/[0.07] bg-ink/90 backdrop-blur-xl">
+        <nav aria-label="Main" className="container-x flex h-[72px] items-center justify-between gap-6">
+          <Link href="/" aria-label={`${general.name} — home`} className="shrink-0">
             <Logo />
           </Link>
 
@@ -68,17 +46,10 @@ export function Header({
                   <Link
                     href={l.href}
                     className={cn(
-                      "relative rounded-full px-4 py-2 text-sm font-medium text-sand transition-colors hover:text-cream",
-                      active && "text-cream",
+                      "rounded-full px-4 py-2 text-[0.95rem] font-semibold transition-colors",
+                      active ? "bg-brass/10 text-brass" : "text-sand hover:bg-black/[0.04] hover:text-cream",
                     )}
                   >
-                    {active && (
-                      <motion.span
-                        layoutId="nav-pill"
-                        className="absolute inset-0 -z-10 rounded-full bg-white/[0.08]"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                      />
-                    )}
                     {l.label}
                   </Link>
                 </li>
@@ -90,10 +61,9 @@ export function Header({
             {general.phones[0] && (
               <a
                 href={telHref(general.phones[0])}
-                className="hidden size-10 items-center justify-center rounded-full text-sand transition hover:bg-white/10 hover:text-cream md:inline-flex"
-                aria-label={`Call ${general.phones[0]}`}
+                className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-sand hover:text-cream xl:inline-flex"
               >
-                <Phone className="size-4" />
+                <Phone className="size-4 text-brass" /> {general.phones[0]}
               </a>
             )}
             {bookingEnabled && (
@@ -103,68 +73,75 @@ export function Header({
             )}
             <button
               type="button"
-              onClick={() => setOpen((v) => !v)}
-              className="relative z-10 inline-flex size-11 items-center justify-center rounded-full bg-white/[0.06] lg:hidden"
+              onClick={() => setOpen(true)}
+              className="inline-flex size-11 items-center justify-center rounded-full border border-black/10 bg-coal lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
-              aria-label={open ? "Close menu" : "Open menu"}
+              aria-label="Open menu"
             >
-              <span className="relative block h-3 w-5">
-                <span
-                  className={cn(
-                    "absolute left-0 top-0 h-px w-5 bg-cream transition-transform duration-300",
-                    open && "translate-y-1.5 rotate-45",
-                  )}
-                />
-                <span
-                  className={cn(
-                    "absolute bottom-0 left-0 h-px w-5 bg-cream transition-transform duration-300",
-                    open && "-translate-y-1.5 -rotate-45",
-                  )}
-                />
-              </span>
+              <MenuIcon className="size-5" />
             </button>
           </div>
         </nav>
-      </div>
+      </header>
 
       <AnimatePresence>
         {open && (
           <motion.div
             id="mobile-menu"
-            initial={{ clipPath: "circle(0% at calc(100% - 3rem) 2.5rem)" }}
-            animate={{ clipPath: "circle(150% at calc(100% - 3rem) 2.5rem)" }}
-            exit={{ clipPath: "circle(0% at calc(100% - 3rem) 2.5rem)" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="pointer-events-auto fixed inset-0 -z-10 flex flex-col justify-between bg-coal px-6 pb-10 pt-28 lg:hidden"
+            role="dialog"
+            aria-modal="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-night/40 lg:hidden"
+            onClick={() => setOpen(false)}
           >
-            <ul className="space-y-1">
-              {[{ href: "/", label: "Home" }, ...NAV_LINKS].map((l, i) => (
-                <motion.li
-                  key={l.href}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 + i * 0.05, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Link href={l.href} className="block font-display text-5xl leading-tight text-cream/90 hover:text-brass">
-                    {l.label}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="absolute inset-y-0 right-0 flex w-[86%] max-w-sm flex-col bg-ink p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between">
+                <Logo />
+                <button type="button" onClick={() => setOpen(false)} className="inline-flex size-11 items-center justify-center rounded-full bg-smoke" aria-label="Close menu">
+                  <X className="size-5" />
+                </button>
+              </div>
+              <ul className="mt-8 flex-1 space-y-1">
+                {[{ href: "/", label: "Home" }, ...NAV_LINKS].map((l) => (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      className={cn(
+                        "flex items-center justify-between rounded-2xl px-4 py-3.5 font-display text-2xl font-bold",
+                        pathname === l.href ? "bg-brass/10 text-brass" : "text-cream hover:bg-smoke",
+                      )}
+                    >
+                      {l.label} <ArrowRight className="size-5 opacity-40" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <div className="space-y-3">
+                {bookingEnabled && (
+                  <Link href="/reserve" className="btn-primary w-full !py-4">
+                    Book a table
                   </Link>
-                </motion.li>
-              ))}
-            </ul>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="space-y-4">
-              {bookingEnabled && (
-                <Link href="/reserve" className="btn-primary w-full !py-4">
-                  Book a table
-                </Link>
-              )}
-              <p className="text-center text-sm text-muted">
-                {general.address.street}, {general.address.locality}
-              </p>
+                )}
+                {general.phones[0] && (
+                  <a href={telHref(general.phones[0])} className="btn-ghost w-full !py-4">
+                    <Phone className="size-4" /> Call {general.phones[0]}
+                  </a>
+                )}
+              </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

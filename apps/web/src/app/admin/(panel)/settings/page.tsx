@@ -55,7 +55,7 @@ const TABS: { key: SettingsKey; label: string; description: string; fields: Fiel
     description: "Hero, story, numbers, the scrolling ticker, experiences and party packages.",
     fields: [
       { name: "heroEyebrow", label: "Hero label", type: "text" },
-      { name: "heroTitle", label: "Hero headline", type: "text", wide: true, help: "Use | to break lines — every second line turns red. e.g. Rooftop|Restobar|Whitefield" },
+      { name: "heroTitle", label: "Hero headline", type: "text", wide: true, help: "Text after | is shown in red, e.g. Great food, great prices,|rooftop vibes." },
       { name: "heroSubtitle", label: "Hero text", type: "textarea", rows: 2 },
       { name: "heroImage", label: "Hero main photo (landscape)", type: "image", folder: "home" },
       { name: "heroSideImages", label: "Hero small photos (2 squares)", type: "imageList", folder: "home" },
@@ -71,6 +71,17 @@ const TABS: { key: SettingsKey; label: string; description: string; fields: Fiel
           { name: "title", label: "Title", type: "text" },
           { name: "description", label: "Description", type: "textarea", rows: 2 },
           { name: "image", label: "Image", type: "image", folder: "home" },
+        ],
+      },
+      { name: "dealsTitle", label: "Best-prices section heading", type: "text", wide: true },
+      { name: "dealsIntro", label: "Best-prices section intro", type: "textarea", rows: 2 },
+      {
+        name: "deals", label: "Deals & prices (shown big on the home page)", type: "objectList",
+        fields: [
+          { name: "price", label: "Price", type: "text", placeholder: "₹99" },
+          { name: "title", label: "What it is", type: "text", placeholder: "Social Hours — bar drinks & bites" },
+          { name: "note", label: "Small label", type: "text", placeholder: "Daily 4–8 PM" },
+          { name: "href", label: "Link (optional)", type: "text", placeholder: "/events/social-hours" },
         ],
       },
       {
@@ -225,13 +236,13 @@ function SettingsInner() {
                 setTab(t.key);
                 router.replace(`/admin/settings?tab=${t.key}`);
               }}
-              className={cn("shrink-0 rounded-xl px-4 py-2.5 text-left text-sm", tab === t.key ? "bg-white/[0.08] text-cream" : "text-sand hover:text-cream")}
+              className={cn("shrink-0 rounded-xl px-4 py-2.5 text-left text-sm", tab === t.key ? "bg-black/[0.08] text-cream" : "text-sand hover:text-cream")}
             >
               {t.label}
             </button>
           ))}
         </nav>
-        <section className="rounded-2xl border border-white/10 bg-coal p-6 sm:p-8">
+        <section className="rounded-2xl border border-black/10 bg-coal p-6 sm:p-8">
           <h2 className="font-display text-2xl">{current.label}</h2>
           <p className="mb-8 mt-1 text-sm text-sand">{current.description}</p>
           {!all ? (
@@ -247,7 +258,7 @@ function SettingsInner() {
               }}
             />
           )}
-          <div className="sticky bottom-0 -mx-6 mt-8 flex items-center justify-end gap-3 border-t border-white/10 bg-coal/95 px-6 py-4 backdrop-blur sm:-mx-8 sm:px-8">
+          <div className="sticky bottom-0 -mx-6 mt-8 flex items-center justify-end gap-3 border-t border-black/10 bg-coal/95 px-6 py-4 backdrop-blur sm:-mx-8 sm:px-8">
             {dirty && <span className="text-xs text-brass">Unsaved changes</span>}
             <button type="button" onClick={save} disabled={saving || !all} className="btn-primary">
               {saving && <Loader2 className="size-4 animate-spin" />} Save {current.label.toLowerCase()}

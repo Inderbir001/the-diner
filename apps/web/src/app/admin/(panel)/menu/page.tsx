@@ -81,9 +81,9 @@ export default function MenuAdminPage() {
   return (
     <>
       <PageTitle title="Menu" description="Add dishes, change prices, mark items sold out and reorder categories. Changes go live within seconds." />
-      <div className="mb-6 inline-flex rounded-full bg-white/5 p-1">
+      <div className="mb-6 inline-flex rounded-full bg-black/5 p-1">
         {(["items", "categories"] as const).map((t) => (
-          <button key={t} type="button" onClick={() => setTab(t)} className={cn("rounded-full px-5 py-2 text-sm font-semibold capitalize", tab === t ? "bg-brass text-ink" : "text-sand")}>
+          <button key={t} type="button" onClick={() => setTab(t)} className={cn("rounded-full px-5 py-2 text-sm font-semibold capitalize", tab === t ? "bg-brass text-snow" : "text-sand")}>
             {t === "items" ? "Dishes" : "Categories"}
           </button>
         ))}

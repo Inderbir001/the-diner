@@ -67,7 +67,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
         ]}
       />
       <article>
-        <header className="container-x pb-12 pt-40 sm:pt-48">
+        <header className="container-x pb-10 pt-10 sm:pt-14">
           <nav aria-label="Breadcrumb" className="mb-8 text-xs text-muted">
             <Link href="/" className="hover:text-cream">Home</Link> <span aria-hidden>/</span>{" "}
             <Link href="/blog" className="hover:text-cream">Journal</Link>
@@ -79,7 +79,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
             <span aria-hidden>·</span>
             <span>{post.author}</span>
           </p>
-          <SplitWords as="h1" immediate text={post.title} className="mt-6 max-w-5xl font-display text-[clamp(3.2rem,8vw,7.5rem)] leading-[0.88]" />
+          <SplitWords as="h1" immediate text={post.title} className="mt-5 max-w-4xl text-4xl sm:text-5xl lg:text-6xl" />
           {post.excerpt && <p className="mt-8 max-w-2xl text-xl leading-relaxed text-sand">{post.excerpt}</p>}
         </header>
 
@@ -96,7 +96,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
             <aside className="hidden lg:col-span-3 lg:block">
               <nav aria-label="In this article" className="sticky top-32">
                 <p className="eyebrow mb-4">In this article</p>
-                <ol className="space-y-2 border-l border-white/10 text-sm">
+                <ol className="space-y-2 border-l border-black/10 text-sm">
                   {headings.map((h) => (
                     <li key={h.text}>
                       <a href={`#${slugifyHeading(h.text)}`} className="-ml-px block border-l border-transparent py-1 pl-4 text-sand hover:border-brass hover:text-cream">
@@ -111,9 +111,9 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           <div className={headings.length > 1 ? "lg:col-span-8 lg:col-start-5" : "mx-auto max-w-3xl lg:col-span-12"}>
             <div className="prose prose-invert prose-lg prose-diner max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
             {post.tags.length > 0 && (
-              <ul className="mt-12 flex flex-wrap gap-2 border-t border-white/10 pt-8">
+              <ul className="mt-12 flex flex-wrap gap-2 border-t border-black/10 pt-8">
                 {post.tags.map((t) => (
-                  <li key={t} className="rounded-full border border-white/10 px-3 py-1 text-xs text-sand">
+                  <li key={t} className="rounded-full border border-black/10 px-3 py-1 text-xs text-sand">
                     #{t}
                   </li>
                 ))}

@@ -115,6 +115,8 @@ Create a Resend account, verify the `thediner.in` domain, and set `RESEND_API_KE
 - [ ] **Check sample content**: menu dishes and prices (most are placeholders, so verify every one against the printed menu), the home page story and stats, party packages and group discounts.
 - [ ] **Check the recurring offers.** Acoustic Colours, Ladies Night, Pitcher Night, Social Hours and Andhra Lunch Combos were taken from older Google Business posts. Update or unpublish any that have changed under **Events**.
 - [ ] **Add more photos.** The site uses the restaurant's own photos from its Google Business Profile (owner uploads and posts, enhanced and cropped, in `apps/web/public/images/diner`). Upload fresh dish and interior shots in the admin. Instagram sync adds new posts automatically.
+- [ ] **Replace stand-in dish photos.** 36 menu items use free-licence stock photos (Unsplash License, in `apps/web/public/images/menu`) until you upload your own in **Admin → Menu**. Guntur Chicken, wings, momos, tacos, prawns and Andhra chicken curry use the restaurant's real photos (`apps/web/public/images/diner`).
+- [ ] **Check the deals.** The "Best prices" section (₹99 social hours, ₹179 lunch combos, ₹499 pitchers, ₹1,000 for two) is edited in **Admin → Settings → Home page → Deals**.
 - [ ] **Check the new dishes.** Chilli Chicken Wings, Chicken Momos, Crispy Chicken Tacos and Crispy Prawns were added from the restaurant's own food photos. Confirm their names and prices.
 - [ ] **Run both migrations.** After `20261022000000_init.sql`, run `20261023000000_event_poster_template.sql`, then `seed.sql`.
 - [ ] Add real guest reviews under **Reviews** (only genuine ones, with names as shown on Google).

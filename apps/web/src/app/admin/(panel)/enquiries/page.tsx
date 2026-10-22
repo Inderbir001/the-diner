@@ -47,9 +47,9 @@ export default function EnquiriesPage() {
   return (
     <>
       <PageTitle title="Enquiries" description="Party, corporate and general messages from the website." />
-      <div className="mb-5 flex flex-wrap gap-1 rounded-full bg-white/5 p-1 sm:w-fit">
+      <div className="mb-5 flex flex-wrap gap-1 rounded-full bg-black/5 p-1 sm:w-fit">
         {(["new", "in_progress", "closed", ""] as const).map((s) => (
-          <button key={s || "all"} type="button" onClick={() => setFilter(s)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold capitalize", filter === s ? "bg-brass text-ink" : "text-sand")}>
+          <button key={s || "all"} type="button" onClick={() => setFilter(s)} className={cn("rounded-full px-4 py-1.5 text-sm font-semibold capitalize", filter === s ? "bg-brass text-snow" : "text-sand")}>
             {s ? s.replace("_", " ") : "All"}
           </button>
         ))}
@@ -57,11 +57,11 @@ export default function EnquiriesPage() {
       {rows === null ? (
         <Loader2 className="size-5 animate-spin text-brass" />
       ) : rows.length === 0 ? (
-        <p className="rounded-2xl border border-white/10 bg-coal p-12 text-center text-sm text-muted">No enquiries here.</p>
+        <p className="rounded-2xl border border-black/10 bg-coal p-12 text-center text-sm text-muted">No enquiries here.</p>
       ) : (
         <div className="space-y-3">
           {rows.map((e) => (
-            <article key={e.id} className="rounded-2xl border border-white/10 bg-coal p-5">
+            <article key={e.id} className="rounded-2xl border border-black/10 bg-coal p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
@@ -85,7 +85,7 @@ export default function EnquiriesPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <select value={e.status} onChange={(ev) => setStatus(e, ev.target.value as Status)} className="rounded-lg border border-white/10 bg-transparent px-2 py-1 text-xs text-sand">
+                  <select value={e.status} onChange={(ev) => setStatus(e, ev.target.value as Status)} className="rounded-lg border border-black/10 bg-transparent px-2 py-1 text-xs text-sand">
                     {STATUSES.map((s) => (
                       <option key={s} value={s} className="bg-coal">
                         {s.replace("_", " ")}

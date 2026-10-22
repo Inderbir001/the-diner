@@ -82,7 +82,7 @@ export function InstagramFeed({
                 >
                   <Image src={img.url} alt={img.alt} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition duration-700 group-hover:scale-105" />
                   <span className="absolute inset-0 flex items-center justify-center bg-brass/80 opacity-0 transition group-hover:opacity-100">
-                    <SocialIcon name="instagram" className="size-8 text-cream" />
+                    <SocialIcon name="instagram" className="size-8 text-snow" />
                   </span>
                 </a>
               </Reveal>
