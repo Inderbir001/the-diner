@@ -1,0 +1,21 @@
+{
+  "name": "the-diner",
+  "private": true,
+  "description": "Website, booking system and admin for The Diner Restobar, Whitefield, Bengaluru",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "dev:web": "npm run dev --workspace @diner/web",
+    "dev:api": "npm run dev --workspace @diner/api",
+    "build": "npm run build --workspaces --if-present",
+    "build:web": "npm run build --workspace @diner/web",
+    "build:api": "npm run build --workspace @diner/api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
+  }
+}

@@ -1,0 +1,47 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# Deploy: Render dashboard → New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: the-diner-api
+    runtime: node
+    region: singapore # closest Render region to Bengaluru
+    plan: starter # free instances sleep after 15 min; starter keeps bookings + cron instant
+    rootDir: .
+    buildCommand: npm ci && npm run build:api
+    startCommand: node apps/api/dist/index.js
+    healthCheckPath: /health
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - apps/api/**
+        - packages/shared/**
+        - package-lock.json
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: WEB_URL
+        value: https://thediner.in
+      - key: CORS_ORIGINS
+        value: https://thediner.in,https://www.thediner.in
+      - key: REVALIDATE_SECRET
+        sync: false
+      - key: CRON_SECRET
+        generateValue: true
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        value: The Diner Restobar <bookings@thediner.in>
+      - key: INSTAGRAM_ACCESS_TOKEN
+        sync: false
+      - key: YOUTUBE_API_KEY
+        sync: false
+      - key: YOUTUBE_CHANNEL_ID
+        sync: false
+      - key: ENABLE_CRON
+        value: "true"
