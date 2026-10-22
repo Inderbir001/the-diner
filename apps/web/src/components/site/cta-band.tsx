@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { SplitWords, Reveal } from "@/components/motion/reveal";
+import { GrillMark } from "./logo";
 
+/** Big red call-to-action block with a framed photo. */
 export function CtaBand({
   title = "Your table's waiting.",
   text = "Book in under a minute. Walk-ins welcome too.",
@@ -17,26 +20,29 @@ export function CtaBand({
 }) {
   return (
     <section className="container-x py-16" aria-label="Reserve">
-      <div className="relative overflow-hidden rounded-[36px] border border-white/10 px-6 py-20 text-center sm:px-16 sm:py-28">
-        {image && <Image src={image} alt="" fill sizes="100vw" className="object-cover" />}
-        <div className="absolute inset-0 bg-ink/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(232_71_62/0.35),transparent_60%)]" />
-        <div className="relative">
-          <SplitWords text={title} className="mx-auto max-w-3xl font-display text-5xl leading-none tracking-tight sm:text-7xl" />
-          <Reveal delay={0.2}>
-            <p className="mx-auto mt-6 max-w-md text-lg text-sand">{text}</p>
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <Link href={primary.href} className="btn-primary !px-8 !py-4">
-                {primary.label}
+      <div className="relative grid overflow-hidden rounded-[36px] bg-brass text-cream lg:grid-cols-2">
+        <GrillMark className="pointer-events-none absolute -right-16 -top-16 size-80 text-ink/10" />
+        <div className="relative p-8 sm:p-14 lg:py-20">
+          <SplitWords text={title} className="font-display text-6xl leading-[0.88] sm:text-8xl" />
+          <Reveal delay={0.15}>
+            <p className="mt-6 max-w-md text-lg font-semibold text-cream/90">{text}</p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href={primary.href} className="btn-dark !px-8 !py-4 text-base">
+                {primary.label} <ArrowRight className="size-4" />
               </Link>
               {secondary && (
-                <Link href={secondary.href} className="btn-ghost !px-8 !py-4">
+                <Link href={secondary.href} className="btn !border-2 !border-cream/60 !px-8 !py-4 text-base text-cream hover:!bg-cream hover:!text-brass">
                   {secondary.label}
                 </Link>
               )}
             </div>
           </Reveal>
         </div>
+        {image && (
+          <div className="relative min-h-[280px] lg:min-h-full">
+            <Image src={image} alt="" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
+          </div>
+        )}
       </div>
     </section>
   );

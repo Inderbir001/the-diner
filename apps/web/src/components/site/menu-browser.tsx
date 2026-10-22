@@ -53,7 +53,7 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
     <div>
       <div className="sticky top-[5.25rem] z-30 sm:top-24">
         <div className="container-x">
-          <div className="glass-strong flex flex-col gap-3 rounded-3xl p-3 shadow-2xl shadow-black/40 lg:flex-row lg:items-center">
+          <div className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-coal p-3 shadow-2xl shadow-black/60 lg:flex-row lg:items-center">
             <div className="flex shrink-0 gap-1 rounded-full bg-white/[0.04] p-1" role="radiogroup" aria-label="Food or drinks">
               {(["all", "food", "drinks"] as const).map((k) => (
                 <button

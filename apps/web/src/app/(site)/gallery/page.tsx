@@ -29,7 +29,7 @@ export default async function GalleryPage() {
         <GalleryGrid images={images} />
       </section>
       <YouTubeFeed videos={youtube} social={settings.social} limit={6} />
-      <InstagramFeed posts={instagram} social={settings.social} limit={16} />
+      {instagram.length > 0 && <InstagramFeed posts={instagram} social={settings.social} limit={16} />}
     </>
   );
 }

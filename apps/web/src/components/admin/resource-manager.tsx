@@ -29,6 +29,8 @@ export interface ResourceConfig {
   sortable?: boolean;
   thumbnailKey?: string;
   publicUrl?: (row: Row) => string | null;
+  /** live preview shown beside the form while editing */
+  preview?: (values: Record<string, unknown>) => React.ReactNode;
 }
 
 /** Generic list + slide-over editor for any content table exposed by the API. */
@@ -211,6 +213,7 @@ export function ResourceManager({
         open={!!editing}
         onClose={() => setEditing(null)}
         title={isNew ? `New ${config.singular.toLowerCase()}` : `Edit ${config.singular.toLowerCase()}`}
+        wide={!!config.preview}
         footer={
           <>
             <div className="flex gap-2">
@@ -231,7 +234,21 @@ export function ResourceManager({
           </>
         }
       >
-        {editing && <FieldGrid fields={config.fields} values={editing} onChange={(name, v) => setEditing((e) => ({ ...e!, [name]: v }))} />}
+        {editing &&
+          (config.preview ? (
+            <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
+              <FieldGrid fields={config.fields} values={editing} onChange={(name, v) => setEditing((e) => ({ ...e!, [name]: v }))} />
+              <div className="order-first lg:order-none">
+                <div className="lg:sticky lg:top-0">
+                  <p className="label">Live preview</p>
+                  {config.preview(editing)}
+                  <p className="mt-3 text-xs text-muted">This is exactly how it appears on the website after you save.</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <FieldGrid fields={config.fields} values={editing} onChange={(name, v) => setEditing((e) => ({ ...e!, [name]: v }))} />
+          ))}
       </Drawer>
     </div>
   );

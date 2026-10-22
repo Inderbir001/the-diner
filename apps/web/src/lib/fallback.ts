@@ -2,7 +2,7 @@
  * Content used only when Supabase isn't configured (local preview, CI builds) or unreachable,
  * so the site always renders. Production content lives in Supabase and is edited from /admin.
  */
-import type { DinerEvent, Faq, GalleryImage, MenuCategory, MenuItem, Page, Post, SettingsMap } from "@diner/shared";
+import type { DinerEvent, Faq, GalleryImage, MenuCategory, MenuItem, Page, Post, SettingsMap, Testimonial } from "@diner/shared";
 import { parseSettings } from "@diner/shared";
 
 /** Real photos of The Diner, from the restaurant's own Google Business posts (apps/web/public/images/diner). */
@@ -58,25 +58,26 @@ export const fallbackSettings: SettingsMap = {
     ogImage: img("og-image.jpg"),
   }),
   home: parseSettings("home", {
-    heroEyebrow: "Rooftop restobar · Whitefield",
-    heroTitle: "Long nights, loud tables, good food.",
+    heroEyebrow: "Whitefield · near ITPL Gate 3",
+    heroTitle: "Rooftop|Restobar|Whitefield",
+    heroSideImages: [img("chicken-wings.jpg"), img("dance-floor.jpg")],
     heroSubtitle:
-      "Andhra heat, tandoor smoke and cold draught under the Whitefield sky. Ten minutes from ITPL, open till half past midnight.",
-    heroImage: img("rooftop-night.jpg"),
-    storyTitle: "A neighbourhood bar that cooks like home.",
+      "Andhra spice, cold pitchers, live music and a rooftop that stays busy till 12:30 AM. Team parties, match nights and long dinners — this is Whitefield's loudest table.",
+    heroImage: img("rooftop-crowd.jpg"),
+    storyTitle: "Good place. Good food. Good people.",
     storyBody:
       "The Diner started with a simple idea: a place in Whitefield where you can walk in after work, order a proper Andhra meal and a cold beer, and stay for the music. Our kitchen leans on Guntur spice, slow-cooked biryanis and a tandoor that runs all night. Upstairs, the rooftop fills up for match nights, DJ sets and long weekend dinners.",
-    storyImage: img("rooftop-pet-friendly.jpg"),
+    storyImage: img("pet-friendly.jpg"),
     stats: [
-      { value: "4.4★", label: "on Google" },
+      { value: "4.4★", label: "Google rating" },
+      { value: "2,400+", label: "Google reviews" },
       { value: "12:30", label: "AM last call" },
-      { value: "250+", label: "guests on the rooftop" },
-      { value: "7", label: "days a week" },
+      { value: "7", label: "Days a week" },
     ],
-    marquee: ["Guntur Chicken", "Hyderabadi Dum Biryani", "Rooftop Nights", "Craft Cocktails", "Live Bands", "Draught Beer", "IPL on the Big Screen", "Lamb Chops"],
+    marquee: ["Rooftop nights", "Andhra spice", "Live music", "Bira pitchers", "Ladies night", "Match screenings", "Team parties", "Pet friendly"],
     experiences: [
-      { title: "The Rooftop", description: "Open-air tables under hanging planters and string lights — the best seat in Whitefield for a long evening. Pets welcome.", image: img("rooftop-day.jpg") },
-      { title: "Live Music & DJs", description: "Acoustic Colours live on the rooftop every Thursday, DJ nights on the weekend and a dance floor that stays busy.", image: img("event-acoustic-colours.jpg") },
+      { title: "The Rooftop", description: "Open-air tables under hanging planters and string lights — the best seat in Whitefield for a long evening. Pets welcome.", image: img("rooftop-dinner.jpg") },
+      { title: "Live Music & DJs", description: "Acoustic Colours live on the rooftop every Thursday, DJ nights on the weekend and a dance floor that stays busy.", image: img("dance-crowd.jpg") },
       { title: "Match Nights", description: "Every big game live on the big screen, with buckets, platters and a crowd that cares.", image: img("event-match-screening.jpg") },
       { title: "Private Parties", description: "Team lunches, birthdays and office outings for 20 to 250 guests, with set menus, bar packages and group discounts.", image: img("team-party.jpg") },
     ],
@@ -115,21 +116,25 @@ const categories: [slug: string, name: string, desc: string | null, kind: "food"
 ];
 const items: Seed[] = [
   ["starters-veg", "Paneer Tikka", "Cottage cheese marinated in hung curd and spices, charred in the tandoor.", 329, true, false, false],
-  ["starters-veg", "Peanut Masala", "Roasted peanuts tossed with onion, tomato, green chilli and lime. The bar classic.", 199, true, true, true],
+  ["starters-veg", "Peanut Masala", "Roasted peanuts tossed with onion, tomato, green chilli and lime. The bar classic.", 199, true, true, false],
   ["starters-veg", "Chilli Baby Corn", "Crisp baby corn, soy, garlic and spring onion.", 279, true, true, false],
   ["starters-veg", "Mushroom Pepper Fry", "Button mushrooms with crushed black pepper and curry leaf.", 289, true, true, false],
   ["starters-non-veg", "Guntur Chicken", "Our signature — boneless chicken in fiery Guntur red chilli and curry leaf.", 369, false, true, true, img("andhra-chicken-fry.jpg")],
   ["starters-non-veg", "Tandoori Chicken Tikka", "Boneless chicken, yogurt, kashmiri chilli, charcoal-grilled.", 359, false, false, false],
-  ["starters-non-veg", "Lamb Chops", "Tender lamb chops marinated overnight and finished over coal.", 549, false, false, true],
+  ["starters-non-veg", "Lamb Chops", "Tender lamb chops marinated overnight and finished over coal.", 549, false, false, false],
+  ["starters-non-veg", "Chilli Chicken Wings", "Crispy wings tossed in a sticky chilli-garlic glaze with spring onion and peppers.", 329, false, true, true, img("chicken-wings.jpg")],
+  ["starters-non-veg", "Chicken Momos", "Steamed dumplings with fiery red chutney and mint dip.", 249, false, false, true, img("chicken-momos.jpg")],
+  ["starters-non-veg", "Crispy Chicken Tacos", "Soft tacos, crispy chicken, cheese sauce and slaw.", 299, false, false, true, img("chicken-tacos.jpg")],
+  ["starters-non-veg", "Crispy Prawns", "Golden fried prawns with a cool yogurt dip.", 449, false, false, true, img("crispy-prawns.jpg")],
   ["starters-non-veg", "Chicken 65", "The Hyderabad classic, curry leaf and green chilli.", 339, false, true, false],
   ["starters-non-veg", "Apollo Fish", "Boneless fish fried crisp and tossed in a tangy chilli sauce.", 399, false, true, false],
   ["mains", "Paneer Tikka Masala", "Charred paneer in a rich onion-tomato masala.", 339, true, false, false],
   ["mains", "Dal Makhani", "Black lentils slow-cooked overnight with butter and cream.", 279, true, false, false],
   ["mains", "Butter Chicken", "Tandoori chicken in a silky tomato, butter and fenugreek gravy.", 389, false, false, false],
-  ["mains", "Andhra Chicken Curry", "Home-style curry with roasted spices and a proper kick.", 369, false, true, false, img("andhra-chicken-curry.jpg")],
+  ["mains", "Andhra Chicken Curry", "Home-style curry with roasted spices and a proper kick, served with ragi mudde.", 369, false, true, true, img("andhra-chicken-curry.jpg")],
   ["mains", "Mutton Rogan Josh", "Slow-braised mutton, kashmiri chilli, whole spices.", 449, false, false, false],
-  ["biryani-rice", "Hyderabadi Chicken Dum Biryani", "Long-grain basmati and marinated chicken, dum-cooked and sealed. The queen of the menu.", 349, false, false, true],
-  ["biryani-rice", "Mutton Biryani", "Tender mutton, saffron and fried onions.", 429, false, false, true],
+  ["biryani-rice", "Hyderabadi Chicken Dum Biryani", "Long-grain basmati and marinated chicken, dum-cooked and sealed. The queen of the menu.", 349, false, false, false],
+  ["biryani-rice", "Mutton Biryani", "Tender mutton, saffron and fried onions.", 429, false, false, false],
   ["biryani-rice", "Veg Dum Biryani", "Seasonal vegetables, mint and saffron.", 279, true, false, false],
   ["biryani-rice", "Jeera Rice", null, 199, true, false, false],
   ["biryani-rice", "Plain Curd", null, 50, true, false, false],
@@ -142,7 +147,7 @@ const items: Seed[] = [
   ["pizza-continental", "Loaded Fries", "Fries, cheese sauce, jalapeño, spring onion.", 249, true, false, false],
   ["desserts", "Gulab Jamun", "Warm, two pieces.", 149, true, false, false],
   ["desserts", "Sizzling Brownie", "Walnut brownie, vanilla ice cream, hot chocolate sauce.", 279, true, false, false],
-  ["cocktails", "Long Island Iced Tea", "Vodka, rum, gin, tequila, triple sec, cola.", 549, true, false, true],
+  ["cocktails", "Long Island Iced Tea", "Vodka, rum, gin, tequila, triple sec, cola.", 549, true, false, false],
   ["cocktails", "Mojito", "White rum, mint, lime, soda.", 399, true, false, false],
   ["cocktails", "Piña Colada", "Rum, coconut cream, pineapple.", 429, true, false, false],
   ["cocktails", "Frozen Liquid Love", "House frozen cocktail — ask the bar.", 449, true, false, false],
@@ -187,30 +192,34 @@ const inDays = (d: number, h = 20) => {
   return t.toISOString();
 };
 
-const weekly = (title: string, slug: string, summary: string, body: string, file: string, inDaysCount: number, hour: number, recurrence: string, price: string, featured: boolean, id: number): DinerEvent => ({
+const weekly = (
+  title: string, slug: string, summary: string, body: string, file: string, inDaysCount: number, hour: number,
+  recurrence: string, price: string, featured: boolean, id: number, theme: DinerEvent["theme"], highlights: string[],
+): DinerEvent => ({
   id: `ev-${id}`, title, slug, summary, body, image_url: img(file), starts_at: inDays(inDaysCount, hour), ends_at: null, is_recurring: true,
   recurrence_label: recurrence, price_label: price, cta_label: null, cta_url: null, is_featured: featured, is_published: true,
+  kicker: recurrence, highlights, theme, display_mode: file.startsWith("event-") ? "image" : "template",
 });
 
 export const fallbackEvents: DinerEvent[] = [
-  weekly("Acoustic Colours — Live Music on the Rooftop", "acoustic-colours-live-music", "Live acoustic sets on the rooftop every Thursday from 9 PM.",
+  weekly("Acoustic Colours", "acoustic-colours-live-music", "Live acoustic sets on the rooftop every Thursday from 9 PM.",
     "Thursday nights belong to Acoustic Colours: live acoustic music on the rooftop from 9 PM onwards, with deals on drinks and the full kitchen open.\n\nGrab a table early — the rooftop fills up fast.",
-    "event-acoustic-colours.jpg", 3, 21, "Every Thursday, 9 PM onwards", "Free entry · deals on drinks", true, 1),
+    "dance-crowd.jpg", 3, 21, "Every Thursday · 9 PM", "Free entry", true, 1, "red", ["Live acoustic", "Rooftop", "Drink deals"]),
   weekly("Ladies Night", "ladies-night", "Free shots for ladies, DJ on the decks — every Saturday.",
     "Saturday is Ladies Night at The Diner: free shots for ladies, an electrifying dance floor and guest DJ appearances.\n\nFree entry for couples and girls.",
-    "event-ladies-night.jpg", 5, 20, "Every Saturday", "Free entry for couples & girls", true, 2),
+    "dance-floor.jpg", 5, 20, "Every Saturday", "Free shots for ladies", true, 2, "dark", ["Guest DJ", "Dance floor", "Couples free"]),
   weekly("Social Hours", "social-hours", "Bar drinks and food at ₹99 — skip the post-work traffic.",
     "Skip the post-work traffic and unwind with bar drinks and food at ₹99.\n\n- Saturday to Thursday: 4 PM – 8 PM\n- Friday: 4 PM – 7 PM",
-    "event-social-hours.jpg", 1, 16, "Daily from 4 PM", "Drinks & food @ ₹99", true, 3),
+    "chicken-wings.jpg", 1, 16, "Daily · 4 PM – 8 PM", "₹99", true, 3, "red", ["Bar drinks", "Bar bites", "Sat – Thu till 8"]),
   weekly("Pitcher Night", "pitcher-night", "Bira pitchers at ₹499 every Monday and Tuesday.",
     "Beat the weekday blues with Bira pitchers at ₹499, every Monday and Tuesday.",
-    "event-pitcher-night.jpg", 4, 19, "Every Monday & Tuesday", "Bira pitchers @ ₹499", false, 4),
+    "rooftop-crowd.jpg", 4, 19, "Every Mon & Tue", "₹499", false, 4, "dark", ["Bira pitchers", "Rooftop", "All evening"]),
   weekly("Match Nights on the Big Screen", "match-nights", "Every big match live on the big screen, with food and drinks on every match day.",
     "Cricket, football, F1 — if it matters, it is on the big screen.\n\nBucket deals, platters and a crowd that cheers every boundary. Big match days fill up fast, so call to reserve.",
-    "event-match-screening.jpg", 2, 19, "Every match day", "Free entry", false, 5),
+    "event-match-screening.jpg", 2, 19, "Every match day", "Free entry", false, 5, "dark", ["Big screen", "Buckets", "Platters"]),
   weekly("Andhra Lunch Combos", "andhra-lunch-combos", "Proper Andhra lunch combos starting from ₹179.",
     "Andhra-style lunch combos, starting from ₹179 — a quick, filling lunch break near ITPL.",
-    "event-andhra-lunch.jpg", 1, 12, "Every day at lunch", "From ₹179", false, 6),
+    "andhra-chicken-fry.jpg", 1, 12, "Every day · lunch", "From ₹179", false, 6, "light", ["Andhra meals", "Quick service", "Near ITPL"]),
 ];
 
 export const fallbackFaqs: Faq[] = [
@@ -223,14 +232,18 @@ export const fallbackFaqs: Faq[] = [
 ].map(([question, answer], i) => ({ id: `faq-${i}`, question, answer, sort_order: i, is_published: true }));
 
 export const fallbackGallery: GalleryImage[] = [
-  ["rooftop-night.jpg", "Guests dining on the rooftop at The Diner", "rooftop"],
-  ["team-party.jpg", "A team celebrating at The Diner", "people"],
-  ["starters-platter.jpg", "Chicken wings, momos and tacos platter", "food"],
-  ["rooftop-day.jpg", "The rooftop seating area", "rooftop"],
+  ["rooftop-crowd.jpg", "A team celebrating on the rooftop at The Diner", "rooftop"],
+  ["chicken-wings.jpg", "Chilli chicken wings", "food"],
+  ["dance-crowd.jpg", "A packed dance floor on a DJ night", "nights"],
+  ["rooftop-dinner.jpg", "Friends at dinner on the rooftop", "rooftop"],
+  ["chicken-momos.jpg", "Chicken momos with red chutney", "food"],
+  ["team-party.jpg", "A team party at The Diner", "nights"],
   ["andhra-chicken-fry.jpg", "Andhra-style chicken fry on a banana leaf", "food"],
-  ["rooftop-pet-friendly.jpg", "A guest with her dog on the pet-friendly rooftop", "rooftop"],
-  ["prawns.jpg", "Crispy prawns with dip", "food"],
-  ["andhra-chicken-curry.jpg", "Andhra chicken curry with ragi mudde", "food"],
+  ["pet-friendly.jpg", "A guest with her dog — The Diner is pet friendly", "rooftop"],
+  ["chicken-tacos.jpg", "Crispy chicken tacos", "food"],
+  ["dance-floor.jpg", "Lights on the dance floor", "nights"],
+  ["crispy-prawns.jpg", "Crispy prawns with yogurt dip", "food"],
+  ["rooftop.jpg", "The rooftop seating", "rooftop"],
 ].map(([file, alt, category], i) => ({
   id: `g-${i}`, url: img(file), alt, caption: null, category, sort_order: i, is_published: true,
 }));
@@ -280,3 +293,13 @@ export const fallbackPosts: Post[] = [
     created_at: daysAgo(6), updated_at: daysAgo(6),
   },
 ];
+
+/** Real Google reviews (excerpts), credited to the reviewers. */
+export const fallbackTestimonials: Testimonial[] = [
+  ["rupert lawrence", "Hands down one of the best places to eat if you're looking for great vibes, comfort, and quality food all in one place. The industrial yet cozy ambience stands out.", 5],
+  ["Manjunath S", "Service was good, clean tables and good food. I loved the dance floor, and they gave a private room for our team. In ITPL this was the best restaurant.", 5],
+  ["bala shiva Prasath", "Prime location, friendly staff. Veg and non-veg options. Had a special lunch with the team, with ragi ball and rice options. Must visit.", 4],
+  ["vamshi gadadhasu", "A truly pleasant evening! The food was quite good and I really appreciated the attentive service throughout my meal.", 4],
+].map(([author, text, rating], i) => ({
+  id: `t-${i}`, author: author as string, text: text as string, rating: rating as number, source: "Google", sort_order: i, is_published: true,
+}));

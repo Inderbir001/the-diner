@@ -55,9 +55,10 @@ const TABS: { key: SettingsKey; label: string; description: string; fields: Fiel
     description: "Hero, story, numbers, the scrolling ticker, experiences and party packages.",
     fields: [
       { name: "heroEyebrow", label: "Hero label", type: "text" },
-      { name: "heroTitle", label: "Hero headline", type: "text", wide: true },
+      { name: "heroTitle", label: "Hero headline", type: "text", wide: true, help: "Use | to break lines — every second line turns red. e.g. Rooftop|Restobar|Whitefield" },
       { name: "heroSubtitle", label: "Hero text", type: "textarea", rows: 2 },
-      { name: "heroImage", label: "Hero image", type: "image", folder: "home" },
+      { name: "heroImage", label: "Hero main photo (landscape)", type: "image", folder: "home" },
+      { name: "heroSideImages", label: "Hero small photos (2 squares)", type: "imageList", folder: "home" },
       { name: "heroVideo", label: "Hero video (optional MP4, plays muted)", type: "image", folder: "home" },
       { name: "storyTitle", label: "Story heading", type: "text", wide: true },
       { name: "storyBody", label: "Story text", type: "textarea", rows: 5 },

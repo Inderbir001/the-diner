@@ -72,6 +72,8 @@ export const homeSettingsSchema = z.object({
   heroSubtitle: z.string().default(""),
   heroImage: url.default(""),
   heroVideo: url.default(""),
+  /** smaller photos shown beside the headline */
+  heroSideImages: z.array(url).default([]),
   storyTitle: z.string().default(""),
   storyBody: z.string().default(""),
   storyImage: url.default(""),

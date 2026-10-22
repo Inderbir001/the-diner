@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getEvents, getFaqs, getSettings, getSignatureDishes, getSocialPosts, getTestimonials } from "@/lib/data";
+import { getEvents, getFaqs, getGallery, getSettings, getSignatureDishes, getSocialPosts, getTestimonials } from "@/lib/data";
 import { faqJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/env";
 import { Hero } from "@/components/site/hero";
@@ -22,7 +22,7 @@ export const revalidate = 3600;
 export const metadata = { alternates: { canonical: SITE_URL } };
 
 export default async function HomePage() {
-  const [settings, dishes, events, faqs, testimonials, instagram, youtube] = await Promise.all([
+  const [settings, dishes, events, faqs, testimonials, instagram, youtube, gallery] = await Promise.all([
     getSettings(),
     getSignatureDishes(),
     getEvents(),
@@ -30,6 +30,7 @@ export default async function HomePage() {
     getTestimonials(),
     getSocialPosts("instagram", 8),
     getSocialPosts("youtube", 3),
+    getGallery(),
   ]);
   const { home, general, social, booking } = settings;
   const featuredEvents = [...events].sort((a, b) => Number(b.is_featured) - Number(a.is_featured)).slice(0, 3);
@@ -38,7 +39,7 @@ export default async function HomePage() {
     <>
       {faqs.length > 0 && <JsonLd data={faqJsonLd(faqs)} />}
       <Hero home={home} general={general} bookingEnabled={booking.enabled} />
-      <Marquee items={home.marquee} className="border-y border-white/[0.07] bg-coal" />
+      <Marquee items={home.marquee} />
       <Story home={home} />
       <SignatureDishes dishes={dishes} />
       <Experiences items={home.experiences} />
@@ -46,7 +47,7 @@ export default async function HomePage() {
       {featuredEvents.length > 0 && (
         <section className="container-x py-24 sm:py-32" aria-label="Upcoming events">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <SectionHeading eyebrow="What's on" title="Something happening most nights." />
+            <SectionHeading eyebrow="What's on" title="Something on every night." />
             <Reveal>
               <Link href="/events" className="btn-ghost shrink-0">
                 All events →
@@ -63,11 +64,11 @@ export default async function HomePage() {
         </section>
       )}
 
-      <InstagramFeed posts={instagram} social={social} />
+      <InstagramFeed posts={instagram} social={social} fallbackImages={gallery} />
       <YouTubeFeed videos={youtube} social={social} />
       <Testimonials items={testimonials} reviewsUrl={social.googleReviews} />
 
-      <CtaBand image={home.experiences[0]?.image} />
+      <CtaBand image={home.heroSideImages[0] ?? home.storyImage} />
 
       {faqs.length > 0 && (
         <section className="container-x py-24 sm:py-32" aria-label="Frequently asked questions">

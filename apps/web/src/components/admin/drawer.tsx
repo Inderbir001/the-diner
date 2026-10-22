@@ -11,12 +11,14 @@ export function Drawer({
   title,
   children,
   footer,
+  wide,
 }: {
   open: boolean;
   onClose: () => void;
   title: string;
   children: React.ReactNode;
   footer?: React.ReactNode;
+  wide?: boolean;
 }) {
   useEffect(() => {
     if (!open) return;
@@ -43,7 +45,7 @@ export function Drawer({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 32, stiffness: 300 }}
-            className="absolute inset-y-0 right-0 flex w-full max-w-2xl flex-col border-l border-white/10 bg-coal shadow-2xl"
+            className={`absolute inset-y-0 right-0 flex w-full flex-col border-l border-white/10 bg-coal shadow-2xl ${wide ? "max-w-6xl" : "max-w-2xl"}`}
           >
             <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
               <h2 className="font-display text-2xl">{title}</h2>
