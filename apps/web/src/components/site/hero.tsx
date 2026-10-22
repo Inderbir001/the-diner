@@ -24,21 +24,22 @@ export function Hero({ home, general, bookingEnabled }: { home: HomeSettings; ge
     reduce ? {} : { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, delay, ease: EASE } };
 
   return (
-    <section className="relative overflow-hidden bg-ink pb-16 pt-32 sm:pt-36 lg:pb-24">
+    <section className="relative overflow-hidden bg-ink pb-16 pt-32 sm:pt-36 lg:pb-16">
+      {/* the headline is capped by screen height too, so the whole hero fits a laptop screen at 100% */}
       {/* red glow + oversized grill mark for depth */}
       <div className="pointer-events-none absolute -right-40 -top-40 size-[640px] rounded-full bg-brass/25 blur-[140px]" aria-hidden />
       <GrillMark className="pointer-events-none absolute -bottom-24 -left-24 size-[420px] text-white/[0.03]" />
 
       <div className="container-x relative grid gap-12 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-7">
-          <motion.div {...rise(0.05)} className="mb-7 flex flex-wrap items-center gap-2.5">
+          <motion.div {...rise(0.05)} className="mb-6 flex flex-wrap items-center gap-2.5 lg:mb-5">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/[0.07] px-4 py-2 text-xs font-bold uppercase tracking-wider text-sand">
               <MapPin className="size-3.5 text-brass" /> {home.heroEyebrow || general.address.locality}
             </span>
             <OpenStatus hours={general.hours} />
           </motion.div>
 
-          <h1 className="font-display text-[clamp(4.2rem,12.5vw,11.5rem)] leading-[0.84] tracking-[0.005em]">
+          <h1 className="font-display text-[clamp(4.2rem,min(12.5vw,13.5svh),11.5rem)] leading-[0.84] tracking-[0.005em]">
             {lines.map((line, i) => (
               <span key={line} className="block overflow-hidden">
                 <motion.span
@@ -53,11 +54,11 @@ export function Hero({ home, general, bookingEnabled }: { home: HomeSettings; ge
             ))}
           </h1>
 
-          <motion.p {...rise(0.45)} className="mt-8 max-w-xl text-lg font-medium leading-relaxed text-sand sm:text-xl">
+          <motion.p {...rise(0.45)} className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-sand sm:text-xl">
             {home.heroSubtitle}
           </motion.p>
 
-          <motion.div {...rise(0.55)} className="mt-9 flex flex-wrap items-center gap-3">
+          <motion.div {...rise(0.55)} className="mt-7 flex flex-wrap items-center gap-3">
             {bookingEnabled && (
               <Link href="/reserve" className="btn-primary !px-8 !py-4 text-base">
                 Book a table <ArrowRight className="size-4" />
@@ -73,7 +74,7 @@ export function Hero({ home, general, bookingEnabled }: { home: HomeSettings; ge
         </div>
 
         <motion.div
-          className="relative lg:col-span-5"
+          className="relative lg:col-span-5 lg:ml-auto lg:w-full lg:max-w-[60svh]"
           initial={reduce ? false : { opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.25, ease: EASE }}
