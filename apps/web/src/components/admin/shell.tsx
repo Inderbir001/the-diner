@@ -51,7 +51,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   const nav = (
     <nav className="flex h-full flex-col">
       <Link href="/admin" className="px-3 pb-8 pt-2">
-        <span className="font-display text-2xl italic">The Diner</span>
+        <span className="font-display text-3xl">The Diner</span>
         <span className="ml-2 rounded-full bg-brass/15 px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-widest text-brass">Admin</span>
       </Link>
       <div className="flex-1 space-y-7 overflow-y-auto">
@@ -103,7 +103,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-dvh lg:grid lg:grid-cols-[260px_1fr]">
       <aside className="sticky top-0 hidden h-dvh border-r border-white/[0.07] bg-coal p-4 lg:block">{nav}</aside>
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-white/[0.07] bg-coal/90 px-4 py-3 backdrop-blur lg:hidden">
-        <span className="font-display text-xl italic">The Diner · Admin</span>
+        <span className="font-display text-2xl">The Diner · Admin</span>
         <button type="button" onClick={() => setOpen(true)} className="inline-flex size-10 items-center justify-center rounded-full bg-white/5" aria-label="Open navigation">
           <MenuIcon className="size-5" />
         </button>

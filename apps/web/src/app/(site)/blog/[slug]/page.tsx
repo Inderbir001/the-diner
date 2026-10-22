@@ -79,7 +79,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
             <span aria-hidden>·</span>
             <span>{post.author}</span>
           </p>
-          <SplitWords as="h1" immediate text={post.title} className="mt-6 max-w-5xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-light leading-[0.98] tracking-[-0.02em]" />
+          <SplitWords as="h1" immediate text={post.title} className="mt-6 max-w-5xl font-display text-[clamp(3.2rem,8vw,7.5rem)] leading-[0.88]" />
           {post.excerpt && <p className="mt-8 max-w-2xl text-xl leading-relaxed text-sand">{post.excerpt}</p>}
         </header>
 

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { EventPoster } from "@/components/site/event-poster";
 import { notFound } from "next/navigation";
 import { CalendarDays, Repeat, Ticket } from "lucide-react";
 import { getEvent, getEvents, getSettings } from "@/lib/data";
@@ -55,11 +55,7 @@ export default async function EventPage({ params }: PageProps<"/events/[slug]">)
       <article className="container-x pb-24">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            {event.image_url && (
-              <div className="relative mb-12 aspect-[16/10] overflow-hidden rounded-[28px]">
-                <Image src={event.image_url} alt={event.title} fill priority sizes="(min-width:1024px) 60vw, 100vw" className="object-cover" />
-              </div>
-            )}
+            <EventPoster event={event} priority sizes="(min-width:1024px) 55vw, 100vw" className="mb-12 max-w-xl" />
             {event.body && <div className="prose prose-invert prose-lg prose-diner max-w-none" dangerouslySetInnerHTML={{ __html: renderMarkdown(event.body) }} />}
           </div>
           <aside className="lg:col-span-5">

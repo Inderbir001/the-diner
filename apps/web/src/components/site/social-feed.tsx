@@ -7,7 +7,18 @@ import { SocialIcon } from "./social-icon";
 import { YouTubeLite } from "./youtube-lite";
 
 /** Latest Instagram posts — synced automatically by the API every 30 minutes. */
-export function InstagramFeed({ posts, social, limit = 8 }: { posts: SocialPost[]; social: SocialSettings; limit?: number }) {
+/** Until Instagram is connected, our own photos fill the grid and link to the profile. */
+export function InstagramFeed({
+  posts,
+  social,
+  limit = 8,
+  fallbackImages = [],
+}: {
+  posts: SocialPost[];
+  social: SocialSettings;
+  limit?: number;
+  fallbackImages?: { url: string; alt: string }[];
+}) {
   if (!posts.length && !social.instagram) return null;
   const handle = social.instagramHandle ? `@${social.instagramHandle}` : "Instagram";
   return (
@@ -59,12 +70,24 @@ export function InstagramFeed({ posts, social, limit = 8 }: { posts: SocialPost[
             ))}
           </ul>
         ) : (
-          <Reveal className="glass mt-14 flex flex-col items-center gap-4 rounded-[28px] px-6 py-16 text-center">
-            <SocialIcon name="instagram" className="size-8 text-brass" />
-            <p className="max-w-md text-sand">
-              Our latest reels, specials and nights out land here automatically. Follow {handle} so you don't miss the next one.
-            </p>
-          </Reveal>
+          <ul className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+            {fallbackImages.slice(0, limit).map((img, i) => (
+              <Reveal as="li" key={img.url} delay={(i % 4) * 0.06}>
+                <a
+                  href={social.instagram || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block aspect-square overflow-hidden rounded-2xl bg-smoke"
+                  aria-label={`${img.alt} — follow ${handle} on Instagram`}
+                >
+                  <Image src={img.url} alt={img.alt} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition duration-700 group-hover:scale-105" />
+                  <span className="absolute inset-0 flex items-center justify-center bg-brass/80 opacity-0 transition group-hover:opacity-100">
+                    <SocialIcon name="instagram" className="size-8 text-cream" />
+                  </span>
+                </a>
+              </Reveal>
+            ))}
+          </ul>
         )}
       </div>
     </section>

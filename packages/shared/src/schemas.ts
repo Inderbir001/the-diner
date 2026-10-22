@@ -73,6 +73,9 @@ export const bookingAdminSchema = z.object({
   source: z.string().max(40).default("admin"),
 });
 
+export const EVENT_THEMES = ["red", "dark", "light"] as const;
+export type EventTheme = (typeof EVENT_THEMES)[number];
+
 export const menuCategorySchema = z.object({
   name: z.string().trim().min(1).max(80),
   slug,
@@ -112,6 +115,11 @@ export const eventSchema = z.object({
   cta_url: z.string().max(2000).nullish(),
   is_featured: z.boolean().default(false),
   is_published: z.boolean().default(true),
+  /** poster template fields */
+  kicker: z.string().max(60).nullish(),
+  highlights: z.array(z.string().max(60)).max(6).default([]),
+  theme: z.enum(EVENT_THEMES).default("red"),
+  display_mode: z.enum(["template", "image"]).default("template"),
 });
 
 export const postSchema = z.object({
