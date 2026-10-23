@@ -25,8 +25,8 @@ export function CtaBand({
         <div className="relative p-8 sm:p-14 lg:py-20">
           <SplitWords text={title} className="font-display text-5xl leading-[0.88] sm:text-8xl" />
           <Reveal delay={0.15}>
-            <p className="mt-6 max-w-md text-lg font-semibold text-cream/90">{text}</p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <p className="mt-4 max-w-md text-base font-semibold sm:mt-6 sm:text-lg text-cream/90">{text}</p>
+            <div className="mt-8 grid gap-3 sm:mt-9 sm:flex sm:flex-wrap">
               <Link href={primary.href} className="btn-dark !px-8 !py-4 text-base">
                 {primary.label} <ArrowRight className="size-4" />
               </Link>
@@ -39,7 +39,7 @@ export function CtaBand({
           </Reveal>
         </div>
         {image && (
-          <div className="relative min-h-[280px] lg:min-h-full">
+          <div className="relative min-h-[220px] sm:min-h-[280px] lg:min-h-full">
             <Image src={image} alt="" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
           </div>
         )}

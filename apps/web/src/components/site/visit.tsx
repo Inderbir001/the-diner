@@ -8,7 +8,7 @@ import { SocialIcon } from "./social-icon";
 export function Visit({ general, headingAs = "h2" }: { general: GeneralSettings; headingAs?: "h1" | "h2" }) {
   const address = [general.address.street, general.address.locality, `${general.address.city} ${general.address.postalCode}`];
   return (
-    <section className="container-x py-24 sm:py-32" aria-label="Visit us">
+    <section className="container-x py-16 sm:py-32" aria-label="Visit us">
       <div className="grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <SectionHeading as={headingAs} eyebrow="Find us" title="Pull up a chair in Whitefield." />

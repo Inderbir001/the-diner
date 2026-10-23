@@ -10,7 +10,7 @@ export function SignatureDishes({ dishes }: { dishes: MenuItem[] }) {
   const withPhotos = dishes.filter((d) => d.image_url).slice(0, 8);
   if (!withPhotos.length) return null;
   return (
-    <section className="py-24 sm:py-32" aria-label="Signature dishes">
+    <section className="py-16 sm:py-32" aria-label="Signature dishes">
       <div className="container-x">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <SectionHeading eyebrow="From our kitchen" title="Order these first." />

@@ -16,7 +16,7 @@ export function Drinks({ menu }: { menu: MenuSection[] }) {
   if (!drinks.length) return null;
 
   return (
-    <section className="overflow-hidden py-24 sm:py-32" aria-label="Drinks" id="drinks">
+    <section className="overflow-hidden py-16 sm:py-32" aria-label="Drinks" id="drinks">
       <div className="container-x">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <SectionHeading
@@ -33,26 +33,29 @@ export function Drinks({ menu }: { menu: MenuSection[] }) {
       </div>
 
       {/* one card and a peek of the next on phones; four across on desktop */}
-      <ul className="scrollbar-none mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:px-8 lg:container-x lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible">
+      <ul className="scrollbar-none mt-10 flex sm:mt-14 snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:px-8 lg:container-x lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible">
         {drinks.map((d, i) => (
-          <Reveal as="li" key={d.id} delay={(i % 4) * 0.06} className="w-[58%] shrink-0 snap-start sm:w-[42%] lg:w-auto">
-            <Link href="/menu#cocktails" className="group relative block aspect-[3/4] overflow-hidden rounded-[28px] bg-coal ring-1 ring-white/10 transition hover:ring-brass">
-              <Image
-                src={d.image_url!}
-                alt={d.name}
-                fill
-                sizes="(min-width:1024px) 25vw, 72vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-              {d.price !== null && (
-                <span className="absolute right-4 top-4 rounded-full bg-brass px-3 py-1.5 font-display text-2xl leading-none text-cream">
-                  {formatPrice(d.price)}
-                </span>
-              )}
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <h3 className="font-display text-3xl leading-none text-cream sm:text-4xl">{d.name}</h3>
-                {d.description && <p className="mt-2 text-sm text-sand">{d.description}</p>}
+          <Reveal as="li" key={d.id} delay={(i % 4) * 0.06} className="w-[64%] shrink-0 snap-start sm:w-[42%] lg:w-auto">
+            <Link href="/menu#cocktails" className="group flex h-full flex-col overflow-hidden rounded-[24px] bg-coal ring-1 ring-white/10 transition hover:ring-brass sm:rounded-[28px]">
+              {/* drink photos come in every shape: show the whole photo over a blurred copy of itself */}
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <Image src={d.image_url!} alt="" aria-hidden fill sizes="64px" className="scale-125 object-cover opacity-60 blur-2xl" />
+                <Image
+                  src={d.image_url!}
+                  alt={d.name}
+                  fill
+                  sizes="(min-width:1024px) 25vw, 60vw"
+                  className="object-contain transition-transform duration-700 group-hover:scale-105"
+                />
+                {d.price !== null && (
+                  <span className="absolute right-3 top-3 rounded-full bg-brass px-3 py-1.5 font-display text-xl leading-none text-cream shadow-lg shadow-black/40 sm:text-2xl">
+                    {formatPrice(d.price)}
+                  </span>
+                )}
+              </div>
+              <div className="flex-1 p-4 sm:p-5">
+                <h3 className="font-display text-2xl leading-none text-cream sm:text-3xl">{d.name}</h3>
+                {d.description && <p className="mt-1.5 line-clamp-2 text-[0.8rem] leading-snug text-sand sm:text-sm">{d.description}</p>}
               </div>
             </Link>
           </Reveal>

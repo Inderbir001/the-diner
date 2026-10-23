@@ -50,7 +50,7 @@ export default async function HomePage() {
       <Experiences items={home.experiences} />
 
       {featuredEvents.length > 0 && (
-        <section className="container-x py-24 sm:py-32" aria-label="Upcoming events">
+        <section className="container-x py-16 sm:py-32" aria-label="Upcoming events">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <SectionHeading eyebrow="What's on" title="Something on every night." />
             <Reveal>
@@ -76,7 +76,7 @@ export default async function HomePage() {
       <CtaBand image={home.heroSideImages[0] ?? home.storyImage} />
 
       {faqs.length > 0 && (
-        <section className="container-x py-24 sm:py-32" aria-label="Frequently asked questions">
+        <section className="container-x py-16 sm:py-32" aria-label="Frequently asked questions">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <SectionHeading eyebrow="Good to know" title="Questions, answered." />

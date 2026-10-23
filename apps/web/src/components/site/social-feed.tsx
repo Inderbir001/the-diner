@@ -22,7 +22,7 @@ export function InstagramFeed({
   if (!posts.length && !social.instagram) return null;
   const handle = social.instagramHandle ? `@${social.instagramHandle}` : "Instagram";
   return (
-    <section className="py-24 sm:py-32" aria-label="Instagram">
+    <section className="py-16 sm:py-32" aria-label="Instagram">
       <div className="container-x">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <SectionHeading eyebrow={handle} title="Fresh off the 'gram." />
@@ -98,7 +98,7 @@ export function YouTubeFeed({ videos, social, limit = 3 }: { videos: SocialPost[
   if (!videos.length) return null;
   const [featured, ...rest] = videos.slice(0, limit);
   return (
-    <section className="py-24 sm:py-32" aria-label="Videos">
+    <section className="py-16 sm:py-32" aria-label="Videos">
       <div className="container-x">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <SectionHeading eyebrow="On YouTube" title="Watch the nights unfold." />

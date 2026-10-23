@@ -26,7 +26,7 @@ export function Story({ home }: { home: HomeSettings }) {
           </Reveal>
           <SplitWords text={home.storyTitle} className="font-display text-5xl leading-[0.88] text-ink sm:text-7xl lg:text-8xl" />
           <Reveal delay={0.1}>
-            <p className="mt-8 max-w-2xl text-lg font-medium leading-relaxed text-ink/75">{home.storyBody}</p>
+            <p className="mt-6 max-w-2xl text-base font-medium sm:mt-8 sm:text-lg leading-relaxed text-ink/75">{home.storyBody}</p>
           </Reveal>
           {home.stats.length > 0 && (
             <dl className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4">
