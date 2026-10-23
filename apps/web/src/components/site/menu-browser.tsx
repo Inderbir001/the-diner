@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { Flame, Leaf, Search, Sparkles, X } from "lucide-react";
 import type { MenuSection } from "@/lib/data";
 import { cn, formatPrice } from "@/lib/utils";
+import { GrillMark } from "./logo";
 
 type Kind = "all" | "food" | "drinks";
 
@@ -127,25 +128,32 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
               </h2>
               {section.description && <p className="text-sand md:col-span-5 md:text-right">{section.description}</p>}
             </div>
-            {/* photo cards: one per row on phones, never two cramped columns */}
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {section.items.map((item) => (
-                <li
-                  key={item.id}
-                  className={cn(
-                    "group flex flex-col overflow-hidden rounded-[22px] bg-coal ring-1 ring-white/10 transition hover:ring-brass",
-                    !item.is_available && "opacity-50",
-                  )}
-                >
-                  {item.image_url && (
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <Image
-                        src={item.image_url}
-                        alt={item.name}
-                        fill
-                        sizes="(min-width:1024px) 23vw, (min-width:640px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
+            {section.items.some((i) => i.image_url) ? (
+              /* photo cards: one per row on phones, never two cramped columns */
+              <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {section.items.map((item) => (
+                  <li
+                    key={item.id}
+                    className={cn(
+                      "group flex flex-col overflow-hidden rounded-[22px] bg-coal ring-1 ring-white/10 transition hover:ring-brass",
+                      !item.is_available && "opacity-50",
+                    )}
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden bg-smoke">
+                      {item.image_url ? (
+                        <Image
+                          src={item.image_url}
+                          alt={item.name}
+                          fill
+                          sizes="(min-width:1024px) 23vw, (min-width:640px) 50vw, 100vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      ) : (
+                        // no photo yet: a branded tile keeps the grid even
+                        <div className="flex size-full items-center justify-center bg-[radial-gradient(circle_at_50%_40%,rgb(239_62_54/0.18),transparent_65%)]">
+                          <GrillMark className="size-14 text-white/15" />
+                        </div>
+                      )}
                       <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
                         {item.is_signature && (
                           <span className="inline-flex items-center gap-1 rounded-full bg-brass px-3 py-1 text-[0.65rem] font-extrabold uppercase tracking-wider text-cream">
@@ -162,40 +170,55 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
                         <span className="absolute inset-x-0 bottom-0 bg-ink/80 py-2 text-center text-xs font-extrabold uppercase tracking-wider text-cream">Sold out today</span>
                       )}
                     </div>
-                  )}
-                  <div className="flex flex-1 flex-col p-4 sm:p-5">
-                    <div className="flex items-start justify-between gap-4">
-                      <h3 className="flex items-start gap-2 font-display text-2xl leading-none lg:text-[1.7rem]">
-                        <span
-                          className={cn("mt-1 inline-flex size-3.5 shrink-0 rounded-[3px] border-2", item.is_veg ? "border-leaf" : "border-ember")}
-                          title={item.is_veg ? "Vegetarian" : "Non-vegetarian"}
-                        >
-                          <span className={cn("m-auto block size-1.5 rounded-full", item.is_veg ? "bg-leaf" : "bg-ember")} />
-                        </span>
+                    <div className="flex flex-1 flex-col p-4 sm:p-5">
+                      <div className="flex items-start justify-between gap-4">
+                        <h3 className="flex items-start gap-2 font-display text-2xl leading-none lg:text-[1.7rem]">
+                          {section.kind === "food" && <VegMark veg={item.is_veg} />}
+                          {item.name}
+                        </h3>
+                        {item.price !== null && (
+                          <span className="shrink-0 rounded-full bg-brass px-2.5 py-1 font-display text-lg leading-none text-cream">
+                            {formatPrice(item.price)}
+                          </span>
+                        )}
+                      </div>
+                      {item.price_note && <p className="mt-2 text-xs font-semibold text-muted">{item.price_note}</p>}
+                      {item.description && <p className="mt-2 text-[0.8rem] leading-snug text-sand">{item.description}</p>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              /* sections without photos (spirits, cocktails…) read better as a price list */
+              <ul className="grid gap-x-14 md:grid-cols-2">
+                {section.items.map((item) => (
+                  <li key={item.id} className={cn("border-b border-white/[0.07] py-4", !item.is_available && "opacity-50")}>
+                    <div className="flex items-baseline gap-3">
+                      <h3 className="flex items-center gap-2 font-display text-2xl leading-none">
+                        {section.kind === "food" && <VegMark veg={item.is_veg} />}
                         {item.name}
                       </h3>
-                      {item.price !== null && (
-                        <span className="shrink-0 rounded-full bg-brass px-2.5 py-1 font-display text-lg leading-none text-cream">
-                          {formatPrice(item.price)}
-                        </span>
-                      )}
+                      <span className="mb-1 flex-1 border-b border-dotted border-white/15" aria-hidden />
+                      {item.price !== null && <span className="shrink-0 font-display text-2xl leading-none text-brass">{formatPrice(item.price)}</span>}
                     </div>
-                    {item.price_note && <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-muted">{item.price_note}</p>}
-                    {item.description && <p className="mt-2 text-[0.8rem] leading-snug text-sand">{item.description}</p>}
-                    {!item.image_url && (item.is_signature || item.is_spicy) && (
-                      <p className="mt-3 flex gap-3 text-[0.65rem] font-extrabold uppercase tracking-wider">
-                        {item.is_signature && <span className="text-brass">House favourite</span>}
-                        {item.is_spicy && <span className="text-ember">Spicy</span>}
-                      </p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
+                    {item.price_note && <p className="mt-1.5 text-xs font-semibold text-muted">{item.price_note}</p>}
+                    {item.description && <p className="mt-1.5 text-[0.8rem] leading-snug text-sand">{item.description}</p>}
+                  </li>
+                ))}
+              </ul>
+            )}
           </section>
         ))}
         <p className="text-center text-xs text-muted">Prices in INR, exclusive of taxes. Please tell your server about any allergies.</p>
       </div>
     </div>
+  );
+}
+
+function VegMark({ veg }: { veg: boolean }) {
+  return (
+    <span className={cn("mt-1 inline-flex size-3.5 shrink-0 rounded-[3px] border-2", veg ? "border-leaf" : "border-ember")} title={veg ? "Vegetarian" : "Non-vegetarian"}>
+      <span className={cn("m-auto block size-1.5 rounded-full", veg ? "bg-leaf" : "bg-ember")} />
+    </span>
   );
 }

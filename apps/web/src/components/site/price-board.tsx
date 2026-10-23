@@ -8,12 +8,12 @@ import { SectionHeading } from "./section-heading";
 
 /** "From ₹X" groups, worked out from the live menu so they never go stale. */
 const FROM: [label: string, slugs: string[], match?: RegExp][] = [
-  ["Starters", ["starters-veg", "starters-non-veg"]],
-  ["Biryani", ["biryani-rice"], /biryani/i],
+  ["Starters", ["veg-starters", "chicken-starters", "mutton-starters", "seafood", "egg"]],
+  ["Biryani", ["biryanis"], /biryani/i],
   ["Mains", ["mains"]],
-  ["Pints", ["beer"], /pint/i],
+  ["Draught beer", ["beer"], /draught|beer/i],
   ["Cocktails", ["cocktails"]],
-  ["Desserts", ["desserts"]],
+  ["Shooters", ["shooters"]],
 ];
 
 export function fromPrices(menu: MenuSection[]) {
