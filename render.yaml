@@ -25,10 +25,11 @@ services:
         sync: false
       - key: SUPABASE_SERVICE_ROLE_KEY
         sync: false
+      # switch WEB_URL to https://thediner.in once the domain points at Vercel
       - key: WEB_URL
-        value: https://thediner.in
+        value: https://the-diner-blue.vercel.app
       - key: CORS_ORIGINS
-        value: https://thediner.in,https://www.thediner.in
+        value: https://thediner.in,https://www.thediner.in,https://the-diner-blue.vercel.app
       - key: REVALIDATE_SECRET
         sync: false
       - key: CRON_SECRET
