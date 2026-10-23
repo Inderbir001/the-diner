@@ -65,7 +65,7 @@ insert into public.settings (key, value) values
   "heroEyebrow": "Whitefield · near ITPL Gate 3",
   "heroTitle": "Rooftop|Restobar|Whitefield",
   "heroSubtitle": "Andhra spice, cold pitchers, live music and a rooftop that stays busy till 12:30 AM. Team parties, match nights and long dinners — this is Whitefield's loudest table.",
-  "heroImage": "/images/diner/rooftop-crowd.jpg",
+  "heroImage": "/images/diner/rooftop-dinner.jpg",
   "heroSideImages": ["/images/diner/chicken-wings.jpg", "/images/diner/dance-floor.jpg"],
   "heroVideo": "",
   "storyTitle": "Good place. Good food. Good people.",

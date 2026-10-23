@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import type { HomeSettings } from "@diner/shared";
 import type { MenuSection } from "@/lib/data";
 import { Reveal } from "@/components/motion/reveal";
+import { CountUp } from "@/components/motion/count-up";
 import { formatPrice } from "@/lib/utils";
 import { SectionHeading } from "./section-heading";
 
@@ -50,7 +51,7 @@ export function PriceBoard({ home, menu }: { home: HomeSettings; menu: MenuSecti
               const tile = (
                 <>
                   <span className="text-[0.6rem] font-extrabold uppercase tracking-[0.14em] text-ink/55 sm:text-xs sm:tracking-[0.18em]">{d.note || " "}</span>
-                  <span className="mt-2 block font-display text-5xl leading-[0.85] text-brass sm:mt-4 sm:text-8xl">{d.price}</span>
+                  <span className="mt-2 block font-display text-5xl leading-[0.85] text-brass sm:mt-4 sm:text-8xl"><CountUp value={d.price} /></span>
                   <span className="mt-2 block text-sm font-bold leading-snug sm:mt-4 sm:text-lg">{d.title}</span>
                 </>
               );
@@ -76,7 +77,7 @@ export function PriceBoard({ home, menu }: { home: HomeSettings; menu: MenuSecti
               {from.map((f) => (
                 <div key={f.label} className="border-b border-r border-white/10 p-3 sm:p-6">
                   <dt className="text-[0.55rem] font-extrabold uppercase tracking-[0.12em] text-sand sm:text-xs sm:tracking-[0.18em]">{f.label} from</dt>
-                  <dd className="mt-1 font-display text-3xl leading-none sm:mt-2 sm:text-5xl">{formatPrice(f.price)}</dd>
+                  <dd className="mt-1 font-display text-3xl leading-none sm:mt-2 sm:text-5xl"><CountUp value={formatPrice(f.price)} /></dd>
                 </div>
               ))}
             </dl>

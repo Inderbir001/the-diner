@@ -24,7 +24,7 @@ export function SignatureDishes({ dishes }: { dishes: MenuItem[] }) {
         <ul className="mt-10 grid gap-3 sm:mt-12 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {withPhotos.map((dish, i) => (
             <Reveal as="li" key={dish.id} delay={(i % 4) * 0.06}>
-              <Link href="/menu" className="group flex overflow-hidden rounded-[18px] sm:block sm:rounded-[22px] bg-coal ring-1 ring-white/10 transition hover:ring-brass">
+              <Link href="/menu" className="group flex overflow-hidden rounded-[18px] transition active:scale-[0.98] sm:block sm:hover:-translate-y-1.5 sm:rounded-[22px] bg-coal ring-1 ring-white/10 transition hover:ring-brass">
                 {/* phones: a compact row with the photo on the left */}
                 <div className="relative min-h-28 w-28 shrink-0 overflow-hidden sm:aspect-[4/3] sm:min-h-0 sm:w-auto">
                   <Image
@@ -53,7 +53,7 @@ export function SignatureDishes({ dishes }: { dishes: MenuItem[] }) {
                     {dish.description && <p className="mt-1.5 line-clamp-2 text-[0.8rem] leading-snug text-sand">{dish.description}</p>}
                   </div>
                   {dish.price !== null && (
-                    <span className="shrink-0 rounded-full bg-brass px-2.5 py-1 font-display text-base leading-none text-cream sm:text-lg">{formatPrice(dish.price)}</span>
+                    <span className="shrink-0 rounded-full bg-brass px-2.5 py-1 font-display transition-transform group-hover:-rotate-6 group-hover:scale-110 text-base leading-none text-cream sm:text-lg">{formatPrice(dish.price)}</span>
                   )}
                 </div>
               </Link>

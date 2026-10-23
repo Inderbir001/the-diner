@@ -63,7 +63,7 @@ export const fallbackSettings: SettingsMap = {
     heroSideImages: [img("chicken-wings.jpg"), img("dance-floor.jpg")],
     heroSubtitle:
       "Andhra spice, cold pitchers, live music and a rooftop that stays busy till 12:30 AM. Team parties, match nights and long dinners — this is Whitefield's loudest table.",
-    heroImage: img("rooftop-crowd.jpg"),
+    heroImage: img("rooftop-dinner.jpg"),
     storyTitle: "Good place. Good food. Good people.",
     storyBody:
       "The Diner started with a simple idea: a place in Whitefield where you can walk in after work, order a proper Andhra meal and a cold beer, and stay for the music. Our kitchen leans on Guntur spice, slow-cooked biryanis and a tandoor that runs all night. Upstairs, the rooftop fills up for match nights, DJ sets and long weekend dinners.",

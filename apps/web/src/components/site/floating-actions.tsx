@@ -22,7 +22,7 @@ export function FloatingActions({ general }: { general: GeneralSettings }) {
 
   return (
     // on phones it sits above the Call / Directions / Book bar
-    <div className="pointer-events-none fixed bottom-[4.25rem] right-3 z-40 flex flex-col items-center gap-2.5 sm:bottom-[5rem] sm:right-4 lg:bottom-6 lg:right-6">
+    <div className="pointer-events-none fixed bottom-[5.25rem] right-3 z-40 flex flex-col items-center gap-2.5 sm:bottom-[5rem] sm:right-4 lg:bottom-6 lg:right-6">
       <AnimatePresence>
         {showTop && (
           <motion.button
@@ -46,8 +46,9 @@ export function FloatingActions({ general }: { general: GeneralSettings }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with us on WhatsApp"
-          className="pointer-events-auto inline-flex size-12 items-center sm:size-14 justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/50 transition hover:scale-105 hover:bg-[#1ebe5a]"
+          className="pointer-events-auto relative isolate inline-flex size-12 items-center justify-center sm:size-14 rounded-full bg-[#25D366] text-white shadow-xl shadow-black/50 transition hover:scale-105 hover:bg-[#1ebe5a]"
         >
+          <span className="absolute inset-0 -z-10 animate-pulse-ring rounded-full bg-[#25D366] motion-reduce:hidden" aria-hidden />
           <SocialIcon name="whatsapp" className="size-6 sm:size-7" />
         </a>
       )}

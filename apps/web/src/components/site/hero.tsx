@@ -10,6 +10,24 @@ import { GrillMark } from "./logo";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+/** Spinning red "open till" badge. */
+function Stamp({ id, className }: { id: string; className?: string }) {
+  return (
+    <div className={className}>
+      <svg viewBox="0 0 100 100" className="absolute inset-0 animate-spin-slow" aria-hidden>
+        <defs>
+          <path id={id} d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0" />
+        </defs>
+        <circle cx="50" cy="50" r="49" className="fill-brass" />
+        <text className="fill-cream font-display text-[11.5px] tracking-[0.18em]">
+          <textPath href={`#${id}`}>OPEN TILL 12:30 AM • ROOFTOP •</textPath>
+        </text>
+      </svg>
+      <GrillMark steam className="absolute inset-[34%] text-cream" />
+    </div>
+  );
+}
+
 /** "Rooftop|Restobar|Whitefield" → one headline line per segment; every second line in red. */
 function headlineLines(title: string) {
   const parts = title.includes("|") ? title.split("|") : title.split(/(?<=[.,!?])\s+/);
@@ -24,16 +42,25 @@ export function Hero({ home, general, bookingEnabled }: { home: HomeSettings; ge
     reduce ? {} : { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, delay, ease: EASE } };
 
   return (
-    <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink pb-24 pt-32 sm:pt-36 lg:block lg:min-h-0 lg:pb-16">
+    <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink pb-32 pt-32 sm:pt-36 lg:block lg:min-h-0 lg:pb-16">
       {/* the headline is capped by screen height too, so the whole hero fits a laptop screen at 100% */}
       {/* phones and tablets: the rooftop photo fills the first screen behind the text */}
       {home.heroImage && (
         <div className="absolute inset-0 lg:hidden" aria-hidden>
-          <Image src={home.heroImage} alt="" fill priority sizes="100vw" className="object-cover" />
+          <Image src={home.heroImage} alt="" fill priority sizes="100vw" className="animate-kenburns object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/45 to-ink" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgb(239_62_54/0.35),transparent_60%)]" />
         </div>
       )}
+      {/* phones: the badge spins in the corner of the photo */}
+      <motion.div
+        className="absolute right-4 top-[7.5rem] z-10 sm:right-8 lg:hidden"
+        initial={reduce ? false : { opacity: 0, scale: 0.4, rotate: -90 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{ duration: 0.9, delay: 0.7, ease: EASE }}
+      >
+        <Stamp id="stamp-phone" className="relative size-20 sm:size-24" />
+      </motion.div>
       {/* red glow + oversized grill mark for depth */}
       <div className="pointer-events-none absolute -right-40 -top-40 hidden size-[640px] rounded-full bg-brass/25 blur-[140px] lg:block" aria-hidden />
       <GrillMark className="pointer-events-none absolute -bottom-24 -left-24 hidden size-[420px] text-white/[0.03] lg:block" />
@@ -99,19 +126,7 @@ export function Hero({ home, general, bookingEnabled }: { home: HomeSettings; ge
               </div>
             ))}
           </div>
-          {/* spinning stamp */}
-          <div className="absolute -left-6 top-[38%] hidden size-32 sm:block lg:-left-12">
-            <svg viewBox="0 0 100 100" className="absolute inset-0 animate-spin-slow" aria-hidden>
-              <defs>
-                <path id="stamp-circle" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0" />
-              </defs>
-              <circle cx="50" cy="50" r="49" className="fill-brass" />
-              <text className="fill-cream font-display text-[11.5px] tracking-[0.18em]">
-                <textPath href="#stamp-circle">OPEN TILL 12:30 AM • ROOFTOP •</textPath>
-              </text>
-            </svg>
-            <GrillMark className="absolute inset-[34%] text-cream" />
-          </div>
+          <Stamp id="stamp-desk" className="absolute -left-6 top-[38%] size-32 lg:-left-12" />
         </motion.div>
       </div>
     </section>

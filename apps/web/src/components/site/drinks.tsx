@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { MenuSection } from "@/lib/data";
 import { Reveal } from "@/components/motion/reveal";
+import { AutoSlide } from "@/components/motion/auto-slide";
 import { formatPrice } from "@/lib/utils";
 import { SectionHeading } from "./section-heading";
 
@@ -32,14 +33,15 @@ export function Drinks({ menu }: { menu: MenuSection[] }) {
         </div>
       </div>
 
-      {/* one card and a peek of the next on phones; four across on desktop */}
-      <ul className="scrollbar-none mt-10 flex sm:mt-14 snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:px-8 lg:container-x lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible">
+      {/* one card and a peek of the next on phones, sliding on its own; four across on desktop */}
+      <AutoSlide className="scrollbar-none mt-10 flex scroll-px-5 snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:mt-14 sm:scroll-px-8 sm:px-8 lg:container-x lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible">
         {drinks.map((d, i) => (
           <Reveal as="li" key={d.id} delay={(i % 4) * 0.06} className="w-[64%] shrink-0 snap-start sm:w-[42%] lg:w-auto">
             <Link href="/menu#cocktails" className="group flex h-full flex-col overflow-hidden rounded-[24px] bg-coal ring-1 ring-white/10 transition hover:ring-brass sm:rounded-[28px]">
               {/* drink photos come in every shape: show the whole photo over a blurred copy of itself */}
               <div className="relative aspect-[4/5] overflow-hidden">
-                <Image src={d.image_url!} alt="" aria-hidden fill sizes="64px" className="scale-125 object-cover opacity-60 blur-2xl" />
+                <Image src={d.image_url!} alt="" aria-hidden fill sizes="64px" className="scale-150 object-cover blur-2xl" />
+                <div className="absolute inset-0 bg-ink/25" />
                 <Image
                   src={d.image_url!}
                   alt={d.name}
@@ -60,7 +62,7 @@ export function Drinks({ menu }: { menu: MenuSection[] }) {
             </Link>
           </Reveal>
         ))}
-      </ul>
+      </AutoSlide>
     </section>
   );
 }

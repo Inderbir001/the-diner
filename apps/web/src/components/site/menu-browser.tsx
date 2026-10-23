@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "motion/react";
 import { ChevronDown, Flame, Leaf, Search, Sparkles, X } from "lucide-react";
 import type { MenuSection } from "@/lib/data";
 import { cn, formatPrice } from "@/lib/utils";
@@ -117,7 +116,8 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
                   onClick={() => setKind(k)}
                   className={cn("relative rounded-full px-4 py-2 text-sm font-semibold capitalize transition", kind === k ? "text-ink" : "text-sand hover:text-cream")}
                 >
-                  {kind === k && <motion.span layoutId="kind" className="absolute inset-0 -z-0 rounded-full bg-brass" transition={{ type: "spring", bounce: 0.2, duration: 0.5 }} />}
+                  {/* a plain highlight: a shared-layout one drifted while the sticky bar scrolled */}
+                  {kind === k && <span className="absolute inset-0 -z-0 rounded-full bg-brass" />}
                   <span className="relative">{k}</span>
                 </button>
               ))}

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
 import { Phone } from "lucide-react";
 import type { AnnouncementSettings, GeneralSettings } from "@diner/shared";
 import { cn, telHref } from "@/lib/utils";
@@ -23,6 +23,8 @@ export function Header({
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 40 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -46,6 +48,8 @@ export function Header({
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
+      {/* how far down the page you are */}
+      <motion.div style={{ scaleX: progress }} className="absolute inset-x-0 top-0 z-10 h-[3px] origin-left bg-brass" aria-hidden />
       <div
         className={cn(
           "pointer-events-auto grid transition-[grid-template-rows] duration-500",
@@ -61,7 +65,7 @@ export function Header({
           aria-label="Main"
           className={cn(
             "pointer-events-auto flex items-center justify-between rounded-full py-1.5 pl-4 pr-1.5 sm:py-2.5 sm:pl-6 sm:pr-2.5 transition-all duration-500",
-            scrolled || open ? "glass-strong shadow-2xl shadow-black/40" : "border border-transparent",
+            scrolled || open ? "glass-strong shadow-2xl shadow-black/40 max-lg:!bg-ink" : "border border-transparent",
           )}
         >
           <Link

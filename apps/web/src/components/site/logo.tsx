@@ -1,13 +1,19 @@
 import { cn } from "@/lib/utils";
 
 /** The grill mark from The Diner's sign: steam, kettle bowl and three legs. */
-export function GrillMark({ className }: { className?: string }) {
+/** `steam` makes the three wisps rise and fade on a loop. */
+export function GrillMark({ className, steam = false }: { className?: string; steam?: boolean }) {
   return (
     <svg viewBox="0 0 100 100" className={className} aria-hidden fill="none">
       <g stroke="currentColor" strokeWidth="5" strokeLinecap="round">
-        <path d="M37 26c-5-4 5-7 0-11s5-7 0-11" />
-        <path d="M50 26c-5-4 5-7 0-11s5-7 0-11" />
-        <path d="M63 26c-5-4 5-7 0-11s5-7 0-11" />
+        {[37, 50, 63].map((x, i) => (
+          <path
+            key={x}
+            d={`M${x} 26c-5-4 5-7 0-11s5-7 0-11`}
+            className={steam ? "animate-steam" : undefined}
+            style={steam ? { animationDelay: `${i * 0.45}s` } : undefined}
+          />
+        ))}
       </g>
       <rect x="14" y="33" width="72" height="9" rx="4.5" fill="currentColor" />
       <path d="M21 41h58a29 25 0 0 1-58 0z" fill="currentColor" />
@@ -24,7 +30,7 @@ export function GrillMark({ className }: { className?: string }) {
 export function Logo({ className, stacked = false }: { className?: string; stacked?: boolean }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5 leading-none", stacked && "flex-col gap-3", className)}>
-      <GrillMark className={cn("text-brass", stacked ? "h-16 w-16" : "-mt-1 h-7 w-7 sm:h-9 sm:w-9")} />
+      <GrillMark steam className={cn("text-brass", stacked ? "h-16 w-16" : "-mt-1 h-7 w-7 sm:h-9 sm:w-9")} />
       <span className="flex flex-col items-stretch">
         <span className="flex justify-between gap-6" aria-hidden>
           <span className="h-[2px] w-1/4 bg-cream" />

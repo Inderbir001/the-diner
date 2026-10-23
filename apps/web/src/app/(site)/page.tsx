@@ -42,7 +42,19 @@ export default async function HomePage() {
     <>
       {faqs.length > 0 && <JsonLd data={faqJsonLd(faqs)} />}
       <Hero home={home} general={general} bookingEnabled={booking.enabled} />
-      <Marquee items={home.marquee} />
+      {/* two tapes crossing: prices one way, the vibe the other */}
+      <div className="relative overflow-hidden py-6 sm:py-10">
+        <Marquee items={home.marquee} className="relative z-10 -mx-4 -rotate-2 shadow-2xl shadow-black/60" />
+        {home.experiences.length > 0 && (
+          <Marquee
+            items={[...home.experiences.map((e) => e.title), "Open till 12:30 AM"]}
+            reverse
+            small
+            duration={30}
+            className="-mx-4 -mt-4 rotate-[1.5deg] border-y border-white/10 !bg-coal py-3 sm:-mt-6"
+          />
+        )}
+      </div>
       <SignatureDishes dishes={dishes} />
       <PriceBoard home={home} menu={menu} />
       <Drinks menu={menu} />
