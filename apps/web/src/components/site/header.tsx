@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Phone } from "lucide-react";
 import type { AnnouncementSettings, GeneralSettings } from "@diner/shared";
@@ -31,7 +31,15 @@ export function Header({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [pathname]);
+  // the logo always lands at the very top of the home page
+  const logoClicked = useRef(false);
+  useEffect(() => {
+    setOpen(false);
+    if (logoClicked.current && pathname === "/") {
+      logoClicked.current = false;
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [pathname]);
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
   }, [open]);
@@ -48,15 +56,28 @@ export function Header({
           <AnnouncementBar announcement={announcement} />
         </div>
       </div>
-      <div className="container-x pt-3 sm:pt-4">
+      <div className="container-x pt-2 sm:pt-4">
         <nav
           aria-label="Main"
           className={cn(
-            "pointer-events-auto flex items-center justify-between rounded-full py-2.5 pl-6 pr-2.5 transition-all duration-500",
+            "pointer-events-auto flex items-center justify-between rounded-full py-1.5 pl-4 pr-1.5 sm:py-2.5 sm:pl-6 sm:pr-2.5 transition-all duration-500",
             scrolled || open ? "glass-strong shadow-2xl shadow-black/40" : "border border-transparent",
           )}
         >
-          <Link href="/" aria-label={`${general.name} — home`} className="relative z-10">
+          <Link
+            href="/"
+            aria-label={`${general.name} — home`}
+            className="relative z-10"
+            onClick={(e) => {
+              setOpen(false);
+              logoClicked.current = true;
+              // already on the home page: go back to the top instead of doing nothing
+              if (pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+          >
             <Logo />
           </Link>
 
@@ -104,7 +125,7 @@ export function Header({
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="relative z-10 inline-flex size-11 items-center justify-center rounded-full bg-white/[0.06] lg:hidden"
+              className="relative z-10 inline-flex size-10 items-center sm:size-11 justify-center rounded-full bg-white/[0.06] lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}

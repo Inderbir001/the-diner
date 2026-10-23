@@ -37,6 +37,10 @@
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
   }
+  /* phones: everything sized in rem steps down a notch */
+  @media (max-width: 639px) {
+    html { font-size: 87.5%; }
+  }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
   }

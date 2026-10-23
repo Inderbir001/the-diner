@@ -35,7 +35,7 @@ export function Drinks({ menu }: { menu: MenuSection[] }) {
       {/* one card and a peek of the next on phones; four across on desktop */}
       <ul className="scrollbar-none mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:px-8 lg:container-x lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible">
         {drinks.map((d, i) => (
-          <Reveal as="li" key={d.id} delay={(i % 4) * 0.06} className="w-[72%] shrink-0 snap-start sm:w-[42%] lg:w-auto">
+          <Reveal as="li" key={d.id} delay={(i % 4) * 0.06} className="w-[58%] shrink-0 snap-start sm:w-[42%] lg:w-auto">
             <Link href="/menu#cocktails" className="group relative block aspect-[3/4] overflow-hidden rounded-[28px] bg-coal ring-1 ring-white/10 transition hover:ring-brass">
               <Image
                 src={d.image_url!}
@@ -51,7 +51,7 @@ export function Drinks({ menu }: { menu: MenuSection[] }) {
                 </span>
               )}
               <div className="absolute inset-x-0 bottom-0 p-5">
-                <h3 className="font-display text-4xl leading-none text-cream">{d.name}</h3>
+                <h3 className="font-display text-3xl leading-none text-cream sm:text-4xl">{d.name}</h3>
                 {d.description && <p className="mt-2 text-sm text-sand">{d.description}</p>}
               </div>
             </Link>

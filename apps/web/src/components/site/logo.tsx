@@ -24,15 +24,15 @@ export function GrillMark({ className }: { className?: string }) {
 export function Logo({ className, stacked = false }: { className?: string; stacked?: boolean }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5 leading-none", stacked && "flex-col gap-3", className)}>
-      <GrillMark className={cn("text-brass", stacked ? "h-16 w-16" : "h-9 w-9 -mt-1")} />
+      <GrillMark className={cn("text-brass", stacked ? "h-16 w-16" : "-mt-1 h-7 w-7 sm:h-9 sm:w-9")} />
       <span className="flex flex-col items-stretch">
         <span className="flex justify-between gap-6" aria-hidden>
           <span className="h-[2px] w-1/4 bg-cream" />
           <span className="h-[2px] w-1/4 bg-cream" />
         </span>
-        <span className={cn("font-brand tracking-[0.12em] text-cream", stacked ? "py-1.5 text-5xl" : "py-[3px] text-[1.55rem]")}>THE DINER</span>
+        <span className={cn("font-brand tracking-[0.12em] text-cream", stacked ? "py-1.5 text-5xl" : "py-[2px] text-[1.3rem] sm:py-[3px] sm:text-[1.55rem]")}>THE DINER</span>
         <span className="h-[2px] w-full bg-cream" aria-hidden />
-        <span className={cn("font-brand tracking-[0.42em] text-brass", stacked ? "mt-2 text-xl" : "mt-[3px] text-[0.72rem]")}>RESTOBAR</span>
+        <span className={cn("font-brand tracking-[0.42em] text-brass", stacked ? "mt-2 text-xl" : "mt-[2px] text-[0.6rem] sm:mt-[3px] sm:text-[0.72rem]")}>RESTOBAR</span>
       </span>
     </span>
   );

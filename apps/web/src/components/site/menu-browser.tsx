@@ -222,31 +222,32 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
             {section.description && <p className="mb-5 text-sand">{section.description}</p>}
             {section.items.some((i) => i.image_url) ? (
               /* photo cards: one per row on phones, never two cramped columns */
-              <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
                 {section.items.map((item) => (
                   <li
                     key={item.id}
                     className={cn(
-                      "group flex flex-col overflow-hidden rounded-[22px] bg-coal ring-1 ring-white/10 transition hover:ring-brass",
+                      "group flex overflow-hidden rounded-[18px] bg-coal sm:flex-col sm:rounded-[22px] ring-1 ring-white/10 transition hover:ring-brass",
                       !item.is_available && "opacity-50",
                     )}
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden bg-smoke">
+                    {/* phones: a compact row with the photo on the left */}
+                    <div className="relative min-h-28 w-28 shrink-0 overflow-hidden bg-smoke sm:aspect-[4/3] sm:min-h-0 sm:w-auto">
                       {item.image_url ? (
                         <Image
                           src={item.image_url}
                           alt={item.name}
                           fill
-                          sizes="(min-width:1024px) 23vw, (min-width:640px) 50vw, 100vw"
+                          sizes="(min-width:1024px) 23vw, (min-width:640px) 50vw, 120px"
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                       ) : (
                         // no photo yet: a branded tile keeps the grid even
                         <div className="flex size-full items-center justify-center bg-[radial-gradient(circle_at_50%_40%,rgb(239_62_54/0.18),transparent_65%)]">
-                          <GrillMark className="size-14 text-white/15" />
+                          <GrillMark className="size-10 text-white/15 sm:size-14" />
                         </div>
                       )}
-                      <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
+                      <div className="absolute left-3 top-3 hidden flex-wrap gap-1.5 sm:flex">
                         {item.is_signature && (
                           <span className="inline-flex items-center gap-1 rounded-full bg-brass px-3 py-1 text-[0.65rem] font-extrabold uppercase tracking-wider text-cream">
                             <Sparkles className="size-3" /> House favourite
@@ -259,23 +260,23 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
                         )}
                       </div>
                       {!item.is_available && (
-                        <span className="absolute inset-x-0 bottom-0 bg-ink/80 py-2 text-center text-xs font-extrabold uppercase tracking-wider text-cream">Sold out today</span>
+                        <span className="absolute inset-x-0 bottom-0 bg-ink/80 py-1.5 text-center text-[0.6rem] font-extrabold sm:py-2 sm:text-xs uppercase tracking-wider text-cream">Sold out today</span>
                       )}
                     </div>
-                    <div className="flex flex-1 flex-col p-4 sm:p-5">
-                      <div className="flex items-start justify-between gap-4">
-                        <h3 className="flex items-start gap-2 font-display text-2xl leading-none lg:text-[1.7rem]">
+                    <div className="flex min-w-0 flex-1 flex-col p-3.5 sm:p-5">
+                      <div className="flex items-start justify-between gap-3 sm:gap-4">
+                        <h3 className="flex items-start gap-2 font-display text-xl leading-none sm:text-2xl lg:text-[1.7rem]">
                           {section.kind === "food" && <VegMark veg={item.is_veg} />}
                           {item.name}
                         </h3>
                         {item.price !== null && (
-                          <span className="shrink-0 rounded-full bg-brass px-2.5 py-1 font-display text-lg leading-none text-cream">
+                          <span className="shrink-0 rounded-full bg-brass px-2.5 py-1 font-display text-base leading-none text-cream sm:text-lg">
                             {formatPrice(item.price)}
                           </span>
                         )}
                       </div>
                       {item.price_note && <p className="mt-2 text-xs font-semibold text-muted">{item.price_note}</p>}
-                      {item.description && <p className="mt-2 text-[0.8rem] leading-snug text-sand">{item.description}</p>}
+                      {item.description && <p className="mt-2 line-clamp-3 text-[0.8rem] leading-snug text-sand sm:line-clamp-none">{item.description}</p>}
                     </div>
                   </li>
                 ))}

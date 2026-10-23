@@ -52,7 +52,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${manrope.variable} ${bebas.variable}`} suppressHydrationWarning>
+    // data-scroll-behavior lets Next jump straight to the top on page changes despite the smooth-scroll CSS
+    <html lang="en-IN" className={`${manrope.variable} ${bebas.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         {children}
         <Toaster

@@ -40,7 +40,7 @@ export function Experiences({ items }: { items: HomeSettings["experiences"] }) {
                   <span className="flex-1">
                     <span
                       className={cn(
-                        "block font-display text-5xl leading-[0.9] transition-colors sm:text-7xl",
+                        "block font-display text-4xl leading-[0.9] transition-colors sm:text-7xl",
                         active === i ? "text-cream" : "text-cream/45 group-hover:text-cream/80",
                       )}
                     >

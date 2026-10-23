@@ -20,7 +20,7 @@ export default async function MenuPage() {
       <JsonLd data={[menuJsonLd(menu, settings.general.name), breadcrumbJsonLd([{ name: "Menu", path: "/menu" }])]} />
       {/* no big header: the menu starts straight away; the h1 stays for search engines and screen readers */}
       <h1 className="sr-only">Menu — {settings.general.name}, Whitefield</h1>
-      <div className="pt-44 sm:pt-36">
+      <div className="pt-32 sm:pt-36">
         <MenuBrowser sections={menu} />
       </div>
       <div className="mt-24">

@@ -7,6 +7,7 @@ import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { JsonLd } from "@/components/site/json-ld";
 import { MobileActionBar } from "@/components/site/mobile-action-bar";
+import { FloatingActions } from "@/components/site/floating-actions";
 
 export const revalidate = 3600;
 
@@ -24,6 +25,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <main id="main">{children}</main>
       <Footer settings={settings} />
       <MobileActionBar general={settings.general} />
+      <FloatingActions general={settings.general} />
       <Analytics />
       <SpeedInsights />
       {ga ? (

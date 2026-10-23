@@ -24,7 +24,7 @@ export function Story({ home }: { home: HomeSettings }) {
               Our story
             </p>
           </Reveal>
-          <SplitWords text={home.storyTitle} className="font-display text-6xl leading-[0.88] text-ink sm:text-7xl lg:text-8xl" />
+          <SplitWords text={home.storyTitle} className="font-display text-5xl leading-[0.88] text-ink sm:text-7xl lg:text-8xl" />
           <Reveal delay={0.1}>
             <p className="mt-8 max-w-2xl text-lg font-medium leading-relaxed text-ink/75">{home.storyBody}</p>
           </Reveal>
@@ -34,7 +34,7 @@ export function Story({ home }: { home: HomeSettings }) {
                 <Reveal key={s.label} delay={0.08 * i} className="rounded-2xl bg-ink p-5 text-cream">
                   <dt className="sr-only">{s.label}</dt>
                   <dd>
-                    <span className="block font-display text-5xl leading-none text-brass">{s.value}</span>
+                    <span className="block font-display text-4xl leading-none text-brass sm:text-5xl">{s.value}</span>
                     <span className="mt-2 block text-[0.7rem] font-bold uppercase tracking-widest text-sand">{s.label}</span>
                   </dd>
                 </Reveal>

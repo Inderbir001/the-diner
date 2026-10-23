@@ -8,8 +8,8 @@ export function Marquee({ items, className, duration = 38 }: { items: string[]; 
     <ul className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
       {items.map((item, i) => (
         <li key={i} className="flex items-center whitespace-nowrap">
-          <span className="px-7 font-display text-5xl leading-none sm:text-7xl">{item}</span>
-          <GrillMark className="size-9 shrink-0 sm:size-11" />
+          <span className="px-5 font-display text-4xl leading-none sm:px-7 sm:text-7xl">{item}</span>
+          <GrillMark className="size-7 shrink-0 sm:size-11" />
         </li>
       ))}
     </ul>

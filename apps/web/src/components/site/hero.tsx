@@ -39,7 +39,7 @@ export function Hero({ home, general, bookingEnabled }: { home: HomeSettings; ge
             <OpenStatus hours={general.hours} />
           </motion.div>
 
-          <h1 className="font-display text-[clamp(4.2rem,min(12.5vw,13.5svh),11.5rem)] leading-[0.84] tracking-[0.005em]">
+          <h1 className="font-display text-[clamp(3.6rem,min(12.5vw,13.5svh),11.5rem)] leading-[0.84] tracking-[0.005em]">
             {lines.map((line, i) => (
               <span key={line} className="block overflow-hidden">
                 <motion.span

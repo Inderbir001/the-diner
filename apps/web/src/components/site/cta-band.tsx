@@ -23,7 +23,7 @@ export function CtaBand({
       <div className="relative grid overflow-hidden rounded-[36px] bg-brass text-cream lg:grid-cols-2">
         <GrillMark className="pointer-events-none absolute -right-16 -top-16 size-80 text-ink/10" />
         <div className="relative p-8 sm:p-14 lg:py-20">
-          <SplitWords text={title} className="font-display text-6xl leading-[0.88] sm:text-8xl" />
+          <SplitWords text={title} className="font-display text-5xl leading-[0.88] sm:text-8xl" />
           <Reveal delay={0.15}>
             <p className="mt-6 max-w-md text-lg font-semibold text-cream/90">{text}</p>
             <div className="mt-9 flex flex-wrap gap-3">

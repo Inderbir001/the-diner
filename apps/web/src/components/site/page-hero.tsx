@@ -54,7 +54,7 @@ export function PageHero({
           as="h1"
           immediate
           text={title}
-          className="max-w-5xl font-display text-[clamp(3.6rem,10vw,9rem)] leading-[0.86]"
+          className="max-w-5xl font-display text-[clamp(3.2rem,10vw,9rem)] leading-[0.86]"
         />
         {intro && (
           <Reveal delay={0.3}>

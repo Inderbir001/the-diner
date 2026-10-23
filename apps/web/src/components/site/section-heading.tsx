@@ -32,7 +32,7 @@ export function SectionHeading({
       <SplitWords
         as={as}
         text={title}
-        className={cn("font-display text-6xl leading-[0.88] sm:text-7xl lg:text-8xl", tone === "light" ? "text-ink" : "text-cream")}
+        className={cn("font-display text-5xl leading-[0.88] sm:text-7xl lg:text-8xl", tone === "light" ? "text-ink" : "text-cream")}
       />
       {intro && (
         <Reveal delay={0.15}>
