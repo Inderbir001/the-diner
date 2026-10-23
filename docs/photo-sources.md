@@ -113,3 +113,43 @@ Replace any of these with the restaurant's own photos from the admin (Menu → e
 | Butter Kulcha | `butter-kulcha.jpg` | https://unsplash.com/photos/ykiTYB1RAl8 |
 | Butter Garlic Roti | `butter-garlic-roti.jpg` | https://unsplash.com/photos/Nt_wnMl7Siw |
 | Lollipop Biryani | `lollipop-biryani.jpg` | https://unsplash.com/photos/E0JfTuBdpwA |
+| Monkey Shoulder | `monkey-shoulder.jpg` | https://unsplash.com/photos/xdq_1qgeV0o |
+| Jim Beam Bourbon | `jim-beam-bourbon.jpg` | https://unsplash.com/photos/nJszuDp8mYY |
+| Jameson Irish Whisky | `jameson-irish-whisky.jpg` | https://unsplash.com/photos/bHk5e0 |
+| Jack Daniels Old No7 | `jack-daniels-old-no7.jpg` | https://unsplash.com/photos/cyLJ5mMbXhM |
+| JW Black Label | `jw-black-label.jpg` | https://unsplash.com/photos/PboILhfVi5o |
+| JW Red Label | `jw-red-label.jpg` | https://unsplash.com/photos/Oz1vVS32k1U |
+| Glenlivet 12Yrs | `glenlivet-12yrs.jpg` | https://unsplash.com/photos/8FhLEwsnloU |
+| Glenfiddich 12Yrs | `glenfiddich-12yrs.jpg` | https://unsplash.com/photos/vM |
+| Dewars White Label | `dewars-white-label.jpg` | https://unsplash.com/photos/Evo6Lec4MrA |
+| Chivas Regal 12Yrs | `chivas-regal-12yrs.jpg` | https://unsplash.com/photos/ujxHGISveak |
+| Black Dog 8Yrs | `black-dog-8yrs.jpg` | https://unsplash.com/photos/TSkUCyCuVH4 |
+| Amruth Fusion | `amruth-fusion.jpg` | https://unsplash.com/photos/uSKunwEvjiY |
+| Amruth Amalgam | `amruth-amalgam.jpg` | https://unsplash.com/photos/pe9T4ROjpzQ |
+| Teachers Highland Cream | `teachers-highland-cream.jpg` | https://unsplash.com/photos/OzaAMXxlq2c |
+| Signature whisky | `signature-whisky.jpg` | https://unsplash.com/photos/37pMD7kJV40 |
+| Oaksmith Gold | `oaksmith-gold.jpg` | https://unsplash.com/photos/Ktag9JZR1eU |
+| Paul John Nirvana | `paul-john-nirvana.jpg` | https://unsplash.com/photos/oo3wBKo |
+| 100 Pipers | `100-pipers.jpg` | https://unsplash.com/photos/_AqEYlX0e9o |
+| Black & White | `black-white.jpg` | https://unsplash.com/photos/2zimLZ7aDOM |
+| Royal Challenge | `royal-challenge.jpg` | https://unsplash.com/photos/1TDxtSalBx4 |
+| Blenders Pride Rare | `blenders-pride-rare.jpg` | https://unsplash.com/photos/S8FEMWGQuhc |
+| Morpheus XO | `morpheus-xo.jpg` | https://unsplash.com/photos/M |
+| Mansion House | `mansion-house.jpg` | https://unsplash.com/photos/zKqanYk5p_k |
+| Old Monk White Rum | `old-monk-white-rum.jpg` | https://unsplash.com/photos/lQ44bJITiuk |
+| Bacardi White Rum | `bacardi-white-rum.jpg` | https://unsplash.com/photos/fTil_2EQpac |
+| Old Monk Dark Rum | `old-monk-dark-rum.jpg` | https://unsplash.com/photos/sbJeO306Mf4 |
+| Magic Moments Vodka | `magic-moments-vodka.jpg` | https://unsplash.com/photos/1GhXvi1kPxA |
+| Smirnoff Orange Vodka | `smirnoff-orange-vodka.jpg` | https://unsplash.com/photos/DbAQQBzvaDM |
+| Smirnoff Regular Vodka | `smirnoff-regular-vodka.jpg` | https://unsplash.com/photos/IE9tqspTbn0 |
+| Grey Goose Vodka | `grey-goose-vodka.jpg` | https://unsplash.com/photos/RjUZIRZQIgQ |
+| Absolut Vodka | `absolut-vodka.jpg` | https://unsplash.com/photos/DfCL1dJbLpI |
+| Great Indian Gin | `great-indian-gin.jpg` | https://unsplash.com/photos/2bk9F342LiM |
+| Gordons London Dry Gin | `gordons-london-dry-gin.jpg` | https://unsplash.com/photos/qK7shnbCmQQ |
+| Bombay Sapphire Gin | `bombay-sapphire-gin.jpg` | https://unsplash.com/photos/qOK92D0L5r0 |
+| The Warehouse Tequila | `the-warehouse-tequila.jpg` | https://unsplash.com/photos/ycRSPkfAWKk |
+| Kahlua Coffee Liqueur | `kahlua-coffee-liqueur.jpg` | https://unsplash.com/photos/9anq0R15DfI |
+| Jagermeister Liqueur | `jagermeister-liqueur.jpg` | https://unsplash.com/photos/bQfuaLTBsyY |
+| Breezer Jamaican | `breezer-jamaican.jpg` | https://unsplash.com/photos/KIQxo |
+| Sula Red Wine | `sula-red-wine.jpg` | https://unsplash.com/photos/etWlaoFnTl4 |
+| Sula White Wine | `sula-white-wine.jpg` | https://unsplash.com/photos/LeKzNXMPOoQ |

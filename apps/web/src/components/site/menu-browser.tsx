@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Flame, Leaf, Search, Sparkles, X } from "lucide-react";
+import { ChevronDown, Flame, Leaf, Search, Sparkles, X } from "lucide-react";
 import type { MenuSection } from "@/lib/data";
 import { cn, formatPrice } from "@/lib/utils";
 import { GrillMark } from "./logo";
@@ -15,7 +15,59 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
   const [vegOnly, setVegOnly] = useState(false);
   const [q, setQ] = useState("");
   const [active, setActive] = useState(sections[0]?.slug ?? "");
+  // categories are collapsible so the page stays short; the first one starts open
+  const [open, setOpen] = useState<Set<string>>(() => new Set(sections[0] ? [sections[0].slug] : []));
   const tabsRef = useRef<HTMLDivElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
+  // the site header changes height (the announcement strip folds away on scroll), so track its real bottom
+  const [offset, setOffset] = useState({ top: 84, bar: 120 });
+  useEffect(() => {
+    const header = document.querySelector("header");
+    if (!header) return;
+    let raf = 0;
+    const measure = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() =>
+        setOffset({ top: Math.round(header.getBoundingClientRect().bottom), bar: barRef.current?.offsetHeight ?? 120 }),
+      );
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(header);
+    if (barRef.current) ro.observe(barRef.current);
+    window.addEventListener("scroll", measure, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      window.removeEventListener("scroll", measure);
+    };
+  }, []);
+  const searching = q.trim() !== "" || vegOnly;
+  const isOpen = (slug: string) => searching || open.has(slug);
+  const toggle = (slug: string) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(slug)) next.delete(slug);
+      else next.add(slug);
+      return next;
+    });
+  const openAndScroll = (slug: string, smooth = true) => {
+    setOpen((prev) => new Set(prev).add(slug));
+    // let the section expand (and the router finish its own scroll handling) before scrolling to it
+    setTimeout(() => document.getElementById(slug)?.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" }), smooth ? 150 : 350);
+  };
+
+  // links like /menu#cocktails open that category, on arrival and when the hash changes
+  useEffect(() => {
+    const fromHash = () => {
+      const slug = decodeURIComponent(window.location.hash.slice(1));
+      if (slug && sections.some((s) => s.slug === slug)) openAndScroll(slug, false);
+    };
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    return () => window.removeEventListener("hashchange", fromHash);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
@@ -52,7 +104,8 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
 
   return (
     <div>
-      <div className="sticky top-[5.25rem] z-30 sm:top-24">
+      {/* solid strip behind the bar and the floating header, so dishes never show through while scrolling */}
+      <div ref={barRef} style={{ top: offset.top }} className="sticky z-30 bg-ink pb-3 before:pointer-events-none before:absolute before:inset-x-0 before:bottom-full before:h-40 before:bg-ink">
         <div className="container-x">
           <div className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-coal p-3 shadow-2xl shadow-black/60 lg:flex-row lg:items-center">
             <div className="flex shrink-0 gap-1 rounded-full bg-white/[0.04] p-1" role="radiogroup" aria-label="Food or drinks">
@@ -75,6 +128,11 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
                 <a
                   key={s.slug}
                   href={`#${s.slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    history.replaceState(null, "", `#${s.slug}`);
+                    openAndScroll(s.slug);
+                  }}
                   data-slug={s.slug}
                   className={cn(
                     "shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm transition",
@@ -118,16 +176,50 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
         </div>
       </div>
 
-      <div className="container-x mt-16 space-y-24">
+      <div className="container-x mt-8">
+        {!searching && filtered.length > 1 && (
+          <div className="mb-3 flex justify-end">
+            <button
+              type="button"
+              onClick={() => setOpen(open.size >= filtered.length ? new Set() : new Set(filtered.map((s) => s.slug)))}
+              className="min-h-11 px-2 text-xs font-bold uppercase tracking-wider text-muted transition hover:text-cream"
+            >
+              {open.size >= filtered.length ? "Collapse all" : "Expand all"}
+            </button>
+          </div>
+        )}
+        <div className="space-y-3">
         {filtered.length === 0 && <p className="py-20 text-center text-sand">Nothing matches that. Try another search.</p>}
-        {filtered.map((section) => (
-          <section key={section.id} id={section.slug} className="scroll-mt-48" aria-labelledby={`${section.slug}-h`}>
-            <div className="mb-10 grid gap-4 border-b border-white/10 pb-6 md:grid-cols-12 md:items-end">
-              <h2 id={`${section.slug}-h`} className="font-display text-4xl sm:text-5xl md:col-span-7">
+        {filtered.map((section) => {
+          const expanded = isOpen(section.slug);
+          const from = Math.min(...section.items.map((i) => i.price ?? Infinity));
+          return (
+          <section
+            key={section.id}
+            id={section.slug}
+            style={{ scrollMarginTop: offset.top + offset.bar + 12 }}
+            className={cn("rounded-[22px] border transition-colors", expanded ? "border-white/10 bg-coal/40" : "border-white/[0.07] hover:border-white/20")}
+            aria-labelledby={`${section.slug}-h`}
+          >
+            <button
+              type="button"
+              onClick={() => toggle(section.slug)}
+              aria-expanded={expanded}
+              aria-controls={`${section.slug}-items`}
+              className="flex w-full items-center gap-4 px-5 py-4 text-left sm:px-6 sm:py-5"
+            >
+              <h2 id={`${section.slug}-h`} className="flex-1 font-display text-3xl leading-none sm:text-4xl">
                 {section.name}
               </h2>
-              {section.description && <p className="text-sand md:col-span-5 md:text-right">{section.description}</p>}
-            </div>
+              <span className="hidden text-sm text-muted sm:inline">
+                {section.items.length} {section.items.length === 1 ? "item" : "items"}
+                {Number.isFinite(from) && <> · from {formatPrice(from)}</>}
+              </span>
+              <ChevronDown className={cn("size-6 shrink-0 text-brass transition-transform duration-300", expanded && "rotate-180")} aria-hidden />
+            </button>
+            {expanded && (
+            <div id={`${section.slug}-items`} className="px-5 pb-6 sm:px-6">
+            {section.description && <p className="mb-5 text-sand">{section.description}</p>}
             {section.items.some((i) => i.image_url) ? (
               /* photo cards: one per row on phones, never two cramped columns */
               <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -207,9 +299,13 @@ export function MenuBrowser({ sections }: { sections: MenuSection[] }) {
                 ))}
               </ul>
             )}
+            </div>
+            )}
           </section>
-        ))}
-        <p className="text-center text-xs text-muted">Prices in INR, exclusive of taxes. Please tell your server about any allergies.</p>
+          );
+        })}
+        </div>
+        <p className="mt-10 text-center text-xs text-muted">Prices in INR, exclusive of taxes. Please tell your server about any allergies.</p>
       </div>
     </div>
   );
