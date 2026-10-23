@@ -113,6 +113,7 @@ export const fallbackSettings: SettingsMap = {
 // The Diner's real menu, imported from the Digitory POS digital menu (store 28).
 // The Diner's real menu, imported from the Digitory POS digital menu (store 28).
 // The Diner's real menu, imported from the Digitory POS digital menu (store 28).
+// The Diner's real menu, imported from the Digitory POS digital menu (store 28).
 type Seed = [cat: string, name: string, desc: string | null, price: number | null, veg: boolean, spicy: boolean, signature: boolean, image: string | null, priceNote: string | null];
 const categories: [slug: string, name: string, desc: string | null, kind: "food" | "drinks"][] = [
   ["veg-starters", "Veg Starters", "Bar snacks, paneer and tandoor favourites.", "food"],
@@ -218,8 +219,8 @@ const items: Seed[] = [
   ["egg", "Egg Kothu Parata", "Excellent Healthy Choice... Minced Tandoori Roti made with atta tossed with Eggs, Masala, Tomatoes, Onions, Chilies and other spices. Try. You will love it.", 159.0, false, false, false, "/images/menu/egg-kothu-parata.jpg", null],
   ["egg", "Boiled Eggs (Salted & Peppered)", "Boiled Eggs sprinkled with salt and pepper that's simple and satisfying. 2 pieces.", 114.0, false, true, false, "/images/menu/boiled-eggs-salted-peppered.jpg", null],
   ["wings", "Peri Peri Chicken Wings", "Crispy & Juicy chicken wings sprinkled with peri peri powder that will make your taste buds tingle.", 159.0, false, true, false, "/images/diner/chicken-wings.jpg", "Half ₹159 · Full ₹249"],
-  ["wings", "BBQ Chicken Wings", "These BBQ chicken wings are a must-try for any chicken wing lover. The sauce is flavourful and the wings are crispy. Perfect with a cold beverage any time.", 159.0, false, false, false, "/images/diner/chicken-wings.jpg", "Half ₹159 · Full ₹249"],
-  ["wings", "Buffalo Chicken Wings", "Juicy and Tender wings Tossed in Hot buffalo Sauce (Relax... This sauce is originated in Buffalo City, NY, USA and hence its name Buffalo Sauce). Also Called Buffalo Wild Wings. These wings are mildly spicy and Tangy and delicious you'll want to order a second serving.", 168.0, false, true, false, "/images/diner/chicken-wings.jpg", "Half ₹168 · Full ₹258"],
+  ["wings", "BBQ Chicken Wings", "These BBQ chicken wings are a must-try for any chicken wing lover. The sauce is flavourful and the wings are crispy. Perfect with a cold beverage any time.", 159.0, false, false, false, "/images/menu/bbq-chicken-wings.jpg", "Half ₹159 · Full ₹249"],
+  ["wings", "Buffalo Chicken Wings", "Juicy and Tender wings Tossed in Hot buffalo Sauce (Relax... This sauce is originated in Buffalo City, NY, USA and hence its name Buffalo Sauce). Also Called Buffalo Wild Wings. These wings are mildly spicy and Tangy and delicious you'll want to order a second serving.", 168.0, false, true, false, "/images/menu/buffalo-chicken-wings.jpg", "Half ₹168 · Full ₹258"],
   ["platters", "Tandoori Veg Platter", "Tandoori the name itself triggers the taste buds for most of the people.it's a combination of different aromatic spices with raw smoked vegetables served with mint chutny.", 899.0, true, false, false, "/images/menu/tandoori-veg-platter.jpg", null],
   ["platters", "Seafood Platter", "1Pc Seer (Vanjaram) Fish Steak, 8Pc Naked Prawns with Fresh Green Chilli Masala, 4pc Sardine/Matti Fish Fry, 4pc Home style Sardine/Matti Fish Fry, 4PC Boneless Fish in Banana Leaf.", 1699.0, false, false, false, "/images/menu/seafood-platter.jpg", null],
   ["platters", "Tandoori Chicken Platter", "5 Types of Tandoori Chicken Sampler Platter. Good for 3 to 4 People.", 1399.0, false, false, false, "/images/menu/tandoori-chicken-platter.jpg", null],
@@ -275,11 +276,11 @@ const items: Seed[] = [
   ["breads-sides", "Green Salad", "Finely cut Cucumber, Onions, Tomatoes and other Vegetables", 99.0, true, false, false, "/images/menu/green-salad.jpg", null],
   ["breads-sides", "Plain Curd", "Fresh Curd made from Milk. Mildly sweet and creamy in texture.", 50.0, true, false, false, "/images/menu/plain-curd.jpg", null],
   ["breads-sides", "Roti", "Fluffy Bread made with Atta in Tandoori Oven Served Hot.", 45.0, true, false, false, "/images/menu/roti.jpg", null],
-  ["breads-sides", "Butter Roti", "Fluffy Bread made with Atta in Tandoori Oven and brushed with butter Served Hot.", 55.0, true, false, false, "/images/menu/roti.jpg", null],
+  ["breads-sides", "Butter Roti", "Fluffy Bread made with Atta in Tandoori Oven and brushed with butter Served Hot.", 55.0, true, false, false, "/images/menu/butter-roti.jpg", null],
   ["breads-sides", "Naan", "Fluffy Bread made with white wheat flour in Tandoori Oven Served Hot.", 60.0, true, false, false, "/images/menu/naan.jpg", null],
   ["breads-sides", "Butter Naan", "Fluffy Bread made with White Flour/Maida in Tandoori Oven and brushed with butter Served Hot.", 70.0, true, false, false, "/images/menu/butter-naan.jpg", null],
-  ["breads-sides", "Butter Kulcha", "A soft and fluffy flatbread, fresh out of the Tandoori oven", 70.0, true, false, false, "/images/menu/butter-naan.jpg", null],
-  ["breads-sides", "Butter Garlic Roti", "Fluffy Bread made with Wheat Atta topped with Garlic made in Tandoori Oven Served Hot", 95.0, true, false, false, "/images/menu/garlic-butter-naan.jpg", null],
+  ["breads-sides", "Butter Kulcha", "A soft and fluffy flatbread, fresh out of the Tandoori oven", 70.0, true, false, false, "/images/menu/butter-kulcha.jpg", null],
+  ["breads-sides", "Butter Garlic Roti", "Fluffy Bread made with Wheat Atta topped with Garlic made in Tandoori Oven Served Hot", 95.0, true, false, false, "/images/menu/butter-garlic-roti.jpg", null],
   ["breads-sides", "Butter Garlic Naan", "Fluffy Bread made with White Flour or Maida and Fresh Garlic in Tandoori Oven Served Hot.", 110.0, true, false, false, "/images/menu/garlic-butter-naan.jpg", null],
   ["desserts", "Brownie w/Vanilla Ice cream", "Creamy and Chocolatey goodness of a Chocolate Brownie contrasted with light and flavourful Vanilla ice cream. May contain Egg.", 186.0, true, false, false, "/images/menu/brownie-w-vanilla-ice-cream.jpg", null],
   ["desserts", "Ice Creams", "Try our gourmet ice creams. Choose from flavours like: Vanilla, Chocolate, Butterscotch, Mango, Strawberry, Coffee, Black Currant & more", 105.0, true, false, false, "/images/menu/ice-creams.jpg", "Per scoop"],

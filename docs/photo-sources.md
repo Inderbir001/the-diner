@@ -22,7 +22,6 @@ Replace any of these with the restaurant's own photos from the admin (Menu → e
 | Andhra Chilly Chicken Biryani | `andhra-chilly-chicken-biryani.jpg` | https://unsplash.com/photos/UhMm5g |
 | Guntur Chicken Biryani | `guntur-chicken-biryani.jpg` | https://unsplash.com/photos/DROPNgCSqNI |
 | Chicken 65 Biryani | `chicken-65-biryani.jpg` | https://unsplash.com/photos/qXCGmhqfHcQ |
-| Lollipop Biryani | `lollipop-biryani.jpg` | https://unsplash.com/photos/ysmeQt1dzcw |
 | Chicken Kebab Biryani | `chicken-kebab-biryani.jpg` | https://unsplash.com/photos/woC24wGXsQ8 |
 | Lamb Chops Biryani | `lamb-chops-biryani.jpg` | https://unsplash.com/photos/q29oNjt3sEQ |
 | Prawns Biryani | `prawns-biryani.jpg` | https://unsplash.com/photos/seJrQGuPJKw |
@@ -106,3 +105,11 @@ Replace any of these with the restaurant's own photos from the admin (Menu → e
 | Red Bull | `red-bull.jpg` | https://unsplash.com/photos/KZQcIuo5sFU |
 | Can Juice | `can-juice.jpg` | https://unsplash.com/photos/xPJs |
 | Mineral Water | `mineral-water.jpg` | https://unsplash.com/photos/edBR3b2JAuA |
+| Paneer Manchuria | `paneer-manchuria.jpg` | https://unsplash.com/photos/9Zg7RE3IGkA |
+| Egg Kothu Parata | `egg-kothu-parata.jpg` | https://unsplash.com/photos/xrbqxRDhOYI |
+| BBQ Chicken Wings | `bbq-chicken-wings.jpg` | https://unsplash.com/photos/7xpgPVH8bw |
+| Buffalo Chicken Wings | `buffalo-chicken-wings.jpg` | https://unsplash.com/photos/7_ErUOLxw |
+| Butter Roti | `butter-roti.jpg` | https://unsplash.com/photos/Ju0XPJLxPw0 |
+| Butter Kulcha | `butter-kulcha.jpg` | https://unsplash.com/photos/ykiTYB1RAl8 |
+| Butter Garlic Roti | `butter-garlic-roti.jpg` | https://unsplash.com/photos/Nt_wnMl7Siw |
+| Lollipop Biryani | `lollipop-biryani.jpg` | https://unsplash.com/photos/E0JfTuBdpwA |
